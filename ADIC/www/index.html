@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>A donde ir en la ciudad</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="icon" sizes="32x32" type="image/x-icon" href="images/logos/40x40.png" />
+	<link href="jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link href="plugins/owl/owl.carousel.css" rel="stylesheet">
+	<link href="plugins/owl/owl.theme.css" rel="stylesheet">
+	<link href="plugins/owl/owl.transitions.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/helpers.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet">
+</head>
+<body>
+	<div data-role="page" id="index">
+
+		<a href="#login" class="ui-btn ui-icon-delete ui-btn-icon-right close-splash">Skip</a>
+
+		<div id="splash" class="owl-carousel">
+			<div class="item">
+				<div style="background:url(images/bg/s00.jpg);" class="img-splash" alt="Bienvenido, este es el slide 1."></div>
+				<div class="text-splash">Bienvenido, este es el slide 1.</div> 
+			</div>
+			<div class="item">
+				<div style="background:url(images/bg/s01.jpg);" class="img-splash" alt="This is slide 2"></div>
+				<div class="text-splash">This is slide 2</div>
+			</div>
+			<div class="item">
+				<div style="background:url(images/bg/s02.jpg);" class="img-splash" alt="This is slide 3"></div>
+				<div class="text-splash">This is slide 3</div>
+			</div>
+			<div class="item">
+				<div style="background:url(images/bg/s03.jpg);" class="img-splash" alt="This is slide 4"></div>
+				<div class="text-splash">This is slide 4</div>
+			</div>
+			<div class="item">
+				<div style="background:url(images/bg/s04.jpg);" class="img-splash" alt="This is slide 5"></div>
+				<div class="text-splash z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 "><a href="#login" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow welcomescreen-closebtn close-welcomescreen">Comienza ya</a></div>
+			</div>
+		</div>
+	</div>
+	<div data-role="page" id="login">
+		<main id="main_login">
+			<div class="bgCover"></div>
+			<div class="z-container">
+				<div class="hFull z-block" style="height: 638px;max-height: 638px;">
+					<div class="z-content z-contentMiddle">
+						<div class="z-row">
+							<div class="z-col-lg-6 z-col-md-8 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-2 z-col-sm-offset-1 z-col-xs-offset-0">
+								<img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: fadeInDown;">
+							</div>
+						</div>
+						<div class="clear h100"></div>
+						<div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" style="visibility: visible; animation-duration: 1s; animation-delay: 1s; animation-name: fadeInUp;">
+							<div class="z-col-xs-12">
+								<h1 class="cWhite text-center s25">Bienvenido</h1>
+							</div>
+							<div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
+								<a class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">Inicia sesión<br>
+								</a>
+								<div class="clear">
+
+								</div>
+							</div>
+							<div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
+								<a class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">Crea una cuenta</a>
+								<div class="clear"></div>
+							</div>
+							<div class="z-col-lg-6 z-col-md-8 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-2 z-col-sm-offset-1 z-col-xs-offset-0"><a href="#socios" class="cWhite s15 text-center noTransform z-block">Acceso a Socios</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<div class="modal fade bgWhite" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content noShadow noBorder bgTransparent">
+					<div class="modal-header">
+						<button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
+						<h4 class="modal-title">Ingresa</h4>
+					</div>
+					<div class="modal-body">
+						<form id="lognUser" class="form-section">
+							<input type="hidden" id="action" value="loginU" name="action">
+							<label for="logUser"></label>
+							<input id="logUser" type="text" class="form-control" placeholder="Usuario" name="logUser" value="">
+							<div class="clear"></div>
+							<label for="logPass"></label>
+							<input id="logPass" type="password" class="form-control" placeholder="Contraseña" name="logPass" value="">
+							<div class="clear"></div>
+							<button type="button" id="loginU"  class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
+								Iniciar Sesión
+							</button>
+						</form>
+						<hr>
+						<div class="form-section">
+							<a class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
+								Facebook
+							</a>
+							<div class="clear"></div>
+							<a class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
+								Google+
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="modal fade bgWhite" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" data-keyboard="false" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content noShadow noBorder bgTransparent">
+					<div class="modal-header">
+						<button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
+						<h4 class="modal-title">Registrate</h4>
+					</div>
+					<div class="modal-body">
+						<form id="registerUser" class="form-section">
+
+							<label for="ruMail"></label>
+							<input id="ruMail" type="text" class="form-control" placeholder="Correo" name="ruMail" value="" required>
+
+							<div class="clear"></div>
+
+							<label for="ruPass"></label>
+							<input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="ruPass" value="" required>
+
+							<div class="clear"></div>
+							<button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow" disabled>
+								Crear cuenta
+							</button>
+						</form>
+						<hr>
+						<div class="form-section">
+							<a class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
+								Facebook
+							</a>
+							<div class="clear"></div>
+							<a href="main.<?php  ?>" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
+								Google+
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div data-role="page" id="socios">
+		asdas
+	</div>
+	<div data-role="page" id="profile">
+		asdas
+	</div>
+	<div data-role="page" id="main">
+		<div data-role="header" role="banner"  data-position="fixed" class="ui-header ui-bar-inherit">
+			<nav class="nav z-container-fluid bgDark boxShadow">
+				<div class="z-row noMargin">
+					<div class="z-block h50">
+						<div class="z-content-fluid z-contentMiddle text-left">
+							<a id="openAside" role="button" class="cLightGrey s15" href="#left-panel">
+								<span class="fa fa-bars s25"></span>
+							</a>
+						</div>
+						<div class="z-content-fluid z-contentMiddle text-center">
+							<a href="#main" role="button" class="cLightGrey s15">
+								<img class="h35" src="images/logos/48x48.png" alt="logo">
+							</a>
+						</div>
+						<div class="z-content-fluid z-contentMiddle text-right">
+							<div id="openSearch" class="cLightGrey s20 text-bold" href="#right-panel">
+								<a href="#right-panel" class="searchDay bgDark noBorder"><span class="primerDiaSemana">Lunes</span><span class="fa fa-chevron-down s15"></span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div role="main" class="ui-content">
+			<main canvas="container" class="z-container noPadding  bgLightGrey p2r">
+				<br>
+				<section id="sectionPost" class="z-container mainContainer">
+					<div class="z-row">
+						<div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0 scroll">
+						</div>
+					</div>
+
+				</section>
+			</main>
+			<svg class="hidden" version="1.1" xmlns="http://www.w3.org/2000/svg">
+				<filter id="blur">
+					<feGaussianBlur stdDeviation="30" />
+				</filter>
+			</svg>
+		</div>
+		<div data-role="panel" id="left-panel" class="bgLightBlue" data-position-fixed="true">
+			<form class="">				
+				<div class="z-row">
+					<div class="z-col-lg-8 z-col-md-8 z-col-sm-8 z-col-xs-12">
+						<div class="form-section">
+							<input id="search" class="form-control square has-addon" type="text" name="search" value="" placeholder="Buscar...">
+							<button type="button" id="searchBtn" class="z-btn cWhite bgGreen s15 form-addon"><span class="fa fa-search"></span></button>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="sidebar-nav">
+				<div class="list-group bgTransparent noBorder square">
+					<a href="#main" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
+					</a>
+					<a id="findRestaurant" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
+					</a>
+					<a id="findBar" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
+					</a>
+					<a id="findAntro" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
+					</a>
+					<a id="findFoodTruck"  role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
+					</a>
+					<a id="findEvent" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-calendar cLightGrey"></span> Eventos
+					</a>
+					<a id="findUbication" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+						<span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
+					</a>
+				</div>
+			</div>
+			<div class="z-row">
+				<div class="z-forceBlock h50">
+					<div class="z-block h150 hidden">
+						<div class="z-content z-contentMiddle">
+							<a href="#user" class="sidebar-image panelImg bgDark "></a>
+						</div>
+					</div>
+					<a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
+						<div class="z-content z-contentMiddle">
+							<div class="z-panelBody">
+								<span class="fa fa-user"></span>
+								<span class="usuario_mostrar">usuario</span>
+								<span class="fa fa-caret-down pull-right"></span>
+							</div>
+						</div>
+					</a>
+					<div class="collapse" id="profile-dropdown">
+						<div class="list-group bgLightGrey noBorder square">
+							<a href="#profile" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+								Editar Perfil (socio)
+							</a>
+							<a href="#" role="button" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+								link
+							</a>
+							<a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+								Cerrar sesión
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div data-role="panel" id="right-panel"  data-position="right" class="bgLightBlue" data-position-fixed="true">
+			<div class="list-group bgTransparent noBorder square " id="diasSemana">
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Miercoles        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Jueves        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Viernes        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Sabado        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Domingo        
+				</button>
+				<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay" >
+					Lunes        
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="plugins/owl/owl.carousel.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/xpull.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script type="text/javascript" src="js/app_ini.js"></script>
+</body>
+</html>
