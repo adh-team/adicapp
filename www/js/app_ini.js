@@ -390,6 +390,10 @@ $(document).ready(function() {
 		getPost();
 		getMenuCategorias();
 	}
+	function ubicacionesFunction(){
+		app=getAppJson();
+		
+	}
 
 	
 
@@ -447,11 +451,12 @@ $(document).ready(function() {
 			else{
 				if (id==="-1") {
 					appS.user.categoria="0";
-					appS.user.categoriaNombre="Ubicaciones";
+					appS.user.categoriaNombre="Inicio";
 					appS.user.classIcon=icon;
 					setAppSession(appS);
-					mainFunction();
-					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
+					$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+					$.mobile.changePage("#ubicaciones");
+					ubicacionesFunction();
 				}
 				else{
 					appS.user.categoria=id;
