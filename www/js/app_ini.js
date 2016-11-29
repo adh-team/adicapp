@@ -117,96 +117,7 @@ $(document).ready(function() {
 	function alertMensaje(mensaje){
 		alert(mensaje);
 	}
-	function inicializar(){
-		/* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
-		try {
-			if (localStorage.getItem) {
-				storage = localStorage;
-				storageS = sessionStorage;
-			}
-		} catch(e) {
-			storage = {};
-			storageS = {};
-		}
-		app=getAppJson();
-		appS=getAppSession();
 
-		/* validaciones */
-		$("#lognUser").validate({
-			rules: {
-				logUser: {
-					required: true,
-					email: true
-				},
-				logPass: {
-					required: true,
-					minlength: 5
-				}
-			},
-			messages: {
-				logUser: "Porfavor ingresa un E-mail valido",
-				logPass: "Ingresa una contraseña con mas de 5 caracteres",
-			}
-		});
-		
-		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
-			event.preventDefault();
-			$.mobile.changePage("#profile");
-		});
-		$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
-			event.preventDefault();
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-			appS=getAppSession();
-			var id=$(this).attr('data-id');
-			var icon=$(this).attr('data-icon');
-			if (id==="0") {
-				appS.user.categoria="0";
-				appS.user.categoriaNombre="Inicio";
-				appS.user.classIcon=icon;
-				setAppSession(appS);
-				mainFunction();
-				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
-			}
-			else{
-				if (id==="-1") {
-					appS.user.categoria="0";
-					appS.user.categoriaNombre="Ubicaciones";
-					appS.user.classIcon=icon;
-					setAppSession(appS);
-					mainFunction();
-					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
-				}
-				else{
-					appS.user.categoria=id;
-					appS.user.categoriaNombre=$(this).attr('data-name');
-					appS.user.classIcon=icon;
-					setAppSession(appS);
-					mainFunction();
-					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
-				}
-			}
-			
-			$(".ui-panel").panel("close");
-
-		});
-		$("#diasSemana").on('click', '.searchDayClick', function(event) {
-			event.preventDefault();
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-			appS=getAppSession();
-			appS.user.fecha=$(this).val();
-			appS.user.fechaNombre=$(this).html();
-			setAppSession(appS);
-			mainFunction();
-			$(".ui-panel").panel("close");
-
-		});
-		$(document).on("pagebeforeshow","#main",function(event){
-			mainFunction();
-		});
-
-
-		/* fin inicializar */
-	}
 	/* localstorage */
 	function getAppJson(){
 		if (storage.app===undefined) {
@@ -483,6 +394,138 @@ $(document).ready(function() {
 	
 
 
+	function inicializar(){
+		/* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
+		try {
+			if (localStorage.getItem) {
+				storage = localStorage;
+				storageS = sessionStorage;
+			}
+		} catch(e) {
+			storage = {};
+			storageS = {};
+		}
+		app=getAppJson();
+		appS=getAppSession();
 
+		/* validaciones */
+		$("#lognUser").validate({
+			rules: {
+				logUser: {
+					required: true,
+					email: true
+				},
+				logPass: {
+					required: true,
+					minlength: 5
+				}
+			},
+			messages: {
+				logUser: "Porfavor ingresa un E-mail valido",
+				logPass: "Ingresa una contraseña con mas de 5 caracteres",
+			}
+		});
+		
+		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
+			event.preventDefault();
+			$.mobile.changePage("#profile");
+		});
+		$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
+			event.preventDefault();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+			appS=getAppSession();
+			var id=$(this).attr('data-id');
+			var icon=$(this).attr('data-icon');
+			if (id==="0") {
+				appS.user.categoria="0";
+				appS.user.categoriaNombre="Inicio";
+				appS.user.classIcon=icon;
+				setAppSession(appS);
+				mainFunction();
+				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+			}
+			else{
+				if (id==="-1") {
+					appS.user.categoria="0";
+					appS.user.categoriaNombre="Ubicaciones";
+					appS.user.classIcon=icon;
+					setAppSession(appS);
+					mainFunction();
+					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
+				}
+				else{
+					appS.user.categoria=id;
+					appS.user.categoriaNombre=$(this).attr('data-name');
+					appS.user.classIcon=icon;
+					setAppSession(appS);
+					mainFunction();
+					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
+				}
+			}
+			
+			$(".ui-panel").panel("close");
+
+		});
+		$("#masterfab").on('click', '.search-fixed', function(event) {
+			event.preventDefault();
+			$("#left-panel").panel("open");
+			$("#search").focus();
+		});
+		$("#form_search").submit(function( event ) {
+			$("#searchBtn").click();
+			event.preventDefault();
+		});
+		$("#searchBtn").on('click', function(event) {
+			ajaxLoader("inicia");
+			event.preventDefault();
+			var data= {'action': 'buscar','input':$("#search").val()};
+			$.ajax({
+				data:  data,
+				crossDomain: true,
+				cache: false,
+				xhrFields: {
+					withCredentials: true
+				},
+				url: urlAjax+'classes/ajaxApp.php',
+				type: 'post'
+			}).done(function(data){
+				if(data.continuar==="ok"){
+					var datahtml="";
+					for(var i in data.datos) {
+						datahtml+=getHtmlPost(data.datos[i]);
+					}
+					$("#postContainer").html(datahtml);
+
+				}
+				else{
+					$("#postContainer").html('<div class="h50">Sin publicaciones :(');
+				}
+				$("html, body").animate({ scrollTop: 0 }, "slow");
+				ajaxLoader("termina");
+
+			});
+			
+		});
+		$("#diasSemana").on('click', '.searchDayClick', function(event) {
+			event.preventDefault();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+			appS=getAppSession();
+			appS.user.fecha=$(this).val();
+			appS.user.fechaNombre=$(this).html();
+			setAppSession(appS);
+			mainFunction();
+			$(".ui-panel").panel("close");
+
+		});
+		$(document).on("pagebeforeshow","#main",function(event){
+			mainFunction();
+		});
+		$(document).on("pagebeforeshow","#editProfile",function(event){
+			
+		});
+
+
+		/* fin inicializar */
+	}
 	/* fin del ready */	
 });

@@ -387,6 +387,12 @@ p {
 
 }
 /* main left panel */
+#search{
+  padding-right: 80px;
+}
+#search+.ui-input-clear{
+  right: 35px;
+}
 button#searchBtn {
   width: 40px;
   margin: 0;
@@ -440,4 +446,42 @@ a.searchDay {
 .ofertaImg {
   width: 100%;
   padding-bottom: 100%;
+}
+
+/*float searh*/
+.fab {
+  background: #03a9f4;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  text-align: center;
+  color: #FFF;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5), 3px 3px 3px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  bottom: 48px;
+  right: 48px;
+  font-size: 2.6667em;
+  display: inline-block;
+  cursor: default;
+}
+.fab span {
+  vertical-align: middle;
+}
+.fab.child {
+  right: 58.66666667px;
+  width: 42.66666667px;
+  height: 42.66666667px;
+  display: none;
+  opacity: 0;
+  font-size: 2em;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ECECEC;
+  opacity: 0.9;
+  display: none;
 }
