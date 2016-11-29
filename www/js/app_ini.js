@@ -465,12 +465,7 @@ $(document).ready(function() {
 			
 			$(".ui-panel").panel("close");
 
-		});
-		$("#masterfab").on('click', '.search-fixed', function(event) {
-			event.preventDefault();
-			$("#left-panel").panel("open");
-			$("#search").focus();
-		});
+		});		
 		$("#form_search").submit(function( event ) {
 			$("#searchBtn").click();
 			event.preventDefault();
@@ -523,6 +518,7 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#editProfile",function(event){
 			
 		});
+		mainFunction();
 
 
 		/* fin inicializar */
