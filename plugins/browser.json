@@ -1,0 +1,31 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        }
+    }
+}
