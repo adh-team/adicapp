@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="../";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
-var urlAjax=urlRemoto;
+var urlAjax=urlLocal;
 /**********************/
 $(document).bind("mobileinit", function(){
 	
@@ -61,12 +61,12 @@ $(document).ready(function() {
 
 			})
 			.fail(function( jqXHR, textStatus, errorThrown ) {
-				$.mobile.changePage("#index");
+				$.mobile.changePage("#login");
 			});
 		}
 		else{
 			/* no logueado*/
-			$.mobile.changePage("#index");
+			$.mobile.changePage("#login");
 			
 		}
 	}
@@ -131,15 +131,6 @@ $(document).ready(function() {
 		app=getAppJson();
 		appS=getAppSession();
 
-		/* codigo para splash*/
-		$("#splash").owlCarousel({
-			
-			autoHeight : true,
-			slideSpeed : 400,
-			paginationSpeed : 400,
-			singleItem:true,
-			transitionStyle : "fade"
-		});
 		/* validaciones */
 		$("#lognUser").validate({
 			rules: {
@@ -155,15 +146,6 @@ $(document).ready(function() {
 			messages: {
 				logUser: "Porfavor ingresa un E-mail valido",
 				logPass: "Ingresa una contraseña con mas de 5 caracteres",
-			}
-		});
-		/* validaciones de botones disabled */
-		$("#lognUser input").on('keypress change', function(){
-			var valid = $("#lognUser").valid();
-			if(valid == true){
-				$("#loginU").prop("disabled", false);
-			}else{
-				$("#loginU").prop("disabled", "disabled");
 			}
 		});
 		$("#registerUser input").on('keypress change', function(){
