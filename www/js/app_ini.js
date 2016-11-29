@@ -56,7 +56,7 @@ $(document).ready(function() {
 						user:user
 					};
 					setAppJson(app);
-					$.mobile.changePage("#index");				
+					$.mobile.changePage("#login");				
 				}
 
 			})
@@ -75,8 +75,7 @@ $(document).ready(function() {
 		submitFormsubmitFormLogin();
 	});
 	/* funcion para login */
-	function submitFormsubmitFormLogin()
-	{  
+	function submitFormsubmitFormLogin(){  
 		
 		var data = {'action': 'loginU','logUser':$("#logUser").val(),'logPass':$("#logPass").val()};
 		$.ajax({
@@ -179,28 +178,55 @@ $(document).ready(function() {
 			event.preventDefault();
 			$.mobile.changePage("#profile");
 		});
+		$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
+			event.preventDefault();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+			appS=getAppSession();
+			var id=$(this).attr('data-id');
+			var icon=$(this).attr('data-icon');
+			if (id==="0") {
+				appS.user.categoria="0";
+				appS.user.categoriaNombre="Inicio";
+				appS.user.classIcon=icon;
+				setAppSession(appS);
+				mainFunction();
+				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+			}
+			else{
+				if (id==="-1") {
+					appS.user.categoria="0";
+					appS.user.categoriaNombre="Ubicaciones";
+					appS.user.classIcon=icon;
+					setAppSession(appS);
+					mainFunction();
+					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
+				}
+				else{
+					appS.user.categoria=id;
+					appS.user.categoriaNombre=$(this).attr('data-name');
+					appS.user.classIcon=icon;
+					setAppSession(appS);
+					mainFunction();
+					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
+				}
+			}
+			
+			$(".ui-panel").panel("close");
+
+		});
 		$("#diasSemana").on('click', '.searchDayClick', function(event) {
 			event.preventDefault();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
 			appS=getAppSession();
 			appS.user.fecha=$(this).val();
 			appS.user.fechaNombre=$(this).html();
 			setAppSession(appS);
-			getPost();
-			getDiaSemana();
+			mainFunction();
 			$(".ui-panel").panel("close");
 
 		});
 		$(document).on("pagebeforeshow","#main",function(event){
-			app=getAppJson();
-			if (app.user.name!=="") {
-				$(".usuario_mostrar").html(app.user.name);				
-				getDiaSemana();
-				getPost();
-
-				
-				
-
-			}
+			mainFunction();
 		});
 
 
@@ -327,6 +353,9 @@ $(document).ready(function() {
 
 		});
 	});
+	function getMenuCategorias(){	
+		/*codigo ajax para despues traernos el menu de categorias */
+	}
 	function getDiaSemana(){
 		appS=getAppSession();
 		var ahora = new Date();
@@ -467,6 +496,13 @@ $(document).ready(function() {
 				$.mobile.loading( "hide" );
 			}
 		}
+	}
+	function mainFunction(){
+		app=getAppJson();
+		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
+		getDiaSemana();
+		getPost();
+		getMenuCategorias();
 	}
 
 	

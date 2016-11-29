@@ -162,22 +162,22 @@
 		<div data-role="header" role="banner"  data-position="fixed" class="ui-header ui-bar-inherit">
 			<nav class="nav z-container-fluid bgDark boxShadow">
 				<div class="z-row noMargin">
-					<div class="z-block h50 menu-app">
-						<div class="col-xs-4">
+					<div class="z-block h70 menu-app">
+						<div class="col-xs-4 noPadding">
 							<div class="z-content-fluid z-contentMiddle text-left ">
 								<a id="openAside" role="button" class="cLightGrey s15" href="#left-panel">
 									<span class="fa fa-bars s25"></span>
 								</a>
 							</div>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-4 noPadding">
 							<div class="z-content-fluid z-contentMiddle text-center ">
-								<a href="#main" role="button" class="cLightGrey s15">
+								<a href="#main" role="button" class="cLightGrey s15" id="classIcon">
 									<img class="h35" src="images/logos/48x48.png" alt="logo">
 								</a>
 							</div>
 						</div>
-						<div class="col-xs-4">
+						<div class="col-xs-4 noPadding">
 							<div class="z-content-fluid z-contentMiddle text-right">
 								<div id="openSearch" class="cLightGrey s20 text-bold " href="#right-panel">
 									<a href="#right-panel" class="searchDay bgDark noBorder"><span class="primerDiaSemana">Lunes</span><span class="fa fa-chevron-down s15"></span></a>
@@ -217,26 +217,26 @@
 				</div>
 			</form>
 			<div class="sidebar-nav">
-				<div class="list-group bgTransparent noBorder square">
-					<a href="#main" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+				<div class="list-group bgTransparent noBorder square" id="categoriasMenu">
+					<a data-id="0" data-name="A Donde Ir" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-home">
 						<span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
 					</a>
-					<a id="findRestaurant" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+					<a data-id="2" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-cutlery">
 						<span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
 					</a>
-					<a id="findBar" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+					<a data-id="1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-beer">
 						<span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
 					</a>
-					<a id="findAntro" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+					<a data-id="3" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-glass">
 						<span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
 					</a>
-					<a id="findFoodTruck"  role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+					<a data-id="4" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-truck">
 						<span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
 					</a>
-					<a id="findEvent" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+					<a data-id="5" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-calendar">
 						<span class="sidebar-icon fa fa-calendar cLightGrey"></span> Eventos
 					</a>
-					<a id="findUbication" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent">
+					<a data-id="-1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-map">
 						<span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
 					</a>
 				</div>
