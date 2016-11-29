@@ -106,7 +106,7 @@ $(document).ready(function() {
 			}
 			else{
 
-				alertMensaje('problemas al iniciar session');
+				alertMensaje('usuario o contraseña no son correctos');
 			}
 		})
 		.fail(function( jqXHR, textStatus, errorThrown ) {
@@ -148,14 +148,7 @@ $(document).ready(function() {
 				logPass: "Ingresa una contraseña con mas de 5 caracteres",
 			}
 		});
-		$("#registerUser input").on('keypress change', function(){
-			var valid = $("#registerUser").valid();
-			if(valid == true){
-				$("#crteAccountE").prop("disabled", false);
-			}else{
-				$("#crteAccountE").prop("disabled", "disabled");
-			}
-		});
+		
 		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
 			event.preventDefault();
 			$.mobile.changePage("#profile");
