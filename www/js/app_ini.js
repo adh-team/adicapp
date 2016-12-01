@@ -384,6 +384,7 @@ $(document).ready(function() {
 		}
 	}
 	function mainFunction(){
+		is_logged_in();
 		app=getAppJson();
 		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
 		getDiaSemana();
@@ -520,9 +521,7 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
-		$(document).on("pagebeforeshow","#editProfile",function(event){
-			
-		});
+
 		mainFunction();
 
 
