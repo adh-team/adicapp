@@ -521,8 +521,118 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
+		$(document).on('click', '.lgn-with-fb', function(event) {
+			event.preventDefault();
+			checkFbStatus();
+		});
+		function checkFbStatus(){
+			app=getAppJson();
+			var data = {'action': 'loginU','logUser':app.facebook.email};
+			if (app.facebook.status==='connected') {
+				$.ajax({
+					type : 'POST',
+					crossDomain: true,
+					cache: false,
+					xhrFields: {
+						withCredentials: true
+					},
+					url  : urlAjax+'classes/ajaxApp.php',
+					dataType: "json",
+					data : data,		
+				})
+				.done(function( data, textStatus, jqXHR ) {
+					if(data.continuar==="ok"){
+						var user=app.user;
+						user.token=data.datos.token;
+						user.email=data.datos.row[0].username;
+						user.name=data.datos.row[0].username;
+						user.rol=data.datos.row[0].role;
+						user.id=data.datos.row[0].iduser;				
+						app.user=user;
+						setAppJson(app);
+						$.mobile.changePage("#main");
+						is_logged_in();
+						$('.modal').modal('hide');
+					}
+					else{
 
-		mainFunction();
+						alertMensaje('usuario no registrado con facebook');
+					}
+				})
+				.fail(function( jqXHR, textStatus, errorThrown ) {
+					alertMensaje('problemas inesperado ');
+				});
+			}
+			else {
+				if (app.facebook.status==='not_authorized') {
+					alertMensaje('usuario no registrado con facebook');
+				}
+				else{
+					FB.login(function(response) {
+						var status=response.status;
+						var email="";
+						var name="";
+						if (response.status === 'connected') {
+							FB.api('/me',{fields: 'name, email'}, function(response) {
+								app.facebook.email=response.email;
+								app.facebook.user=response.user;
+								app.facebook.status=status;
+								var data = {'action': 'loginU','logUser':app.facebook.email};
+								if (app.facebook.status==='connected') {
+									$.ajax({
+										type : 'POST',
+										crossDomain: true,
+										cache: false,
+										xhrFields: {
+											withCredentials: true
+										},
+										url  : urlAjax+'classes/ajaxApp.php',
+										dataType: "json",
+										data : data,		
+									})
+									.done(function( data, textStatus, jqXHR ) {
+										if(data.continuar==="ok"){
+											var user=app.user;
+											user.token=data.datos.token;
+											user.email=data.datos.row[0].username;
+											user.name=data.datos.row[0].username;
+											user.rol=data.datos.row[0].role;
+											user.id=data.datos.row[0].iduser;				
+											app.user=user;
+											setAppJson(app);
+											$.mobile.changePage("#main");
+											is_logged_in();
+											$('.modal').modal('hide');
+										}
+										else{
+
+											alertMensaje('usuario no registrado con facebook');
+										}
+									})
+									.fail(function( jqXHR, textStatus, errorThrown ) {
+										alertMensaje('problemas inesperado ');
+									});
+
+								}
+							});
+						}
+						else if (response.status === 'not_authorized') {
+							alertMensaje('usuario no registrado con facebook');
+						} 
+						else {
+							alertMensaje('problemas al iniciar session con facebook');
+						}
+
+					}, {scope: 'public_profile,email'});
+				}
+			}
+		}
+
+
+
+
+
+		/*mainFunction();*/
 
 
 		/* fin inicializar */
