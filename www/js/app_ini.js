@@ -522,8 +522,9 @@ $(document).ready(function() {
 			mainFunction();
 		});
 		$(document).on('click', '.lgn-with-fb', function(event) {
-			event.preventDefault();
-			checkFbStatus();
+			//event.preventDefault();
+
+			//checkFbStatus();
 		});
 		function checkFbStatus(){
 			app=getAppJson();
