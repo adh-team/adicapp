@@ -527,8 +527,9 @@ $(document).ready(function() {
 		});
 		function checkFbStatus(){
 			app=getAppJson();
-			var data = {'action': 'loginU','logUser':app.facebook.email};
+			
 			if (app.facebook.status==='connected') {
+				var data = {'action': 'loginU','logUser':app.facebook.email};
 				$.ajax({
 					type : 'POST',
 					crossDomain: true,
@@ -577,8 +578,9 @@ $(document).ready(function() {
 								app.facebook.email=response.email;
 								app.facebook.user=response.user;
 								app.facebook.status=status;
-								var data = {'action': 'loginU','logUser':app.facebook.email};
+								
 								if (app.facebook.status==='connected') {
+									var data = {'action': 'loginU','logUser':app.facebook.email};
 									$.ajax({
 										type : 'POST',
 										crossDomain: true,
