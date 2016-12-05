@@ -15,7 +15,9 @@ $(document).bind("mobileinit", function(){
 	
 	
 });
-$(document).ready(function() {	
+
+$(document).ready(function() {
+
 	loaderMain();
 	function loaderMain(){
 		inicializar();
@@ -61,12 +63,12 @@ $(document).ready(function() {
 
 			})
 			.fail(function( jqXHR, textStatus, errorThrown ) {
-				$.mobile.changePage("#index");
+				$.mobile.changePage("#login");
 			});
 		}
 		else{
 			/* no logueado*/
-			$.mobile.changePage("#index");
+			$.mobile.changePage("#login");
 			
 		}
 	}
@@ -106,7 +108,7 @@ $(document).ready(function() {
 			}
 			else{
 
-				alertMensaje('problemas al iniciar session');
+				alertMensaje('usuario o contraseña no son correctos');
 			}
 		})
 		.fail(function( jqXHR, textStatus, errorThrown ) {
@@ -117,121 +119,7 @@ $(document).ready(function() {
 	function alertMensaje(mensaje){
 		alert(mensaje);
 	}
-	function inicializar(){
-		/* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
-		try {
-			if (localStorage.getItem) {
-				storage = localStorage;
-				storageS = sessionStorage;
-			}
-		} catch(e) {
-			storage = {};
-			storageS = {};
-		}
-		app=getAppJson();
-		appS=getAppSession();
 
-		/* codigo para splash*/
-		$("#splash").owlCarousel({
-			
-			autoHeight : true,
-			slideSpeed : 400,
-			paginationSpeed : 400,
-			singleItem:true,
-			transitionStyle : "fade"
-		});
-		/* validaciones */
-		$("#lognUser").validate({
-			rules: {
-				logUser: {
-					required: true,
-					email: true
-				},
-				logPass: {
-					required: true,
-					minlength: 5
-				}
-			},
-			messages: {
-				logUser: "Porfavor ingresa un E-mail valido",
-				logPass: "Ingresa una contraseña con mas de 5 caracteres",
-			}
-		});
-		/* validaciones de botones disabled */
-		$("#lognUser input").on('keypress change', function(){
-			var valid = $("#lognUser").valid();
-			if(valid == true){
-				$("#loginU").prop("disabled", false);
-			}else{
-				$("#loginU").prop("disabled", "disabled");
-			}
-		});
-		$("#registerUser input").on('keypress change', function(){
-			var valid = $("#registerUser").valid();
-			if(valid == true){
-				$("#crteAccountE").prop("disabled", false);
-			}else{
-				$("#crteAccountE").prop("disabled", "disabled");
-			}
-		});
-		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
-			event.preventDefault();
-			$.mobile.changePage("#profile");
-		});
-		$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
-			event.preventDefault();
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-			appS=getAppSession();
-			var id=$(this).attr('data-id');
-			var icon=$(this).attr('data-icon');
-			if (id==="0") {
-				appS.user.categoria="0";
-				appS.user.categoriaNombre="Inicio";
-				appS.user.classIcon=icon;
-				setAppSession(appS);
-				mainFunction();
-				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
-			}
-			else{
-				if (id==="-1") {
-					appS.user.categoria="0";
-					appS.user.categoriaNombre="Ubicaciones";
-					appS.user.classIcon=icon;
-					setAppSession(appS);
-					mainFunction();
-					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
-				}
-				else{
-					appS.user.categoria=id;
-					appS.user.categoriaNombre=$(this).attr('data-name');
-					appS.user.classIcon=icon;
-					setAppSession(appS);
-					mainFunction();
-					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
-				}
-			}
-			
-			$(".ui-panel").panel("close");
-
-		});
-		$("#diasSemana").on('click', '.searchDayClick', function(event) {
-			event.preventDefault();
-			$("html, body").animate({ scrollTop: 0 }, "slow");
-			appS=getAppSession();
-			appS.user.fecha=$(this).val();
-			appS.user.fechaNombre=$(this).html();
-			setAppSession(appS);
-			mainFunction();
-			$(".ui-panel").panel("close");
-
-		});
-		$(document).on("pagebeforeshow","#main",function(event){
-			mainFunction();
-		});
-
-
-		/* fin inicializar */
-	}
 	/* localstorage */
 	function getAppJson(){
 		if (storage.app===undefined) {
@@ -442,13 +330,6 @@ $(document).ready(function() {
 		'</div>'+
 		'</div>'+
 		'</div>'+
-		'<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-2 noPadding">'+
-		'<div class="z-block h70">'+
-		'<div class="z-content z-contentMiddle text-center">'+
-		'<span class="fa fa-star-o s20 cGrey"></span>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
 		'</div>'+
 		'</div>'+
 		'<div class="z-panelBody z-block overflowHidden noPadding">'+
@@ -469,17 +350,6 @@ $(document).ready(function() {
 		'</div>'+
 		'</div>'+
 		'</div>'+
-		'<div class="z-panelFooter z-block h40 overflowHidden noPadding bgTransparent">'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-share"></span>'+
-		'</a>'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-thumbs-up"></span>'+
-		'</a>'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-tag"></span>'+
-		'</a>'+
-		'</div>'+
 		'</div>';
 	}
 	function ajaxLoader(action){
@@ -498,16 +368,295 @@ $(document).ready(function() {
 		}
 	}
 	function mainFunction(){
+		is_logged_in();
 		app=getAppJson();
 		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
 		getDiaSemana();
 		getPost();
 		getMenuCategorias();
 	}
+	function ubicacionesFunction(){
+		app=getAppJson();
+		
+	}
 
 	
 
 
+	function inicializar(){
+		/* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
+		try {
+			if (localStorage.getItem) {
+				storage = localStorage;
+				storageS = sessionStorage;
+			}
+		} catch(e) {
+			storage = {};
+			storageS = {};
+		}
+		app=getAppJson();
+		appS=getAppSession();
 
+		/* validaciones */
+		$("#lognUser").validate({
+			rules: {
+				logUser: {
+					required: true,
+					email: true
+				},
+				logPass: {
+					required: true,
+					minlength: 5
+				}
+			},
+			messages: {
+				logUser: "Porfavor ingresa un E-mail valido",
+				logPass: "Ingresa una contraseña con mas de 5 caracteres",
+			}
+		});
+		
+		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
+			event.preventDefault();
+			$.mobile.changePage("#profile");
+		});
+		$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
+			event.preventDefault();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+			appS=getAppSession();
+			var id=$(this).attr('data-id');
+			var icon=$(this).attr('data-icon');
+			if (id==="0") {
+				appS.user.categoria="0";
+				appS.user.categoriaNombre="Inicio";
+				appS.user.classIcon=icon;
+				setAppSession(appS);
+				mainFunction();
+				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+			}
+			else{
+				if (id==="-1") {
+					appS.user.categoria="0";
+					appS.user.categoriaNombre="Inicio";
+					appS.user.classIcon=icon;
+					setAppSession(appS);
+					$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+					$.mobile.changePage("#ubicaciones");
+					ubicacionesFunction();
+				}
+				else{
+					appS.user.categoria=id;
+					appS.user.categoriaNombre=$(this).attr('data-name');
+					appS.user.classIcon=icon;
+					setAppSession(appS);
+					mainFunction();
+					$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
+				}
+			}
+			
+			$(".ui-panel").panel("close");
+
+		});		
+		$("#form_search").submit(function( event ) {
+			$("#searchBtn").click();
+			event.preventDefault();
+		});
+		$(document).on('click','.lgn-with-fb',function(event) {
+			var token='swd';
+			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			var html='<a href="#" rel="http://demos.krizna.com/1353/" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			$("#iframemodal .modal-body").html(html);
+		});
+		$(document).on('click','.link', function(event) {
+			event.preventDefault();
+			url = $(this).attr("rel");
+			//navigator.app.loadUrl(url, {openExternal: true});
+			window.open(url,'_blank', 'location=yes');
+		});
+
+		function loadURL(url){
+			navigator.app.loadUrl(url, { openExternal:true });
+			return false;
+		}
+		$("#searchBtn").on('click', function(event) {
+			ajaxLoader("inicia");
+			event.preventDefault();
+			var data= {'action': 'buscar','input':$("#search").val()};
+			$.ajax({
+				data:  data,
+				crossDomain: true,
+				cache: false,
+				xhrFields: {
+					withCredentials: true
+				},
+				url: urlAjax+'classes/ajaxApp.php',
+				type: 'post'
+			}).done(function(data){
+				if(data.continuar==="ok"){
+					var datahtml="";
+					for(var i in data.datos) {
+						datahtml+=getHtmlPost(data.datos[i]);
+					}
+					$("#postContainer").html(datahtml);
+
+				}
+				else{
+					$("#postContainer").html('<div class="h50">Sin publicaciones :(');
+				}
+				$("html, body").animate({ scrollTop: 0 }, "slow");
+				ajaxLoader("termina");
+
+			});
+			
+		});
+		$("#diasSemana").on('click', '.searchDayClick', function(event) {
+			event.preventDefault();
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+			appS=getAppSession();
+			appS.user.fecha=$(this).val();
+			appS.user.fechaNombre=$(this).html();
+			setAppSession(appS);
+			mainFunction();
+			$(".ui-panel").panel("close");
+
+		});
+		$(document).on("pagebeforeshow","#main",function(event){
+			mainFunction();
+		});
+		function checkFbStatus(){
+			app=getAppJson();
+			
+			if (app.facebook.status==='connected') {
+				var data = {'action': 'loginU','logUser':app.facebook.email};
+				$.ajax({
+					type : 'POST',
+					crossDomain: true,
+					cache: false,
+					xhrFields: {
+						withCredentials: true
+					},
+					url  : urlAjax+'classes/ajaxApp.php',
+					dataType: "json",
+					data : data,		
+				})
+				.done(function( data, textStatus, jqXHR ) {
+					if(data.continuar==="ok"){
+						var user=app.user;
+						user.token=data.datos.token;
+						user.email=data.datos.row[0].username;
+						user.name=data.datos.row[0].username;
+						user.rol=data.datos.row[0].role;
+						user.id=data.datos.row[0].iduser;				
+						app.user=user;
+						setAppJson(app);
+						$.mobile.changePage("#main");
+						is_logged_in();
+						$('.modal').modal('hide');
+					}
+					else{
+
+						alertMensaje('usuario no registrado con facebook');
+					}
+				})
+				.fail(function( jqXHR, textStatus, errorThrown ) {
+					alertMensaje('problemas inesperado ');
+				});
+			}
+			else {
+				if (app.facebook.status==='not_authorized') {
+					alertMensaje('usuario no registrado con facebook');
+				}
+				else{
+					FB.login(function(response) {
+						var status=response.status;
+						var email="";
+						var name="";
+						if (response.status === 'connected') {
+							FB.api('/me',{fields: 'name, email'}, function(response) {
+								app.facebook.email=response.email;
+								app.facebook.user=response.user;
+								app.facebook.status=status;
+								
+								if (app.facebook.status==='connected') {
+									var data = {'action': 'loginU','logUser':app.facebook.email};
+									$.ajax({
+										type : 'POST',
+										crossDomain: true,
+										cache: false,
+										xhrFields: {
+											withCredentials: true
+										},
+										url  : urlAjax+'classes/ajaxApp.php',
+										dataType: "json",
+										data : data,		
+									})
+									.done(function( data, textStatus, jqXHR ) {
+										if(data.continuar==="ok"){
+											var user=app.user;
+											user.token=data.datos.token;
+											user.email=data.datos.row[0].username;
+											user.name=data.datos.row[0].username;
+											user.rol=data.datos.row[0].role;
+											user.id=data.datos.row[0].iduser;				
+											app.user=user;
+											setAppJson(app);
+											$.mobile.changePage("#main");
+											is_logged_in();
+											$('.modal').modal('hide');
+										}
+										else{
+
+											alertMensaje('usuario no registrado con facebook');
+										}
+									})
+									.fail(function( jqXHR, textStatus, errorThrown ) {
+										alertMensaje('problemas inesperado ');
+									});
+
+								}
+							});
+						}
+						else if (response.status === 'not_authorized') {
+							alertMensaje('usuario no registrado con facebook');
+						} 
+						else {
+							alertMensaje('problemas al iniciar session con facebook');
+						}
+
+					}, {scope: 'public_profile,email'});
+				}
+			}
+		}
+
+
+
+
+
+		/*mainFunction();*/
+
+
+		/* fin inicializar */
+	}
+	function openInAppBrowserBlank(url)
+	{
+		try {
+			ref = window.open(encodeURI(url),'_blank','location=no');
+			ref.addEventListener('loadstop', LoadStop);
+			ref.addEventListener('exit', Close);
+		}
+		catch (err)    
+		{
+			alert(err);
+		}
+	}
+	function LoadStop(event) {
+		if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
+			/*alert("fun load stop runs");*/
+			ref.close();
+		}    
+	}
+	function Close(event) {
+		ref.removeEventListener('loadstop', LoadStop);
+		ref.removeEventListener('exit', Close);
+	} 
 	/* fin del ready */	
 });

@@ -10,12 +10,16 @@
     <description>
         Hello World sample application that responds to the deviceready event.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
+    <author email="raganaxi@gmail.com" href="http://phonegap.com">
         PhoneGap Team
     </author>
     <content src="index.html" />
-    <icon src="icon.png" />
+    <icon src="images/logos/120x120.png" />
     <access origin="*" />
+    <access origin="http://pruebasapi.esy.es" subdomains="true" />
+    <access origin="https://*.facebook.com/" subdomains="true" />
+    <access origin="https://www.facebook.com/" />
+    <access origin="http://*.facebook.net/" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

@@ -15,7 +15,9 @@ $(document).bind("mobileinit", function(){
 	
 	
 });
-$(document).ready(function() {	
+
+$(document).ready(function() {
+
 	loaderMain();
 	function loaderMain(){
 		inicializar();
@@ -328,13 +330,6 @@ $(document).ready(function() {
 		'</div>'+
 		'</div>'+
 		'</div>'+
-		'<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-2 noPadding">'+
-		'<div class="z-block h70">'+
-		'<div class="z-content z-contentMiddle text-center">'+
-		'<span class="fa fa-star-o s20 cGrey"></span>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
 		'</div>'+
 		'</div>'+
 		'<div class="z-panelBody z-block overflowHidden noPadding">'+
@@ -354,17 +349,6 @@ $(document).ready(function() {
 		'</div>'+
 		'</div>'+
 		'</div>'+
-		'</div>'+
-		'<div class="z-panelFooter z-block h40 overflowHidden noPadding bgTransparent">'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-share"></span>'+
-		'</a>'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-thumbs-up"></span>'+
-		'</a>'+
-		'<a role="button" class="z-content-fluid z-contentMiddle z-btn cGrey text-center s20 noBorder noPadding">'+
-		'<span class="fa fa-tag"></span>'+
-		'</a>'+
 		'</div>'+
 		'</div>';
 	}
@@ -476,6 +460,23 @@ $(document).ready(function() {
 			$("#searchBtn").click();
 			event.preventDefault();
 		});
+		$(document).on('click','.lgn-with-fb',function(event) {
+			var token='swd';
+			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			var html='<a href="#" rel="http://demos.krizna.com/1353/" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			$("#iframemodal .modal-body").html(html);
+		});
+		$(document).on('click','.link', function(event) {
+			event.preventDefault();
+			url = $(this).attr("rel");
+			//navigator.app.loadUrl(url, {openExternal: true});
+			window.open(url,'_blank', 'location=yes');
+		});
+
+		function loadURL(url){
+			navigator.app.loadUrl(url, { openExternal:true });
+			return false;
+		}
 		$("#searchBtn").on('click', function(event) {
 			ajaxLoader("inicia");
 			event.preventDefault();
@@ -520,11 +521,6 @@ $(document).ready(function() {
 		});
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
-		});
-		$(document).on('click', '.lgn-with-fb', function(event) {
-			//event.preventDefault();
-
-			//checkFbStatus();
 		});
 		function checkFbStatus(){
 			app=getAppJson();
@@ -640,5 +636,27 @@ $(document).ready(function() {
 
 		/* fin inicializar */
 	}
+	function openInAppBrowserBlank(url)
+	{
+		try {
+			ref = window.open(encodeURI(url),'_blank','location=no');
+			ref.addEventListener('loadstop', LoadStop);
+			ref.addEventListener('exit', Close);
+		}
+		catch (err)    
+		{
+			alert(err);
+		}
+	}
+	function LoadStop(event) {
+		if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
+			/*alert("fun load stop runs");*/
+			ref.close();
+		}    
+	}
+	function Close(event) {
+		ref.removeEventListener('loadstop', LoadStop);
+		ref.removeEventListener('exit', Close);
+	} 
 	/* fin del ready */	
 });

@@ -42,6 +42,21 @@
         },
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.phonegap.adic"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.phonegap.adic"
         }
     },
     "dependent_plugins": {
