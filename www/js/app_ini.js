@@ -326,7 +326,6 @@ $(document).ready(function() {
 		json.userid+'">'+json.user_name+
 		'</button>'+
 		'</form>'+
-		'<p class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</p>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
@@ -343,8 +342,6 @@ $(document).ready(function() {
 		'<p class="cDark s15">'+
 		'<span class="text-bold text-uppercase">'+json.title+'</span>'+
 		'<span class="hidden">'+json.categoria+
-		'</span><br>'+json.descripcion+
-		'</p>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
@@ -463,7 +460,7 @@ $(document).ready(function() {
 		$(document).on('click','.lgn-with-fb',function(event) {
 			var token='swd';
 			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			var html='<a href="#" rel="http://demos.krizna.com/1353/" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			var html='<a href="#" rel="http://pruebasapi.esy.es/adic/development/facebook/" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
 			$("#iframemodal .modal-body").html(html);
 		});
 		$(document).on('click','.link', function(event) {
@@ -522,110 +519,7 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
-		function checkFbStatus(){
-			app=getAppJson();
-			
-			if (app.facebook.status==='connected') {
-				var data = {'action': 'loginU','logUser':app.facebook.email};
-				$.ajax({
-					type : 'POST',
-					crossDomain: true,
-					cache: false,
-					xhrFields: {
-						withCredentials: true
-					},
-					url  : urlAjax+'classes/ajaxApp.php',
-					dataType: "json",
-					data : data,		
-				})
-				.done(function( data, textStatus, jqXHR ) {
-					if(data.continuar==="ok"){
-						var user=app.user;
-						user.token=data.datos.token;
-						user.email=data.datos.row[0].username;
-						user.name=data.datos.row[0].username;
-						user.rol=data.datos.row[0].role;
-						user.id=data.datos.row[0].iduser;				
-						app.user=user;
-						setAppJson(app);
-						$.mobile.changePage("#main");
-						is_logged_in();
-						$('.modal').modal('hide');
-					}
-					else{
-
-						alertMensaje('usuario no registrado con facebook');
-					}
-				})
-				.fail(function( jqXHR, textStatus, errorThrown ) {
-					alertMensaje('problemas inesperado ');
-				});
-			}
-			else {
-				if (app.facebook.status==='not_authorized') {
-					alertMensaje('usuario no registrado con facebook');
-				}
-				else{
-					FB.login(function(response) {
-						var status=response.status;
-						var email="";
-						var name="";
-						if (response.status === 'connected') {
-							FB.api('/me',{fields: 'name, email'}, function(response) {
-								app.facebook.email=response.email;
-								app.facebook.user=response.user;
-								app.facebook.status=status;
-								
-								if (app.facebook.status==='connected') {
-									var data = {'action': 'loginU','logUser':app.facebook.email};
-									$.ajax({
-										type : 'POST',
-										crossDomain: true,
-										cache: false,
-										xhrFields: {
-											withCredentials: true
-										},
-										url  : urlAjax+'classes/ajaxApp.php',
-										dataType: "json",
-										data : data,		
-									})
-									.done(function( data, textStatus, jqXHR ) {
-										if(data.continuar==="ok"){
-											var user=app.user;
-											user.token=data.datos.token;
-											user.email=data.datos.row[0].username;
-											user.name=data.datos.row[0].username;
-											user.rol=data.datos.row[0].role;
-											user.id=data.datos.row[0].iduser;				
-											app.user=user;
-											setAppJson(app);
-											$.mobile.changePage("#main");
-											is_logged_in();
-											$('.modal').modal('hide');
-										}
-										else{
-
-											alertMensaje('usuario no registrado con facebook');
-										}
-									})
-									.fail(function( jqXHR, textStatus, errorThrown ) {
-										alertMensaje('problemas inesperado ');
-									});
-
-								}
-							});
-						}
-						else if (response.status === 'not_authorized') {
-							alertMensaje('usuario no registrado con facebook');
-						} 
-						else {
-							alertMensaje('problemas al iniciar session con facebook');
-						}
-
-					}, {scope: 'public_profile,email'});
-				}
-			}
-		}
+		
 
 
 
