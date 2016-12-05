@@ -460,7 +460,7 @@ $(document).ready(function() {
 		$(document).on('click','.lgn-with-fb',function(event) {
 			var token='swd';
 			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			var html='<a href="#" rel="http://pruebasapi.esy.es/adic/development/facebook/" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
 			$("#iframemodal .modal-body").html(html);
 		});
 		$(document).on('click','.link', function(event) {
