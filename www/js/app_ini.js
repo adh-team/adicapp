@@ -525,7 +525,7 @@ $(document).ready(function() {
 
 
 
-		/*mainFunction();*/
+		mainFunction();
 
 
 		/* fin inicializar */
