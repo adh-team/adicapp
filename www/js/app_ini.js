@@ -158,6 +158,7 @@ $(document).ready(function() {
 			var user={
 				fecha:"",
 				categoria:"",
+				vista:"promociones",
 			};
 			appS={
 				user:user
@@ -170,6 +171,7 @@ $(document).ready(function() {
 				appS.user={
 					fecha:"",
 					categoria:"",
+					vista:"promociones",
 				};
 				setAppSession(appS);			
 			}
@@ -241,6 +243,21 @@ $(document).ready(function() {
 
 		});
 	});
+	$(document).on('click', '.toggle-view-promociones', function(event) {
+		event.preventDefault();
+		appS=getAppSession();
+		if (appS.user.vista==="promociones") {
+			appS.user.vista="negocios";
+			
+		}else{
+			appS.user.vista="promociones";
+			
+		}
+		setAppSession(appS);
+		mainFunction();
+
+		/* Act on the event */
+	});		
 	function getMenuCategorias(){	
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
@@ -298,7 +315,48 @@ $(document).ready(function() {
 			}
 			ajaxLoader("termina");
 
+		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			ajaxLoader("termina");
 		});
+	}
+	
+	$('#sectionPost').xpull({
+		'callback':function(){
+			getPost();
+		}
+	});
+	function getNegocios(){
+		ajaxLoader("inicia"); 
+		appS=getAppSession();
+		var data= {'action': 'getPost','fecha':appS.user.fecha,'categoria':appS.user.categoria};	
+		/*$.ajax({			
+			data:data,
+			crossDomain: true,
+			cache: false,
+			xhrFields: {
+				withCredentials: true
+			},
+			url: urlAjax+'classes/ajaxApp.php',
+			type: 'post'
+		}).done(function(data){
+			if(data.continuar==="ok"){
+				var datahtml="";
+				for(var i in data.datos) {
+					datahtml+=getHtmlPost(data.datos[i]);
+				}
+				$("#postContainer").html(datahtml);
+				
+			}
+			else{
+				$("#postContainer").html('<div class="h50">Sin publicaciones :(');
+			}
+			ajaxLoader("termina");
+
+		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			ajaxLoader("termina");
+		});*/
+		$("#postContainer").html('<div class="h50">Sin negocios :(');
+		ajaxLoader("termina");
 	}
 	
 	$('#sectionPost').xpull({
@@ -367,10 +425,19 @@ $(document).ready(function() {
 	function mainFunction(){
 		is_logged_in();
 		app=getAppJson();
+		appS=getAppSession();
 		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
 		getDiaSemana();
-		getPost();
 		getMenuCategorias();
+		$vista= $(".toggle-view-promociones");
+		if (appS.user.vista==="promociones") {
+			getPost();
+			$vista.attr('tooltip', 'Negocios');
+		}
+		else{
+			$vista.attr('tooltip', 'Promociones');
+			getNegocios();
+		}
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
@@ -461,7 +528,7 @@ $(document).ready(function() {
 			var token='swd';
 			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
 			var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			$("#iframemodal .modal-body").html(html);
+			//$("#iframemodal .modal-body").html(html);
 		});
 		$(document).on('click','.link', function(event) {
 			event.preventDefault();
