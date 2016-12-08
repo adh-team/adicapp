@@ -593,3 +593,24 @@ a.searchDay {
   visibility: visible;
   opacity: 1;
 }
+div {}
+
+.flex-negocio {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-negocio .div-flex-negocio {
+    display: flex;
+}
+
+.image-swap {
+    padding-bottom: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+a.product-content-image {
+    width: 100%;
+}

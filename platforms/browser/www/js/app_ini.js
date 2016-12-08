@@ -364,6 +364,29 @@ $(document).ready(function() {
 			getPost();
 		}
 	});
+	function getHTMLNegocios(json){
+		return '<div class="">'+
+		'<div class="flex-negocio">'+
+		'<div class="col-xs-4 div-flex-negocio">'+
+		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
+		'<div class="image-swap img-responsive" style="background-image: url('+json.userpic+');">'+
+		'</div>'+
+		'</a>'+
+		'</div>'+
+		'<div class="text-center col-xs-8">'+
+		'<div class="categoria">'+
+		'<a data-id="'+json.categoria+'" class="categoriaClick">categoria</a>		'+
+		'</div>'+
+
+		'<p class="titulo-cat">'+
+		'<a href="">Nombre</a>'+
+		'</p>'+
+		'<div class="descripcion-cat">descripcion'+
+		'</div>	'+
+		'</div>'+
+		'</div>'+
+		'</div>';
+	}
 	function getHtmlPost(json){
 		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
 		'<div class="z-panelHeader noPadding noBorder">'+
