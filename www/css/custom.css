@@ -593,24 +593,37 @@ a.searchDay {
   visibility: visible;
   opacity: 1;
 }
-div {}
-
+.card-negocio {
+  padding: 0 0 10px 0;
+}
+a.negocio-link{
+  color: #Fff;
+  padding: 10px 0px;
+  line-height: 32px;
+}
+.descripcion-negocio{
+  color: #Fff;
+}
 .flex-negocio {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  background: rgba(0, 0, 0, 0.77);
+  padding: 2px 0;
+  box-shadow: 0px 1px 7px black;
+  border-radius: 2px;
 }
 
 .flex-negocio .div-flex-negocio {
-    display: flex;
+  display: flex;
 }
 
 .image-swap {
-    padding-bottom: 100%;
-    width: 100%;
-    background-size: cover;
-    background-position: center center;
+  padding-bottom: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
 }
 
 a.product-content-image {
-    width: 100%;
+  width: 100%;
 }

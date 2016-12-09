@@ -3,7 +3,7 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="../";
+var urlLocal="http://localhost:8080/cache/adic/";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
 var urlAjax=urlRemoto;
 /**********************/
@@ -25,6 +25,7 @@ $(document).ready(function() {
 		
 	}
 	function is_logged_in(){
+
 		app=getAppJson();
 		email=app.user.email;
 		name=app.user.name;
@@ -78,7 +79,7 @@ $(document).ready(function() {
 	});
 	/* funcion para login */
 	function submitFormsubmitFormLogin(){  
-		
+		ajaxLoader("inicia"); 
 		var data = {'action': 'loginU','logUser':$("#logUser").val(),'logPass':$("#logPass").val()};
 		$.ajax({
 
@@ -105,13 +106,15 @@ $(document).ready(function() {
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
+				ajaxLoader("termina");
 			}
 			else{
-
+				ajaxLoader("termina");
 				alertMensaje('usuario o contraseña no son correctos');
 			}
 		})
 		.fail(function( jqXHR, textStatus, errorThrown ) {
+			ajaxLoader("termina");
 			alertMensaje('problemas al iniciar session'+errorThrown);
 		});
 
@@ -184,6 +187,7 @@ $(document).ready(function() {
 	}
 	/* funcion para logout */
 	$("#logOutbtn").on('click', function(){
+		ajaxLoader("inicia"); 
 		var data= {'action': 'logout','token':app.user.token};
 		$.ajax({
 			data:  data,
@@ -206,12 +210,14 @@ $(document).ready(function() {
 				};
 				setAppJson(app);
 				is_logged_in();
+				ajaxLoader("termina");
 			}
 
 		});
 	});
 	/*crear cuenta por email*/
-	$("#crteAccountE").on('click', function(){		
+	$("#crteAccountE").on('click', function(){
+	ajaxLoader("inicia"); 	
 		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
 		$.ajax({
 			data:  data,
@@ -235,9 +241,10 @@ $(document).ready(function() {
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
+				ajaxLoader("termina");
 			}
 			else{
-
+				ajaxLoader("termina");
 				alertMensaje('problemas al iniciar session');
 			}
 
@@ -316,20 +323,21 @@ $(document).ready(function() {
 			ajaxLoader("termina");
 
 		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			$("#postContainer").html('<div class="h50">Sin publicaciones :(');
 			ajaxLoader("termina");
 		});
 	}
 	
-	$('#sectionPost').xpull({
+	/*$('#sectionPost').xpull({
 		'callback':function(){
 			getPost();
 		}
-	});
+	});*/
 	function getNegocios(){
 		ajaxLoader("inicia"); 
 		appS=getAppSession();
-		var data= {'action': 'getPost','fecha':appS.user.fecha,'categoria':appS.user.categoria};	
-		/*$.ajax({			
+		var data= {'action': 'getNegocios','categoria':appS.user.categoria};	
+		$.ajax({			
 			data:data,
 			crossDomain: true,
 			cache: false,
@@ -342,30 +350,40 @@ $(document).ready(function() {
 			if(data.continuar==="ok"){
 				var datahtml="";
 				for(var i in data.datos) {
-					datahtml+=getHtmlPost(data.datos[i]);
+					datahtml+=getHTMLNegocios(data.datos[i]);
 				}
 				$("#postContainer").html(datahtml);
 				
 			}
 			else{
-				$("#postContainer").html('<div class="h50">Sin publicaciones :(');
+				$("#postContainer").html('<div class="h50">Sin negocios :(');
 			}
 			ajaxLoader("termina");
 
 		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			$("#postContainer").html('<div class="h50">Sin negocios :(');
 			ajaxLoader("termina");
-		});*/
-		$("#postContainer").html('<div class="h50">Sin negocios :(');
-		ajaxLoader("termina");
+		});
+		/*
+		var datos={
+			userid:"1",
+			nombre:"nombre",
+			userpic:"http://wingsfactory.com.mx/wp-content/uploads/2015/05/menu-image.png",
+			categoria:"Categoria",
+			categoriaid:"1",
+
+		};*/
+		
+
 	}
 	
 	$('#sectionPost').xpull({
 		'callback':function(){
-			getPost();
+			mainFunction();
 		}
 	});
 	function getHTMLNegocios(json){
-		return '<div class="">'+
+		return '<div class="card-negocio">'+
 		'<div class="flex-negocio">'+
 		'<div class="col-xs-4 div-flex-negocio">'+
 		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
@@ -373,15 +391,15 @@ $(document).ready(function() {
 		'</div>'+
 		'</a>'+
 		'</div>'+
-		'<div class="text-center col-xs-8">'+
+		'<div class="col-xs-8">'+
 		'<div class="categoria">'+
-		'<a data-id="'+json.categoria+'" class="categoriaClick">categoria</a>		'+
+		'<a data-id="'+json.categoriaid+'" class="categoriaClick negocio-link ">'+json.categoria+'</a>'+
 		'</div>'+
 
-		'<p class="titulo-cat">'+
-		'<a href="">Nombre</a>'+
+		'<p class="titulo-negocio">'+
+		'<a data-id="'+json.userid+'" class="negocio-link">'+json.nombre+'</a>'+
 		'</p>'+
-		'<div class="descripcion-cat">descripcion'+
+		'<div class="descripcion-negocio">descripcion'+
 		'</div>	'+
 		'</div>'+
 		'</div>'+
