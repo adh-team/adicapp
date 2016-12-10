@@ -23,61 +23,61 @@
     },
     "installed_plugins": {
         "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-device-motion": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-device-orientation": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.phonegap.adic"
+            "PACKAGE_NAME": "com.Adondeir"
         }
     },
     "dependent_plugins": {},

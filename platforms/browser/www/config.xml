@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.adic" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.Adondeir" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <feature name="Camera">
         <param name="browser-package" value="Camera" />
     </feature>
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
-    <name>ADIC</name>
+    <name>Adónde ir</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
     </description>
-    <author email="raganaxi@gmail.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="raganaxi@gmail.com" href="https://www.facebook.com/booz.avila">
+        Adónde ir en la ciudad
     </author>
     <content src="index.html" />
     <icon src="images/logos/120x120.png" />
