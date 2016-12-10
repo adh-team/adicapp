@@ -3,7 +3,7 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="../";
+var urlLocal="http://localhost:8080/cache/adic/";
 var urlRemoto="http://pruebasapi.esy.es/adic/development/";
 var urlAjax=urlRemoto;
 /**********************/
@@ -25,6 +25,7 @@ $(document).ready(function() {
 		
 	}
 	function is_logged_in(){
+
 		app=getAppJson();
 		email=app.user.email;
 		name=app.user.name;
@@ -78,7 +79,7 @@ $(document).ready(function() {
 	});
 	/* funcion para login */
 	function submitFormsubmitFormLogin(){  
-		
+		ajaxLoader("inicia"); 
 		var data = {'action': 'loginU','logUser':$("#logUser").val(),'logPass':$("#logPass").val()};
 		$.ajax({
 
@@ -105,13 +106,15 @@ $(document).ready(function() {
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
+				ajaxLoader("termina");
 			}
 			else{
-
+				ajaxLoader("termina");
 				alertMensaje('usuario o contraseña no son correctos');
 			}
 		})
 		.fail(function( jqXHR, textStatus, errorThrown ) {
+			ajaxLoader("termina");
 			alertMensaje('problemas al iniciar session'+errorThrown);
 		});
 
@@ -158,6 +161,7 @@ $(document).ready(function() {
 			var user={
 				fecha:"",
 				categoria:"",
+				vista:"promociones",
 			};
 			appS={
 				user:user
@@ -170,6 +174,7 @@ $(document).ready(function() {
 				appS.user={
 					fecha:"",
 					categoria:"",
+					vista:"promociones",
 				};
 				setAppSession(appS);			
 			}
@@ -182,6 +187,7 @@ $(document).ready(function() {
 	}
 	/* funcion para logout */
 	$("#logOutbtn").on('click', function(){
+		ajaxLoader("inicia"); 
 		var data= {'action': 'logout','token':app.user.token};
 		$.ajax({
 			data:  data,
@@ -204,12 +210,14 @@ $(document).ready(function() {
 				};
 				setAppJson(app);
 				is_logged_in();
+				ajaxLoader("termina");
 			}
 
 		});
 	});
 	/*crear cuenta por email*/
-	$("#crteAccountE").on('click', function(){		
+	$("#crteAccountE").on('click', function(){
+	ajaxLoader("inicia"); 	
 		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
 		$.ajax({
 			data:  data,
@@ -233,14 +241,30 @@ $(document).ready(function() {
 				$.mobile.changePage("#main");
 				is_logged_in();
 				$('.modal').modal('hide');
+				ajaxLoader("termina");
 			}
 			else{
-
+				ajaxLoader("termina");
 				alertMensaje('problemas al iniciar session');
 			}
 
 		});
 	});
+	$(document).on('click', '.toggle-view-promociones', function(event) {
+		event.preventDefault();
+		appS=getAppSession();
+		if (appS.user.vista==="promociones") {
+			appS.user.vista="negocios";
+			
+		}else{
+			appS.user.vista="promociones";
+			
+		}
+		setAppSession(appS);
+		mainFunction();
+
+		/* Act on the event */
+	});		
 	function getMenuCategorias(){	
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
@@ -298,14 +322,89 @@ $(document).ready(function() {
 			}
 			ajaxLoader("termina");
 
+		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			$("#postContainer").html('<div class="h50">Sin publicaciones :(');
+			ajaxLoader("termina");
 		});
+	}
+	
+	/*$('#sectionPost').xpull({
+		'callback':function(){
+			getPost();
+		}
+	});*/
+	function getNegocios(){
+		ajaxLoader("inicia"); 
+		appS=getAppSession();
+		var data= {'action': 'getNegocios','categoria':appS.user.categoria};	
+		$.ajax({			
+			data:data,
+			crossDomain: true,
+			cache: false,
+			xhrFields: {
+				withCredentials: true
+			},
+			url: urlAjax+'classes/ajaxApp.php',
+			type: 'post'
+		}).done(function(data){
+			if(data.continuar==="ok"){
+				var datahtml="";
+				for(var i in data.datos) {
+					datahtml+=getHTMLNegocios(data.datos[i]);
+				}
+				$("#postContainer").html(datahtml);
+				
+			}
+			else{
+				$("#postContainer").html('<div class="h50">Sin negocios :(');
+			}
+			ajaxLoader("termina");
+
+		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			$("#postContainer").html('<div class="h50">Sin negocios :(');
+			ajaxLoader("termina");
+		});
+		/*
+		var datos={
+			userid:"1",
+			nombre:"nombre",
+			userpic:"http://wingsfactory.com.mx/wp-content/uploads/2015/05/menu-image.png",
+			categoria:"Categoria",
+			categoriaid:"1",
+
+		};*/
+		
+
 	}
 	
 	$('#sectionPost').xpull({
 		'callback':function(){
-			getPost();
+			mainFunction();
 		}
 	});
+	function getHTMLNegocios(json){
+		return '<div class="card-negocio">'+
+		'<div class="flex-negocio">'+
+		'<div class="col-xs-4 div-flex-negocio">'+
+		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
+		'<div class="image-swap img-responsive" style="background-image: url('+json.userpic+');">'+
+		'</div>'+
+		'</a>'+
+		'</div>'+
+		'<div class="col-xs-8">'+
+		'<div class="categoria">'+
+		'<a data-id="'+json.categoriaid+'" class="categoriaClick negocio-link ">'+json.categoria+'</a>'+
+		'</div>'+
+
+		'<p class="titulo-negocio">'+
+		'<a data-id="'+json.userid+'" class="negocio-link">'+json.nombre+'</a>'+
+		'</p>'+
+		'<div class="descripcion-negocio">descripcion'+
+		'</div>	'+
+		'</div>'+
+		'</div>'+
+		'</div>';
+	}
 	function getHtmlPost(json){
 		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
 		'<div class="z-panelHeader noPadding noBorder">'+
@@ -326,7 +425,6 @@ $(document).ready(function() {
 		json.userid+'">'+json.user_name+
 		'</button>'+
 		'</form>'+
-		'<p class="noMargin cDark">Calle fulana #45, Centro. Torreón, Coahuila.</p>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
@@ -343,8 +441,6 @@ $(document).ready(function() {
 		'<p class="cDark s15">'+
 		'<span class="text-bold text-uppercase">'+json.title+'</span>'+
 		'<span class="hidden">'+json.categoria+
-		'</span><br>'+json.descripcion+
-		'</p>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+
@@ -370,10 +466,19 @@ $(document).ready(function() {
 	function mainFunction(){
 		is_logged_in();
 		app=getAppJson();
+		appS=getAppSession();
 		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
 		getDiaSemana();
-		getPost();
 		getMenuCategorias();
+		$vista= $(".toggle-view-promociones");
+		if (appS.user.vista==="promociones") {
+			getPost();
+			$vista.attr('tooltip', 'Negocios');
+		}
+		else{
+			$vista.attr('tooltip', 'Promociones');
+			getNegocios();
+		}
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
@@ -463,8 +568,8 @@ $(document).ready(function() {
 		$(document).on('click','.lgn-with-fb',function(event) {
 			var token='swd';
 			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			var html='<a href="#" rel="http://demos.krizna.com/1353/" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			$("#iframemodal .modal-body").html(html);
+			var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
+			//$("#iframemodal .modal-body").html(html);
 		});
 		$(document).on('click','.link', function(event) {
 			event.preventDefault();
@@ -522,116 +627,13 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
-		function checkFbStatus(){
-			app=getAppJson();
-			
-			if (app.facebook.status==='connected') {
-				var data = {'action': 'loginU','logUser':app.facebook.email};
-				$.ajax({
-					type : 'POST',
-					crossDomain: true,
-					cache: false,
-					xhrFields: {
-						withCredentials: true
-					},
-					url  : urlAjax+'classes/ajaxApp.php',
-					dataType: "json",
-					data : data,		
-				})
-				.done(function( data, textStatus, jqXHR ) {
-					if(data.continuar==="ok"){
-						var user=app.user;
-						user.token=data.datos.token;
-						user.email=data.datos.row[0].username;
-						user.name=data.datos.row[0].username;
-						user.rol=data.datos.row[0].role;
-						user.id=data.datos.row[0].iduser;				
-						app.user=user;
-						setAppJson(app);
-						$.mobile.changePage("#main");
-						is_logged_in();
-						$('.modal').modal('hide');
-					}
-					else{
-
-						alertMensaje('usuario no registrado con facebook');
-					}
-				})
-				.fail(function( jqXHR, textStatus, errorThrown ) {
-					alertMensaje('problemas inesperado ');
-				});
-			}
-			else {
-				if (app.facebook.status==='not_authorized') {
-					alertMensaje('usuario no registrado con facebook');
-				}
-				else{
-					FB.login(function(response) {
-						var status=response.status;
-						var email="";
-						var name="";
-						if (response.status === 'connected') {
-							FB.api('/me',{fields: 'name, email'}, function(response) {
-								app.facebook.email=response.email;
-								app.facebook.user=response.user;
-								app.facebook.status=status;
-								
-								if (app.facebook.status==='connected') {
-									var data = {'action': 'loginU','logUser':app.facebook.email};
-									$.ajax({
-										type : 'POST',
-										crossDomain: true,
-										cache: false,
-										xhrFields: {
-											withCredentials: true
-										},
-										url  : urlAjax+'classes/ajaxApp.php',
-										dataType: "json",
-										data : data,		
-									})
-									.done(function( data, textStatus, jqXHR ) {
-										if(data.continuar==="ok"){
-											var user=app.user;
-											user.token=data.datos.token;
-											user.email=data.datos.row[0].username;
-											user.name=data.datos.row[0].username;
-											user.rol=data.datos.row[0].role;
-											user.id=data.datos.row[0].iduser;				
-											app.user=user;
-											setAppJson(app);
-											$.mobile.changePage("#main");
-											is_logged_in();
-											$('.modal').modal('hide');
-										}
-										else{
-
-											alertMensaje('usuario no registrado con facebook');
-										}
-									})
-									.fail(function( jqXHR, textStatus, errorThrown ) {
-										alertMensaje('problemas inesperado ');
-									});
-
-								}
-							});
-						}
-						else if (response.status === 'not_authorized') {
-							alertMensaje('usuario no registrado con facebook');
-						} 
-						else {
-							alertMensaje('problemas al iniciar session con facebook');
-						}
-
-					}, {scope: 'public_profile,email'});
-				}
-			}
-		}
+		
 
 
 
 
 
-		/*mainFunction();*/
+		mainFunction();
 
 
 		/* fin inicializar */

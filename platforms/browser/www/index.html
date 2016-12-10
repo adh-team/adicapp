@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/helpers.css">
 	<link rel="stylesheet" href="css/custom.css">
-	<link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet">
+	<!-- <link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet"> -->
 </head>
 <body>
 	<div data-role="page" id="main">
@@ -54,6 +54,12 @@
 					</div>
 
 				</section>
+
+				<nav class="fab-container ">
+					<a href="#" tooltip="Negocios" class="buttons toggle-view-promociones">
+						<span><span class="fa fa-2x fa-exchange rotate "></span></span>
+					</a>
+				</nav>
 			</main>
 			<svg class="hidden" version="1.1" xmlns="http://www.w3.org/2000/svg">
 				<filter id="blur">
@@ -173,13 +179,7 @@
 							<div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
 								<a class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">Crea una cuenta</a>
 								<div class="clear"></div>
-							</div>
-							<div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
-								<a href="#iframemodal" data-toggle="modal" data-target="#iframemodal" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow lgn-with-fb">
-									Facebook
-								</a>
-							</div>
-							
+							</div>							
 						</div>
 					</div>
 				</div>
@@ -206,32 +206,12 @@
 							</button>
 						</form>
 						<hr>
-						<div class="form-section">							
-							
-							<a class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
-								Google+
-							</a>
-							<div class="clear"></div>
-						</div>
 					</div>
 
 				</div>
 			</div>
 		</div>
-		<div class="modal fade bgWhite" id="iframemodal" tabindex="-1" role="dialog" aria-labelledby="iframemodalLabel" data-keyboard="false" data-backdrop="static">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content noShadow noBorder bgTransparent">
-					<div class="modal-header">
-						<button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
-						<h4 class="modal-title">Facebook</h4>
-					</div>
-					<div class="modal-body">
-						
-					</div>
-
-				</div>
-			</div>
-		</div>
+		
 		
 		<div class="modal fade bgWhite" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" data-keyboard="false" data-backdrop="static">
 			<div class="modal-dialog" role="document">
@@ -257,15 +237,7 @@
 							</button>
 						</form>
 						<hr>
-						<div class="form-section">
-							<a class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow">
-								Facebook
-							</a>
-							<div class="clear"></div>
-							<a href="main.<?php  ?>" class="z-btn btn-rounded h50 bgRed cWhite s20 text-center noTransform boxShadow">
-								Google+
-							</a>
-						</div>
+						
 					</div>
 
 				</div>
@@ -297,7 +269,7 @@
 									<h4 class="modal-title">Ubicacion</h4>
 								</div>
 								<div class="modal-body" id="bodyMapModal">
-									<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6054.424636297034!2d-103.43070567192359!3d25.538962255505744!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2smx!4v1480463078231" width="600" height="320" frameborder="0" style="border:0;width: 100%;height: 50vh;" allowfullscreen></iframe>
+									
 								</div>
 
 							</div>
@@ -308,7 +280,7 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="cordova.js"></script>
+	<!-- <script type="text/javascript" src="cordova.js"></script> -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
