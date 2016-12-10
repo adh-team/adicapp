@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.phonegap.adic" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>ADIC</name>
+<widget id="com.adondeirenlaciudad.adic" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Adónde ir</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
     </description>
-    <author email="raganaxi@gmail.com" href="http://phonegap.com">
+    <author email="raganaxi@gmail.com" href="https://www.facebook.com/booz.avila">
         PhoneGap Team
     </author>
     <content src="index.html" />
