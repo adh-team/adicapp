@@ -23,61 +23,61 @@
     },
     "installed_plugins": {
         "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-device-motion": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-device-orientation": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.Adondeir"
+            "PACKAGE_NAME": "com.adondeir.adic"
         }
     },
     "dependent_plugins": {},
