@@ -589,17 +589,14 @@ a.searchDay {
   opacity: 0;
   transition: .3s;
 }
-.fab-container [tooltip]:hover:before {
-  visibility: visible;
-  opacity: 1;
-}
+
 .card-negocio {
   padding: 0 0 10px 0;
 }
-a.negocio-link{
+a.negocio-link,a:hover.negocio-link{
   color: #Fff;
   padding: 10px 0px;
-  line-height: 32px;
+  line-height: 75px;
 }
 .descripcion-negocio{
   color: #Fff;
