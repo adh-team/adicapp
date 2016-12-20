@@ -612,6 +612,7 @@ a.negocio-link,a:hover.negocio-link{
 
 .flex-negocio .div-flex-negocio {
   display: flex;
+  align-items: center;
 }
 
 .image-swap {
@@ -623,4 +624,7 @@ a.negocio-link,a:hover.negocio-link{
 
 a.product-content-image {
   width: 100%;
+}
+#filterNegocios li {
+  display: block;
 }
