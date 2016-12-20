@@ -6,19 +6,7 @@ var controller;
 var urlLocal="http://localhost/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var urlAjax=urlRemoto;
-/**********************/
-document.addEventListener("deviceready", onDeviceReady, false);
 
-
-function onDeviceReady() {
-	alert(device.name);
-	console.log( 'Device Name: '     + device.name     + '<br />' + 
-		'Device PhoneGap: ' + device.phonegap + '<br />' + 
-		'Device Platform: ' + device.platform + '<br />' + 
-		'Device UUID: '     + device.uuid     + '<br />' + 
-		'Device Version: '  + device.version  + '<br />');
-
-}
 $(document).bind("mobileinit", function(){
 	
 	$.mobile.defaultPageTransition = "slidedown";
@@ -29,6 +17,7 @@ $(document).bind("mobileinit", function(){
 });
 
 $(document).ready(function() {
+	var map;
 
 	loaderMain();
 	function loaderMain(){
@@ -276,7 +265,48 @@ $(document).ready(function() {
 		mainFunction();
 
 		/* Act on the event */
-	});		
+	});
+	$(document).on('click', '.ubicacionLink', function(event) {
+		event.preventDefault();
+		var id=$(this).attr('data-id');
+		//console.log('id:'+id);
+		var myLatlng = {lat: 25.5428443, lng: -103.40678609999998};
+		var mapOptions = {
+			zoom: 4,
+			center: myLatlng,
+			disableDefaultUI: true,
+			zoomControl: false,
+			scaleControl: true
+		}
+		map = new google.maps.Map(document.getElementById('map'), mapOptions);
+		var marker = new google.maps.Marker({
+			position: myLatlng,
+			map: map,
+			title: 'Click to zoom'
+		});
+		appS=getAppSession();
+		var directions=[];
+		var address=appS.address;
+		for(var i in address){
+			
+			if (address[i].userid===id && address[i].latitud!=='' && address[i].longitud!==''){
+				directions.push(address[i]);
+				var latTmp={lat:+address[i].latitud,lng:+address[i].longitud};
+				var marker = new google.maps.Marker({
+					position: latTmp,
+					map: map,
+					title: ''
+				});
+				//console.log(address[i]);*/
+				
+			}
+			
+		}
+		
+
+		
+		$('#mapModal2').modal('toggle');
+	});	
 	function getMenuCategorias(){	
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
@@ -357,16 +387,19 @@ $(document).ready(function() {
 		}).done(function(data){
 			if(data.continuar==="ok"){
 				var datahtml="";
-				var datos=data.datos;
+				var datos=data.datos.negocios;
 				var datahtml=''+
 				'<form class="ui-filterable">'+
 				'<input id="filterNegociosInput" data-type="search">'+
 				'</form>'+
 				'<div class="elements" data-filter="true" data-input="#filterNegociosInput" id="filterNegocios">';
 				
-				for(var i in data.datos) {
-					datahtml+=getHTMLNegocios(data.datos[i]);
+				for(var i in datos) {
+					datahtml+=getHTMLNegocios(datos[i]);
 				}
+				appS=getAppSession();
+				appS.address=data.datos.address;
+				setAppSession(appS);
 				datahtml+='</div>';
 				$("#postContainer").html(datahtml);
 				$('#filterNegociosInput').textinput();
@@ -403,7 +436,7 @@ $(document).ready(function() {
 		'</div>'+
 		'</a>'+
 		'</div>'+
-		'<div class="col-xs-8">'+
+		'<div class="col-xs-4 div-flex-negocio">'+
 		'<div class="categoria">'+
 		'<a data-id="'+json.categoriaid+'" class="categoriaClick negocio-link " data-name="'+json.categoria+'">'+json.categoria+'</a>'+
 		'</div>'+
@@ -411,6 +444,11 @@ $(document).ready(function() {
 		'<p class="titulo-negocio">'+
 		'<a data-id="'+json.userid+'" class="goProfile negocio-link">'+json.nombre+'</a>'+
 		'</p>'+
+		'</div>'+
+		'<div class="col-xs-4 div-flex-negocio">'+
+		'<div class="categoria">'+
+		'<a data-id="'+json.userid+'" class="negocio-link ubicacionLink text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></a>'+
+		'</div>'+
 		'</div>'+
 		'</div>'+
 		'</div>'+

@@ -593,10 +593,11 @@ a.searchDay {
 .card-negocio {
   padding: 0 0 10px 0;
 }
-a.negocio-link,a:hover.negocio-link{
+a.negocio-link, a:hover.negocio-link{
   color: #Fff;
-  padding: 10px 0px;
-  line-height: 75px;
+  padding: 0;
+  line-height: 120%;
+  display: block;
 }
 .descripcion-negocio{
   color: #Fff;
@@ -613,6 +614,8 @@ a.negocio-link,a:hover.negocio-link{
 .flex-negocio .div-flex-negocio {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .image-swap {
@@ -621,10 +624,26 @@ a.negocio-link,a:hover.negocio-link{
   background-size: cover;
   background-position: center center;
 }
-
+.categoria {
+  width: 100%;
+}
 a.product-content-image {
   width: 100%;
 }
 #filterNegocios li {
   display: block;
 }
+.ubicacionLink i {
+  font-size: 3em;
+}
+
+
+/* ubicaciones */
+#map {
+    height: 70vh;
+    min-height: 320px;
+    width: 100%;
+}
+
+
+
