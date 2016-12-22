@@ -645,6 +645,7 @@ a.product-content-image {
 }
 #map {
     min-height: 100px;
+    height: 80vh;
     position: relative;
 }
 

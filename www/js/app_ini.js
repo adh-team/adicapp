@@ -306,7 +306,7 @@ $(document).ready(function() {
 			
 		}
 		if(primer===false){
-			var latlng={lat: 25.5428443, lng: -103.40678609999998};
+			var latlng={lat:25.564653, lng: -103.449304};
 			centerMap(latlng,12);
 		}
 		showMarkers();
@@ -537,7 +537,32 @@ $(document).ready(function() {
 		}
 	}
 	function ubicacionesFunction(){
-		app=getAppJson();
+
+		clearMarkers();
+		deleteMarkers();
+
+		appS=getAppSession();
+		var directions=[];
+		var address=appS.address;
+		var primer=false;
+		for(var i in address){
+			var latTmp={lat:+address[i].latitud,lng:+address[i].longitud};
+			if (primer===false) {
+				primer=true;
+				centerMap(latTmp,14);
+
+			}
+
+			addMarker(latTmp);
+			
+		}
+		if(primer===false){
+			var latlng={lat: 25.5428443, lng: -103.40678609999998};
+			centerMap(latlng,13);
+		}
+		showMarkers();
+		ajustarMapa();
+		showMarkers();
 
 	}
 
@@ -704,7 +729,7 @@ $(document).ready(function() {
 		}
 		else{
 			if (id==="-1") {
-				appS.user.categoria="0";
+				
 				appS.user.categoriaNombre="Inicio";
 				appS.user.classIcon=icon;
 				setAppSession(appS);
@@ -750,10 +775,12 @@ $(document).ready(function() {
 	});
 	function ajustarMapa(){
 		var center = map.getCenter();
-		google.maps.event.trigger(map, "resize");
-		map.setCenter(center);
 		var height=$('#ubicaciones').height();
 		$('#map').height((height*80)/100);
+		
+		
+		map.setCenter(center);
+		google.maps.event.trigger(map, "resize");
 	}
 	$(window).resize(function(event) {
 		/* Act on the event */
@@ -773,13 +800,14 @@ $(document).ready(function() {
 	/* fin del ready */	
 });
 function initMap() {
-	var haightAshbury = {lat: 25.5428443, lng: -103.40678609999998};
+	var haightAshbury = {lat: 25.564653, lng: -103.449304};
 
 	map = new google.maps.Map(document.getElementById('map'), {
 		zoom: 12,
 		center: haightAshbury,
 		mapTypeId: google.maps.MapTypeId.TERRAIN
 	});
+
 
 }
 
