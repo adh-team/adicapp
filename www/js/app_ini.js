@@ -3,10 +3,11 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost/cache/adic/";
+var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var urlAjax=urlRemoto;
-
+var map;
+var markers = [];
 $(document).bind("mobileinit", function(){
 	
 	$.mobile.defaultPageTransition = "slidedown";
@@ -17,13 +18,22 @@ $(document).bind("mobileinit", function(){
 });
 
 $(document).ready(function() {
-	var map;
+	var width;
+	var height;
+	var time;
 
 	loaderMain();
 	function loaderMain(){
 		inicializar();
 		is_logged_in();
-		
+
+	}
+	function is_token_in(){
+		app=getAppJson();
+		token=app.user.token;
+		if (token==='') {
+			is_login_in();
+		}
 	}
 	function is_logged_in(){
 
@@ -71,7 +81,7 @@ $(document).ready(function() {
 		else{
 			/* no logueado*/
 			$.mobile.changePage("#login");
-			
+
 		}
 	}
 	$("#loginU").on('click', function(event) {
@@ -147,10 +157,10 @@ $(document).ready(function() {
 				};
 				setAppJson(app);			
 			}
-			
+
 		}
-		
-		
+
+
 		return app;
 	}
 	function setAppJson(app){
@@ -179,7 +189,7 @@ $(document).ready(function() {
 				};
 				setAppSession(appS);			
 			}
-			
+
 		}
 		return appS;
 	}
@@ -256,10 +266,10 @@ $(document).ready(function() {
 		appS=getAppSession();
 		if (appS.user.vista==="promociones") {
 			appS.user.vista="negocios";
-			
+
 		}else{
 			appS.user.vista="promociones";
-			
+
 		}
 		setAppSession(appS);
 		mainFunction();
@@ -267,45 +277,42 @@ $(document).ready(function() {
 		/* Act on the event */
 	});
 	$(document).on('click', '.ubicacionLink', function(event) {
+		$.mobile.changePage("#ubicaciones");
 		event.preventDefault();
 		var id=$(this).attr('data-id');
-		//console.log('id:'+id);
-		var myLatlng = {lat: 25.5428443, lng: -103.40678609999998};
-		var mapOptions = {
-			zoom: 4,
-			center: myLatlng,
-			disableDefaultUI: true,
-			zoomControl: false,
-			scaleControl: true
-		}
-		map = new google.maps.Map(document.getElementById('map'), mapOptions);
-		var marker = new google.maps.Marker({
-			position: myLatlng,
-			map: map,
-			title: 'Click to zoom'
-		});
+		console.log('id:'+id);
+		clearMarkers();
+		deleteMarkers();
+
 		appS=getAppSession();
 		var directions=[];
 		var address=appS.address;
+		var primer=false;
 		for(var i in address){
-			
+
 			if (address[i].userid===id && address[i].latitud!=='' && address[i].longitud!==''){
 				directions.push(address[i]);
 				var latTmp={lat:+address[i].latitud,lng:+address[i].longitud};
-				var marker = new google.maps.Marker({
-					position: latTmp,
-					map: map,
-					title: ''
-				});
-				//console.log(address[i]);*/
+				if (primer===false) {
+					primer=true;
+					centerMap(latTmp,17);
+
+				}
+
+				addMarker(latTmp);
+				//console.log(address[i]);
 				
 			}
 			
 		}
+		if(primer===false){
+			var latlng={lat: 25.5428443, lng: -103.40678609999998};
+			centerMap(latlng,12);
+		}
+		showMarkers();
+		ajustarMapa();
+		showMarkers();
 		
-
-		
-		$('#mapModal2').modal('toggle');
 	});	
 	function getMenuCategorias(){	
 		/*codigo ajax para despues traernos el menu de categorias */
@@ -357,7 +364,7 @@ $(document).ready(function() {
 					datahtml+=getHtmlPost(data.datos[i]);
 				}
 				$("#postContainer").html(datahtml);
-				
+
 			}
 			else{
 				$("#postContainer").html('<div class="h50">Sin publicaciones :(');
@@ -369,7 +376,7 @@ $(document).ready(function() {
 			ajaxLoader("termina");
 		});
 	}
-	
+
 
 	function getNegocios(){
 		ajaxLoader("inicia"); 
@@ -393,7 +400,7 @@ $(document).ready(function() {
 				'<input id="filterNegociosInput" data-type="search">'+
 				'</form>'+
 				'<div class="elements" data-filter="true" data-input="#filterNegociosInput" id="filterNegocios">';
-				
+
 				for(var i in datos) {
 					datahtml+=getHTMLNegocios(datos[i]);
 				}
@@ -405,7 +412,7 @@ $(document).ready(function() {
 				$('#filterNegociosInput').textinput();
 				$('#filterNegocios').filterable();
 
-				
+
 			}
 			else{
 				$("#postContainer").html('<div class="h50">Sin negocios :(');
@@ -416,10 +423,10 @@ $(document).ready(function() {
 			$("#postContainer").html('<div class="h50">Sin negocios :(');
 			ajaxLoader("termina");
 		});
-		
+
 
 	}
-	
+
 	$('#sectionPost').xpull({
 		'callback':function(){
 			mainFunction();
@@ -513,7 +520,7 @@ $(document).ready(function() {
 		}
 	}
 	function mainFunction(){
-		is_logged_in();
+		is_token_in();
 		app=getAppJson();
 		appS=getAppSession();
 		if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
@@ -531,10 +538,10 @@ $(document).ready(function() {
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
-		
+
 	}
 
-	
+
 
 
 	function inicializar(){
@@ -568,7 +575,7 @@ $(document).ready(function() {
 				logPass: "Ingresa una contraseña con mas de 5 caracteres",
 			}
 		});
-		
+
 		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
 			event.preventDefault();
 			$.mobile.changePage("#profile");
@@ -579,7 +586,7 @@ $(document).ready(function() {
 			var icon=$(this).attr('data-icon');
 			var name=$(this).attr('data-name');
 			cambioCategoria(id,icon);
-			
+
 			$(".ui-panel").panel("close");
 
 		});
@@ -589,7 +596,7 @@ $(document).ready(function() {
 			var name=$(this).attr('data-name');
 			var icon="";
 			switch(+id){
-				
+
 				case -1 :icon="";break;
 				case 0 :icon="";break;
 				case 1 :icon="fa-beer";break;
@@ -657,7 +664,7 @@ $(document).ready(function() {
 				ajaxLoader("termina");
 
 			});
-			
+
 		});
 		$("#diasSemana").on('click', '.searchDayClick', function(event) {
 			event.preventDefault();
@@ -673,7 +680,7 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
-		
+
 
 
 
@@ -736,6 +743,76 @@ $(document).ready(function() {
 	function Close(event) {
 		ref.removeEventListener('loadstop', LoadStop);
 		ref.removeEventListener('exit', Close);
-	} 
+	}
+	$(document).on("pageshow","#ubicaciones",function(){
+		console.log("pageshow event fired - pagetwo is now shown");
+		google.maps.event.trigger(map, "resize");
+	});
+	function ajustarMapa(){
+		var center = map.getCenter();
+		google.maps.event.trigger(map, "resize");
+		map.setCenter(center);
+		var height=$('#ubicaciones').height();
+		$('#map').height((height*80)/100);
+	}
+	$(window).resize(function(event) {
+		/* Act on the event */
+		var newWidth = $(window).width();
+		var newHeight = $(window).height();
+		if( newWidth != width || newHeight != height ) {
+			width = newWidth;
+			height = newHeight;
+			clearTimeout(time);
+			time = setTimeout(ajustarMapa, 500);
+		}
+	});
+
+
+
+
 	/* fin del ready */	
 });
+function initMap() {
+	var haightAshbury = {lat: 25.5428443, lng: -103.40678609999998};
+
+	map = new google.maps.Map(document.getElementById('map'), {
+		zoom: 12,
+		center: haightAshbury,
+		mapTypeId: google.maps.MapTypeId.TERRAIN
+	});
+
+}
+
+
+function addMarker(location) {
+	var marker = new google.maps.Marker({
+		position: location,
+		map: map
+	});
+	markers.push(marker);
+}
+
+
+function setMapOnAll(map) {
+	for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(map);
+	}
+}
+function centerMap(latLng,z){
+	map.setCenter(latLng);
+	map.setZoom(z);
+}
+
+function clearMarkers() {
+	setMapOnAll(null);
+}
+
+function showMarkers() {
+	setMapOnAll(map);
+}
+
+
+function deleteMarkers() {
+	clearMarkers();
+	markers = [];
+}

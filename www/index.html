@@ -160,7 +160,7 @@
 						<h4 class="modal-title">Ubicacion</h4>
 					</div>
 					<div class="modal-body" id="bodyMapModal">
-						<div id="map"></div>
+						
 					</div>
 
 				</div>
@@ -261,37 +261,10 @@
 	<div data-role="page" id="ubicaciones">
 		<div data-role="header" data-theme="b">
 			<h1>Ubicaciones</h1><a href="#one" data-rel="back" data-iconpos="notext" data-icon="back">Regresar</a></p>
-		</div><!-- /header -->
+		</div>
 		<div role="main" class="ui-content">
-			<div class="container">
-				<div class="row" >
-					<ul data-role="listview" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search fruits..." data-inset="true" id="postIframes">
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">pollo</button></li>
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">mac donalds</button></li>
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">a donde ir</button></li>
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">ponziano</button></li>
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">el tigre</button></li>
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">bar</button></li>
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">foodtruck</button></li>
-						<li><button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-location" data-toggle="modal" data-target="#mapModal">antro</button></li>
-					</ul>
-					<div class="modal fade bgWhite" id="mapModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content noShadow noBorder bgTransparent">
-								<div class="modal-header">
-									<button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
-									<h4 class="modal-title">Ubicacion</h4>
-								</div>
-								<div class="modal-body" id="bodyMapModal">
-									
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
+			<div id="mapContainer"></div>
+			<div id="map"></div>
 		</div>
 	</div>
 	<!-- <script type="text/javascript" src="cordova.js"></script> -->
@@ -301,7 +274,7 @@
 	<script src="js/jquery.validate.min.js"></script>
 	<script src="js/xpull.js"></script>
 	<script async defer
-      src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBnDKUoyS0DwTs496UmycEy-GweCIW3m-U">
+      src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBnDKUoyS0DwTs496UmycEy-GweCIW3m-U&callback=initMap">
     </script>
 	<!-- <script src="js/fb.js"></script> -->
 	<script type="text/javascript" src="js/app_ini.js"></script>

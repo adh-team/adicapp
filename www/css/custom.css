@@ -639,11 +639,16 @@ a.product-content-image {
 
 
 /* ubicaciones */
-#map {
-    height: 70vh;
-    min-height: 320px;
-    width: 100%;
+#mapContainer {
+    position: relative;
+
 }
+#map {
+    min-height: 100px;
+    position: relative;
+}
+
+
 
 
 
