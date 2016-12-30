@@ -5,16 +5,18 @@ var appS={};
 var controller;
 var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
+//var urlRemoto = urlLocal;
+
 var urlAjax=urlRemoto;
 var map;
 var markers = [];
 $(document).bind("mobileinit", function(){
-	
+
 	$.mobile.defaultPageTransition = "slidedown";
 	$.mobile.loadingMessage = "Cargando app.";
 
-	
-	
+
+
 });
 
 $(document).ready(function() {
@@ -23,11 +25,12 @@ $(document).ready(function() {
 	var time;
 
 	loaderMain();
+
 	function loaderMain(){
 		inicializar();
 		is_logged_in();
-
 	}
+
 	function is_token_in(){
 		app=getAppJson();
 		token=app.user.token;
@@ -35,8 +38,8 @@ $(document).ready(function() {
 			is_login_in();
 		}
 	}
-	function is_logged_in(){
 
+	function is_logged_in(){
 		app=getAppJson();
 		email=app.user.email;
 		name=app.user.name;
@@ -50,13 +53,13 @@ $(document).ready(function() {
 				cache: false,
 				xhrFields: {
 					withCredentials: true
-				},			
+				},
 				url  : urlAjax+'classes/ajaxApp.php',
 				dataType: "json",
 				data : data,
 			})
 			.done(function( data, textStatus, jqXHR ) {
-				if(data.continuar==="ok"){				
+				if(data.continuar==="ok"){
 					$.mobile.changePage("#main");
 
 				}
@@ -66,11 +69,11 @@ $(document).ready(function() {
 						email:"",
 						name:"",
 					};
-					app={				
+					app={
 						user:user
 					};
 					setAppJson(app);
-					$.mobile.changePage("#login");				
+					$.mobile.changePage("#login");
 				}
 
 			})
@@ -89,8 +92,8 @@ $(document).ready(function() {
 		submitFormsubmitFormLogin();
 	});
 	/* funcion para login */
-	function submitFormsubmitFormLogin(){  
-		ajaxLoader("inicia"); 
+	function submitFormsubmitFormLogin(){
+		ajaxLoader("inicia");
 		var data = {'action': 'loginU','logUser':$("#logUser").val(),'logPass':$("#logPass").val()};
 		$.ajax({
 
@@ -102,7 +105,7 @@ $(document).ready(function() {
 			},
 			url  : urlAjax+'classes/ajaxApp.php',
 			dataType: "json",
-			data : data,		
+			data : data,
 		})
 		.done(function( data, textStatus, jqXHR ) {
 			if(data.continuar==="ok"){
@@ -111,7 +114,7 @@ $(document).ready(function() {
 				user.email=data.datos.row[0].username;
 				user.name=data.datos.row[0].username;
 				user.rol=data.datos.row[0].role;
-				user.id=data.datos.row[0].iduser;				
+				user.id=data.datos.row[0].iduser;
 				app.user=user;
 				setAppJson(app);
 				$.mobile.changePage("#main");
@@ -148,24 +151,23 @@ $(document).ready(function() {
 			setAppJson(app);
 		}
 		else{
-			app=JSON.parse(storage.app);		
+			app=JSON.parse(storage.app);
 			if (app.user===undefined) {
 				app.user={
 					token:"",
 					email:"",
 					name:"",
 				};
-				setAppJson(app);			
+				setAppJson(app);
 			}
-
 		}
-
-
 		return app;
 	}
+
 	function setAppJson(app){
 		storage.app=JSON.stringify(app);
 	}
+
 	/* session storage */
 	function getAppSession(){
 		if (storageS.appS===undefined) {
@@ -180,14 +182,14 @@ $(document).ready(function() {
 			setAppSession(appS);
 		}
 		else{
-			appS=JSON.parse(storageS.appS);		
+			appS=JSON.parse(storageS.appS);
 			if (appS.user===undefined) {
 				appS.user={
 					fecha:"",
 					categoria:"",
 					vista:"promociones",
 				};
-				setAppSession(appS);			
+				setAppSession(appS);
 			}
 
 		}
@@ -198,7 +200,7 @@ $(document).ready(function() {
 	}
 	/* funcion para logout */
 	$("#logOutbtn").on('click', function(){
-		ajaxLoader("inicia"); 
+		ajaxLoader("inicia");
 		var data= {'action': 'logout','token':app.user.token};
 		$.ajax({
 			data:  data,
@@ -216,7 +218,7 @@ $(document).ready(function() {
 					email:"",
 					name:"",
 				};
-				app={				
+				app={
 					user:user
 				};
 				setAppJson(app);
@@ -228,7 +230,7 @@ $(document).ready(function() {
 	});
 	/*crear cuenta por email*/
 	$("#crteAccountE").on('click', function(){
-		ajaxLoader("inicia"); 	
+		ajaxLoader("inicia");
 		var data= {'action': 'registerU',"mail": $("#ruMail").val(),"pass": $("#ruPass").val()};
 		$.ajax({
 			data:  data,
@@ -246,7 +248,7 @@ $(document).ready(function() {
 				user.email=data.datos.row[0].username;
 				user.name=data.datos.row[0].username;
 				user.rol=data.datos.row[0].role;
-				user.id=data.datos.row[0].iduser;				
+				user.id=data.datos.row[0].iduser;
 				app.user=user;
 				setAppJson(app);
 				$.mobile.changePage("#main");
@@ -276,6 +278,7 @@ $(document).ready(function() {
 
 		/* Act on the event */
 	});
+
 	$(document).on('click', '.ubicacionLink', function(event) {
 		$.mobile.changePage("#ubicaciones");
 		event.preventDefault();
@@ -301,9 +304,9 @@ $(document).ready(function() {
 
 				addMarker(latTmp);
 				//console.log(address[i]);
-				
+
 			}
-			
+
 		}
 		if(primer===false){
 			var latlng={lat:25.564653, lng: -103.449304};
@@ -312,9 +315,10 @@ $(document).ready(function() {
 		showMarkers();
 		ajustarMapa();
 		showMarkers();
-		
-	});	
-	function getMenuCategorias(){	
+
+	});
+
+	function getMenuCategorias(){
 		/*codigo ajax para despues traernos el menu de categorias */
 	}
 	function getDiaSemana(){
@@ -327,7 +331,7 @@ $(document).ready(function() {
 		var dias = new Array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		semana.primerDia=	dias[dia];
 		var botones=buttonStart+' value="'+ahora.getFullYear()+'-'+(ahora.getMonth() + 1)+'-'+ahora.getDate()+'" >Hoy'+buttonEnd;
-		for (var i = 1; i < 6; i++) {			
+		for (var i = 1; i < 6; i++) {
 			despues = ahora.setTime(ahora.getTime() + (1*24*60*60*1000));
 			despues = new Date(despues);
 			var diaDespues=despues.getDay();
@@ -345,10 +349,10 @@ $(document).ready(function() {
 
 	}
 	function getPost(){
-		ajaxLoader("inicia"); 
+		ajaxLoader("inicia");
 		appS=getAppSession();
-		var data= {'action': 'getPost','fecha':appS.user.fecha,'categoria':appS.user.categoria};	
-		$.ajax({			
+		var data= {'action': 'getPost','fecha':appS.user.fecha,'categoria':appS.user.categoria};
+		$.ajax({
 			data:data,
 			crossDomain: true,
 			cache: false,
@@ -379,10 +383,10 @@ $(document).ready(function() {
 
 
 	function getNegocios(){
-		ajaxLoader("inicia"); 
+		ajaxLoader("inicia");
 		appS=getAppSession();
-		var data= {'action': 'getNegocios','categoria':appS.user.categoria};	
-		$.ajax({			
+		var data= {'action': 'getNegocios','categoria':appS.user.categoria};
+		$.ajax({
 			data:data,
 			crossDomain: true,
 			cache: false,
@@ -405,6 +409,7 @@ $(document).ready(function() {
 					datahtml+=getHTMLNegocios(datos[i]);
 				}
 				appS=getAppSession();
+				appS.negocios=negocios=datos;
 				appS.address=data.datos.address;
 				setAppSession(appS);
 				datahtml+='</div>';
@@ -449,7 +454,7 @@ $(document).ready(function() {
 		'</div>'+
 
 		'<p class="titulo-negocio">'+
-		'<a data-id="'+json.userid+'" class="goProfile negocio-link">'+json.nombre+'</a>'+
+		'<a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
 		'</p>'+
 		'</div>'+
 		'<div class="col-xs-4 div-flex-negocio">'+
@@ -504,6 +509,15 @@ $(document).ready(function() {
 		'</div>'+
 		'</div>';
 	}
+	function getContactoHtml(json){
+		return ''+
+		'<div>Tel: '+json.number+'</div>'+
+		'<div>Correo: '+json.mail+'</div>';
+	}
+	function getDireccionesHtml(json){
+		return ''+
+		'<div>Direccion: '+json.calle+' '+json.numero+', '+json.cp+' '+json.municipio+' '+json.estado+' '+json.pais+'</div>';
+	}
 	function ajaxLoader(action){
 		if (action==="inicia") {
 			$.mobile.loading( "show", {
@@ -536,7 +550,31 @@ $(document).ready(function() {
 			getNegocios();
 		}
 	}
+	function perfilFunction(negocioId,negocio,postHtml,address){
+		
+		$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocio.userpic+')');
+		$('#nombreSocio').html(negocio.negocio);
+		$('#ubicacionSocio').attr('data-id',negocio.userid);
+		var contactoHtml=getContactoHtml(negocio);
+		$('#contactoSocio').html(contactoHtml);
+		var direccionesHtml='';
+		for(var i in address){
+
+			if (address[i].userid===negocioId){
+				direccionesHtml+=getDireccionesHtml(address[i]);
+
+			}
+
+		}
+		$('#direccionesSocio').html(direccionesHtml);
+		$('#PromocionesPorSocio').html(postHtml);
+
+
+
+
+	}
 	function ubicacionesFunction(){
+		app=getAppJson();
 
 		clearMarkers();
 		deleteMarkers();
@@ -554,7 +592,7 @@ $(document).ready(function() {
 			}
 
 			addMarker(latTmp);
-			
+
 		}
 		if(primer===false){
 			var latlng={lat: 25.5428443, lng: -103.40678609999998};
@@ -603,7 +641,7 @@ $(document).ready(function() {
 
 		$("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
 			event.preventDefault();
-			$.mobile.changePage("#profile");
+			$.mobile.changePage("#negocio");
 		});
 		$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
 			event.preventDefault();
@@ -636,7 +674,12 @@ $(document).ready(function() {
 			event.preventDefault();
 			/* Act on the event */
 			var id =$(this).attr('data-id');
-			console.log('go profile '+id);
+			var appS=appS=getAppSession();
+			appS.negocioId=id;
+			setAppSession(appS);
+			$.mobile.changePage("#negocio");
+			//console.log('go profile '+id);
+
 		});
 
 		$("#form_search").submit(function( event ) {
@@ -705,6 +748,57 @@ $(document).ready(function() {
 		$(document).on("pagebeforeshow","#main",function(event){
 			mainFunction();
 		});
+		$(document).on("pagebeforeshow","#negocio",function(event){
+			is_token_in();
+			ajaxLoader("inicia");
+			appS=getAppSession();
+			if (appS.negocioId!==undefined) {
+				if (appS.negocios!==undefined) {
+					var negocios=appS.negocios;
+					var negocioId=appS.negocioId;
+					for(var i in negocios) {
+						if (negocios[i].userid===negocioId) {
+							var negocio=negocios[i];
+							var data= {'action': 'getPostSocio','iduser':negocioId};
+							$.ajax({
+								data:data,
+								crossDomain: true,
+								cache: false,
+								xhrFields: {
+									withCredentials: true
+								},
+								url: urlAjax+'classes/ajaxApp.php',
+								type: 'post'
+							}).done(function(data){
+								if(data.continuar==="ok"){
+									var datahtml="";
+									for(var i in data.datos) {
+										datahtml+=getHtmlPost(data.datos[i]);
+									}
+									perfilFunction(negocioId,negocio,datahtml,appS.address);
+
+								}
+								else{
+									var datahtml='<div class="h50">Sin publicaciones :(';
+									perfilFunction(negocioId,negocio,datahtml,appS.address);
+								}
+								ajaxLoader("termina");
+
+							}).fail(function( jqXHR, textStatus, errorThrown ) {
+								var datahtml='<div class="h50">Sin publicaciones :(';
+								perfilFunction(negocioId,negocio,datahtml,appS.address);
+								ajaxLoader("termina");
+							});
+
+
+
+							break;
+						}
+						
+					}
+				}
+			}
+		});
 
 
 
@@ -718,7 +812,7 @@ $(document).ready(function() {
 	}
 	function cambioCategoria(id,icon,name){
 		$("html, body").animate({ scrollTop: 0 }, "slow");
-		appS=getAppSession();			
+		appS=getAppSession();
 		if (id==="0") {
 			appS.user.categoria="0";
 			appS.user.categoriaNombre="Inicio";
@@ -729,7 +823,7 @@ $(document).ready(function() {
 		}
 		else{
 			if (id==="-1") {
-				
+
 				appS.user.categoriaNombre="Inicio";
 				appS.user.classIcon=icon;
 				setAppSession(appS);
@@ -754,7 +848,7 @@ $(document).ready(function() {
 			ref.addEventListener('loadstop', LoadStop);
 			ref.addEventListener('exit', Close);
 		}
-		catch (err)    
+		catch (err)
 		{
 			alert(err);
 		}
@@ -763,12 +857,13 @@ $(document).ready(function() {
 		if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
 			/*alert("fun load stop runs");*/
 			ref.close();
-		}    
+		}
 	}
 	function Close(event) {
 		ref.removeEventListener('loadstop', LoadStop);
 		ref.removeEventListener('exit', Close);
 	}
+
 	$(document).on("pageshow","#ubicaciones",function(){
 		console.log("pageshow event fired - pagetwo is now shown");
 		google.maps.event.trigger(map, "resize");
@@ -777,8 +872,8 @@ $(document).ready(function() {
 		var center = map.getCenter();
 		var height=$('#ubicaciones').height();
 		$('#map').height((height*80)/100);
-		
-		
+
+
 		map.setCenter(center);
 		google.maps.event.trigger(map, "resize");
 	}
@@ -793,12 +888,9 @@ $(document).ready(function() {
 			time = setTimeout(ajustarMapa, 500);
 		}
 	});
-
-
-
-
-	/* fin del ready */	
+	/* fin del ready */
 });
+
 function initMap() {
 	var haightAshbury = {lat: 25.564653, lng: -103.449304};
 

@@ -589,7 +589,12 @@ a.searchDay {
   opacity: 0;
   transition: .3s;
 }
-
+[tooltip="Negocios"] .rotate:before{
+    content:"\f0b1";
+}
+[tooltip="Promociones"] .rotate:before{
+    content:"\f0a1";
+}
 .card-negocio {
   padding: 0 0 10px 0;
 }
@@ -639,6 +644,13 @@ a.product-content-image {
 
 
 /* ubicaciones */
+.ui-header .ui-title, .ui-footer .ui-titleh1.ui-title {
+    padding: 15px 0;
+}
+.ui-btn-icon-notext.ui-btn-left{
+  top: .9em;
+}
+
 #mapContainer {
     position: relative;
 
@@ -649,7 +661,15 @@ a.product-content-image {
     position: relative;
 }
 
-
-
-
-
+.negProfImg {
+  width: 100%;
+  padding-bottom: 80%;
+}
+/* perfil */
+#PromocionesPorSocio .z-panelHeader{
+  display: none;
+}
+#PromocionesPorSocio {
+    margin: 0 -1em;
+    padding: .5em 1em;
+}
