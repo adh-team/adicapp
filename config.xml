@@ -89,8 +89,8 @@
     <access origin="*" />
     <access origin="http://pruebasapi.esy.es" subdomains="true"/>
     <access origin="https://*.facebook.com/" subdomains="true"/>
-    <access origin="https://m.facebook.com/" subdomains="true"/>
-
+    <access origin="https://*.googleapis.com" subdomains="true"/>
+    
     <access origin="https://www.facebook.com/"/>
     <access origin="http://*.facebook.net/"/>
     <allow-intent href="http://*/*" />
