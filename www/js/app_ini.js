@@ -35,7 +35,7 @@ $(document).ready(function() {
 		app=getAppJson();
 		token=app.user.token;
 		if (token==='') {
-			is_login_in();
+			is_logged_in();
 		}
 	}
 
