@@ -805,9 +805,10 @@ $(document).ready(function() {
 
 
 
+
 		mainFunction();
 
-
+		initMap();
 		/* fin inicializar */
 	}
 	function cambioCategoria(id,icon,name){
