@@ -289,13 +289,13 @@ $(document).ready(function() {
 
 		appS=getAppSession();
 		var directions=[];
-		var address=appS.address;
+		var addresses=appS.addresses;
 		var primer=false;
-		for(var i in address){
+		for(var i in addresses){
 
-			if (address[i].userid===id && address[i].latitud!=='' && address[i].longitud!==''){
-				directions.push(address[i]);
-				var latTmp={lat:+address[i].latitud,lng:+address[i].longitud};
+			if (addresses[i].userid===id && addresses[i].latitud!=='' && addresses[i].longitud!==''){
+				directions.push(addresses[i]);
+				var latTmp={lat:+addresses[i].latitud,lng:+addresses[i].longitud};
 				if (primer===false) {
 					primer=true;
 					centerMap(latTmp,17);
@@ -303,7 +303,7 @@ $(document).ready(function() {
 				}
 
 				addMarker(latTmp);
-				//console.log(address[i]);
+				//console.log(addresses[i]);
 
 			}
 
@@ -325,17 +325,30 @@ $(document).ready(function() {
 		appS=getAppSession();
 		var ahora = new Date();
 		var dia= ahora.getDay();
+		var fechasDeLaSemana=[];
 		var semana={};
 		var buttonStart='<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay searchDayClick"';
 		var buttonEnd='</button>';
 		var dias = new Array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
 		semana.primerDia=	dias[dia];
-		var botones=buttonStart+' value="'+ahora.getFullYear()+'-'+(ahora.getMonth() + 1)+'-'+ahora.getDate()+'" >Hoy'+buttonEnd;
-		for (var i = 1; i < 6; i++) {
+		var stringDia=ahora.getDate();
+		var stringMes=(ahora.getMonth()+ 1);
+		if (+stringDia<10) {stringDia="0"+stringDia;}
+		if (+stringMes<10) {stringMes="0"+stringMes;}
+		var fechaSemana=ahora.getFullYear()+'-'+stringMes +'-'+stringDia;
+		fechasDeLaSemana[0] ={fecha:fechaSemana,dia:dias[dia]};
+		var botones=buttonStart+' value="'+fechaSemana+'" >Hoy'+buttonEnd;
+		for (var i = 1; i < 7; i++) {
 			despues = ahora.setTime(ahora.getTime() + (1*24*60*60*1000));
 			despues = new Date(despues);
 			var diaDespues=despues.getDay();
-			botones+=buttonStart+' value="'+despues.getFullYear()+'-'+(despues.getMonth() + 1)+'-'+despues.getDate()+'" >'+dias[diaDespues]+buttonEnd;
+			var stringDia=despues.getDate();
+			var stringMes=(despues.getMonth()+ 1);
+			if (+stringDia<10) {stringDia="0"+stringDia;}
+			if (+stringMes<10) {stringMes="0"+stringMes;}
+			fechaSemana=despues.getFullYear()+'-'+stringMes+'-'+stringDia;
+			fechasDeLaSemana[i] ={fecha:fechaSemana,dia:dias[diaDespues]};
+			botones+=buttonStart+' value="'+fechaSemana+'" >'+dias[diaDespues]+buttonEnd;
 		}
 		semana.botones=botones;
 
@@ -345,6 +358,12 @@ $(document).ready(function() {
 		else{
 			$(".primerDiaSemana").html(semana.primerDia);
 		}
+		var semanas={
+			botones:semana
+			,semana:fechasDeLaSemana
+		};
+		appS.user.semanas=semanas;
+		setAppSession(appS);
 		$("#diasSemana").html(semana.botones);
 
 	}
@@ -363,11 +382,48 @@ $(document).ready(function() {
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
-				var datahtml="";
-				for(var i in data.datos) {
-					datahtml+=getHtmlPost(data.datos[i]);
+				var post = data.datos.post;
+				var addresses= data.datos.addresses;
+				var datahtml=''+
+				'<form class="ui-filterable">'+
+				'<input id="filterPublicacionesInput" data-type="search">'+
+				'</form>'+
+				'<div class="elements" data-filter="true" data-input="#filterPublicacionesInput" id="filterPublicaciones">';
+				for(var i in post) {
+					var calle="",numero="",municipio="",estado="",pais="",cp="",latitud=0,longitud=0;
+
+					for(var j in addresses){
+
+						if (addresses[j].userid===post[i].userid){
+							calle=addresses[j].calle;
+							numero=addresses[j].numero;
+							municipio=addresses[j].municipio;
+							estado=addresses[j].estado;
+							pais=addresses[j].pais;
+							cp=addresses[j].cp;
+							latitud=addresses[j].latitud;
+							longitud=addresses[j].longitud;
+							break;
+
+						}
+
+					}
+					post[i].calle=calle;
+					post[i].numero=numero;
+					post[i].municipio=municipio;
+					post[i].estado=estado;
+					post[i].pais=pais;
+					post[i].cp=cp;
+					post[i].latitud=latitud;
+					post[i].longitud=longitud;
+					datahtml+='<li>'+getHtmlPost(post[i])+'</li>';
 				}
+				appS=getAppSession();
+				appS.addresses=addresses;
+				setAppSession(appS);
 				$("#postContainer").html(datahtml);
+				$('#filterPublicacionesInput').textinput();
+				$('#filterPublicaciones').filterable();
 
 			}
 			else{
@@ -410,7 +466,7 @@ $(document).ready(function() {
 				}
 				appS=getAppSession();
 				appS.negocios=negocios=datos;
-				appS.address=data.datos.address;
+				appS.addresses=data.datos.addresses;
 				setAppSession(appS);
 				datahtml+='</div>';
 				$("#postContainer").html(datahtml);
@@ -439,76 +495,76 @@ $(document).ready(function() {
 	});
 	function getHTMLNegocios(json){
 
-		return '<li>'+
-		'<div class="card-negocio">'+
-		'<div class="flex-negocio">'+
-		'<div class="col-xs-4 div-flex-negocio">'+
-		'<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
-		'<div class="image-swap img-responsive" style="background-image: url('+urlAjax+'images/profPicture/'+json.userpic+');">'+
-		'</div>'+
-		'</a>'+
-		'</div>'+
-		'<div class="col-xs-4 div-flex-negocio">'+
-		'<div class="categoria">'+
-		'<a data-id="'+json.categoriaid+'" class="categoriaClick negocio-link " data-name="'+json.categoria+'">'+json.categoria+'</a>'+
-		'</div>'+
-
-		'<p class="titulo-negocio">'+
-		'<a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
-		'</p>'+
-		'</div>'+
-		'<div class="col-xs-4 div-flex-negocio">'+
-		'<div class="categoria">'+
-		'<a data-id="'+json.userid+'" class="negocio-link ubicacionLink text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></a>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
+		return ''+
+		'<li>'+
+		'	<div class="card-negocio">'+
+		'		<div class="flex-negocio">'+
+		'			<div class="col-xs-4 div-flex-negocio">'+
+		'				<a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
+		'					<div class="image-swap img-responsive" style="background-image: url('+urlAjax+'images/profPicture/'+json.userpic+');">'+
+		'					</div>'+
+		'				</a>'+
+		'			</div>'+
+		'			<div class="col-xs-4 div-flex-negocio">'+
+		'				<a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
+		'				<div class="categoria negocios-categoria">'+json.categoria+'</div>'+
+		'			</div>'+
+		'			<div class="col-xs-4 div-flex-negocio">'+
+		'				<div class="categoria">'+
+		'					<a data-id="'+json.userid+'" class="negocio-link ubicacionLink text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></a>'+
+		'				</div>'+
+		'			</div>'+
+		'		</div>'+
+		'	</div>'+
 		'</li>';
 	}
 	function getHtmlPost(json){
-		return '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
-		'<div class="z-panelHeader noPadding noBorder">'+
-		'<div class="z-row noMargin">'+
-		'<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
-		'<form class="z-block h70">'+
-		'<button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
-		'<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');">'+
-		'</div>'+
-		'</button>'+
-		'</form>'+
-		'</div>'+
-		'<div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">'+
-		'<div class="z-block h70">'+
-		'<div class="z-content z-contentMiddle">'+
-		'<form action="" method="post" >'+
-		'<button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+
-		json.userid+'">'+json.user_name+
-		'</button>'+
-		'</form>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'<div class="z-panelBody z-block overflowHidden noPadding">'+
-		'<div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+json.image+
-		'\');">'+
-		'</div>'+
-		'<div class="z-row noMargin">'+
-		'<div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
-		'<div class="z-block h80 mh80 overflowAuto">'+
-		'<div class="z-content z-contentMiddle">'+
-		'<p class="cDark s15">'+
-		'<span class="text-bold text-uppercase">'+json.title+'</span>'+
-		'<span class="hidden">'+json.categoria+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
-		'</div>'+
+
+		var addresses="";
+		if (json.calle!="") {
+			addresses=json.calle+' #'+json.numero+', '+json.cp+' '+json.municipio+', '+json.estado;
+		}
+		return ''+
+		'<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
+		'	<div class="z-panelHeader noPadding noBorder">'+
+		'		<div class="z-row noMargin">'+
+		'			<div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
+		'				<form class="z-block h80">'+
+		'					<button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
+		'						<div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');margin-top:10px;"></div>'+
+		'					</button>'+
+		'				</form>'+
+		'			</div>'+
+		'			<div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">'+
+		'				<div class="z-block h80">'+
+		'					<div class="z-content z-contentMiddle">'+
+		'						<form action="" method="post" >'+
+		'							<button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+json.userid+'">'+json.negocio+'</button>'+
+		'						</form>'+
+		'						<form action="" method="post" ><a data-id="'+json.userid+'" class="ubicacionLink cDark">'+addresses+'</a></form>'+
+		'					</div>'+
+		'				</div>'+
+		'			</div>'+
+		'		</div>'+
+		'	</div>'+
+		'	<div class="z-panelBody z-block overflowHidden noPadding">'+
+		'		<div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+json.image+'\');"></div>'+
+		'	</div>'+
+		'	<div class="z-row noMargin">'+
+		'		<div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
+		'			<div class="z-block h80 mh80 overflowAuto">'+
+		'				<div class="z-content z-contentMiddle">'+
+		'					<p class="cDark s15">'+
+		'						<span class="text-bold text-uppercase">'+json.title+'</span><br>'+
+		'						<span class="">'+json.description+'</span>'+
+		'					</p>'+
+		'				</div>'+
+		'			</div>'+
+		'		</div>'+
+		'	</div>'+
 		'</div>';
 	}
+	
 	function getContactoHtml(json){
 		return ''+
 		'<div>Tel: '+json.number+'</div>'+
@@ -542,36 +598,29 @@ $(document).ready(function() {
 		getMenuCategorias();
 		$vista= $(".toggle-view-promociones");
 		if (appS.user.vista==="promociones") {
+			$('#openPanelRight').show( "slow" );;
 			getPost();
 			$vista.attr('tooltip', 'Negocios');
 		}
 		else{
+			$('#openPanelRight').hide( "fast" );;
 			$vista.attr('tooltip', 'Promociones');
 			getNegocios();
 		}
 	}
-	function perfilFunction(negocioId,negocio,postHtml,address){
-		
+	function perfilFunction(negocioId,negocio,postHtml,directions){
 		$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/'+negocio.userpic+')');
 		$('#nombreSocio').html(negocio.negocio);
 		$('#ubicacionSocio').attr('data-id',negocio.userid);
 		var contactoHtml=getContactoHtml(negocio);
 		$('#contactoSocio').html(contactoHtml);
 		var direccionesHtml='';
-		for(var i in address){
-
-			if (address[i].userid===negocioId){
-				direccionesHtml+=getDireccionesHtml(address[i]);
-
-			}
+		for(var i in directions){
+			direccionesHtml+=getDireccionesHtml(directions[i]);
 
 		}
 		$('#direccionesSocio').html(direccionesHtml);
 		$('#PromocionesPorSocio').html(postHtml);
-
-
-
-
 	}
 	function ubicacionesFunction(){
 		app=getAppJson();
@@ -581,10 +630,10 @@ $(document).ready(function() {
 
 		appS=getAppSession();
 		var directions=[];
-		var address=appS.address;
+		var addresses=appS.addresses;
 		var primer=false;
-		for(var i in address){
-			var latTmp={lat:+address[i].latitud,lng:+address[i].longitud};
+		for(var i in addresses){
+			var latTmp={lat:+addresses[i].latitud,lng:+addresses[i].longitud};
 			if (primer===false) {
 				primer=true;
 				centerMap(latTmp,14);
@@ -603,9 +652,6 @@ $(document).ready(function() {
 		showMarkers();
 
 	}
-
-
-
 
 	function inicializar(){
 		/* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
@@ -626,7 +672,6 @@ $(document).ready(function() {
 			rules: {
 				logUser: {
 					required: true,
-					email: true
 				},
 				logPass: {
 					required: true,
@@ -634,7 +679,7 @@ $(document).ready(function() {
 				}
 			},
 			messages: {
-				logUser: "Porfavor ingresa un E-mail valido",
+				logUser: "Porfavor ingresa un usuario valido",
 				logPass: "Ingresa una contraseña con mas de 5 caracteres",
 			}
 		});
@@ -681,11 +726,6 @@ $(document).ready(function() {
 			//console.log('go profile '+id);
 
 		});
-
-		$("#form_search").submit(function( event ) {
-			$("#searchBtn").click();
-			event.preventDefault();
-		});
 		$(document).on('click','.lgn-with-fb',function(event) {
 			var token='swd';
 			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
@@ -703,37 +743,6 @@ $(document).ready(function() {
 			navigator.app.loadUrl(url, { openExternal:true });
 			return false;
 		}
-		$("#searchBtn").on('click', function(event) {
-			ajaxLoader("inicia");
-			event.preventDefault();
-			var data= {'action': 'buscar','input':$("#search").val()};
-			$.ajax({
-				data:  data,
-				crossDomain: true,
-				cache: false,
-				xhrFields: {
-					withCredentials: true
-				},
-				url: urlAjax+'classes/ajaxApp.php',
-				type: 'post'
-			}).done(function(data){
-				if(data.continuar==="ok"){
-					var datahtml="";
-					for(var i in data.datos) {
-						datahtml+=getHtmlPost(data.datos[i]);
-					}
-					$("#postContainer").html(datahtml);
-
-				}
-				else{
-					$("#postContainer").html('<div class="h50">Sin publicaciones :(');
-				}
-				$("html, body").animate({ scrollTop: 0 }, "slow");
-				ajaxLoader("termina");
-
-			});
-
-		});
 		$("#diasSemana").on('click', '.searchDayClick', function(event) {
 			event.preventDefault();
 			$("html, body").animate({ scrollTop: 0 }, "slow");
@@ -753,52 +762,160 @@ $(document).ready(function() {
 			ajaxLoader("inicia");
 			appS=getAppSession();
 			if (appS.negocioId!==undefined) {
-				if (appS.negocios!==undefined) {
-					var negocios=appS.negocios;
-					var negocioId=appS.negocioId;
-					for(var i in negocios) {
-						if (negocios[i].userid===negocioId) {
-							var negocio=negocios[i];
-							var data= {'action': 'getPostSocio','iduser':negocioId};
-							$.ajax({
-								data:data,
-								crossDomain: true,
-								cache: false,
-								xhrFields: {
-									withCredentials: true
-								},
-								url: urlAjax+'classes/ajaxApp.php',
-								type: 'post'
-							}).done(function(data){
-								if(data.continuar==="ok"){
-									var datahtml="";
-									for(var i in data.datos) {
-										datahtml+=getHtmlPost(data.datos[i]);
-									}
-									perfilFunction(negocioId,negocio,datahtml,appS.address);
+				var data= {'action': 'getNegocios','categoria':appS.user.categoria};
+				$.ajax({
+					data:data,
+					crossDomain: true,
+					cache: false,
+					xhrFields: {
+						withCredentials: true
+					},
+					url: urlAjax+'classes/ajaxApp.php',
+					type: 'post'
+				}).done(function(data){
+					if(data.continuar==="ok"){
+						appS=getAppSession();
+						var negocioId=appS.negocioId;
+						var negocios=data.datos.negocios;
+						var addresses= data.datos.addresses;
+						var address=[];
+						var directions=[];
+						var hasAddress=false;
+						for(var i in addresses){
 
+							if (addresses[i].userid===negocioId){
+								directions.push(addresses[i]);
+								if(!hasAddress){
+									address.push(addresses[i]);
+									hasAddress=true;
 								}
-								else{
-									var datahtml='<div class="h50">Sin publicaciones :(';
-									perfilFunction(negocioId,negocio,datahtml,appS.address);
-								}
-								ajaxLoader("termina");
 
-							}).fail(function( jqXHR, textStatus, errorThrown ) {
-								var datahtml='<div class="h50">Sin publicaciones :(';
-								perfilFunction(negocioId,negocio,datahtml,appS.address);
-								ajaxLoader("termina");
-							});
+							}
 
-
-
-							break;
 						}
-						
+
+
+
+
+						appS.negocios=negocios;
+						appS.addresses=addresses;
+						appS.negocio={
+							hasAddress:hasAddress
+							,directions:directions
+							,address:address
+
+						};
+						setAppSession(appS);
+
+						for(var i in negocios) {
+							if (negocios[i].userid===negocioId) {
+								var negocio=negocios[i];
+								var data= {'action': 'getPostSocio','iduser':negocioId};
+								$.ajax({
+									data:data,
+									crossDomain: true,
+									cache: false,
+									xhrFields: {
+										withCredentials: true
+									},
+									url: urlAjax+'classes/ajaxApp.php',
+									type: 'post'
+								}).done(function(data){
+									var appS = getAppSession();
+									var semana=appS.user.semanas.semana;
+									var addresses= appS.addresses;
+									var directions=appS.negocio.directions;
+									var address=appS.negocio.address;
+									var hasAddress=appS.negocio.hasAddress;
+									if(data.continuar==="ok"){
+										
+										var post= data.datos;
+										var semanaHtml=[];
+										var datahtml='';
+										for(i in semana){
+											semanaHtml[i]='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>';
+										}
+
+										for(var i in post) {
+											var publicacion=post[i];
+											var calle="",numero="",municipio="",estado="",pais="",cp="",latitud=0,longitud=0;
+											if(hasAddress){
+												calle=address[0].calle;
+												numero=address[0].numero;
+												municipio=address[0].municipio;
+												estado=address[0].estado;
+												pais=address[0].pais;
+												cp=address[0].cp;
+												latitud=address[0].latitud;
+												longitud=address[0].longitud;
+
+											}
+											publicacion.calle=calle;
+											publicacion.numero=numero;
+											publicacion.municipio=municipio;
+											publicacion.estado=estado;
+											publicacion.pais=pais;
+											publicacion.cp=cp;
+											publicacion.latitud=latitud;
+											publicacion.longitud=longitud;
+											for(i in semana){
+												if(semana[i].fecha==publicacion.date){
+													semanaHtml[i]+=getHtmlPost(publicacion);
+													break;
+												}
+												
+											}
+											//datahtml+=getHtmlPost(publicacion);
+										}
+										for(i in semana){
+											if (semanaHtml[i]!='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>') {
+												datahtml+=semanaHtml[i];
+											}
+											
+										}
+										
+										perfilFunction(negocioId,negocio,datahtml,directions);
+										
+
+									}
+									else{
+										var datahtml='<div class="h50">Sin publicaciones :(';
+										perfilFunction(negocioId,negocio,datahtml,directions);
+									}
+									ajaxLoader("termina");
+
+								}).fail(function( jqXHR, textStatus, errorThrown ) {
+									var appS = getAppSession();
+									var addresses= appS.addresses;
+									var directions=appS.negocio.directions;
+									var address=appS.negocio.address;
+									var hasAddress=appS.negocio.hasAddress;
+									var datahtml='<div class="h50">Sin publicaciones :(';
+									perfilFunction(negocioId,negocio,datahtml,appS.addresses);
+									ajaxLoader("termina");
+								});
+
+
+
+								break;
+							}
+
+						}
+
+
 					}
+					else{
+							//	
+						}
+						ajaxLoader("termina");
+
+					}).fail(function( jqXHR, textStatus, errorThrown ) {
+						//
+						ajaxLoader("termina");
+					});
+
 				}
-			}
-		});
+			});
 
 
 
@@ -806,90 +923,90 @@ $(document).ready(function() {
 
 
 
+mainFunction();
+
+initMap();
+/* fin inicializar */
+}
+function cambioCategoria(id,icon,name){
+	$("html, body").animate({ scrollTop: 0 }, "slow");
+	appS=getAppSession();
+	if (id==="0") {
+		appS.user.categoria="0";
+		appS.user.categoriaNombre="Inicio";
+		appS.user.classIcon=icon;
+		setAppSession(appS);
 		mainFunction();
-
-		initMap();
-		/* fin inicializar */
+		$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
 	}
-	function cambioCategoria(id,icon,name){
-		$("html, body").animate({ scrollTop: 0 }, "slow");
-		appS=getAppSession();
-		if (id==="0") {
-			appS.user.categoria="0";
+	else{
+		if (id==="-1") {
+
 			appS.user.categoriaNombre="Inicio";
 			appS.user.classIcon=icon;
 			setAppSession(appS);
-			mainFunction();
 			$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+			$.mobile.changePage("#ubicaciones");
+			ubicacionesFunction();
 		}
 		else{
-			if (id==="-1") {
-
-				appS.user.categoriaNombre="Inicio";
-				appS.user.classIcon=icon;
-				setAppSession(appS);
-				$("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
-				$.mobile.changePage("#ubicaciones");
-				ubicacionesFunction();
-			}
-			else{
-				appS.user.categoria=id;
-				appS.user.categoriaNombre=name;
-				appS.user.classIcon=icon;
-				setAppSession(appS);
-				mainFunction();
-				$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
-			}
+			appS.user.categoria=id;
+			appS.user.categoriaNombre=name;
+			appS.user.classIcon=icon;
+			setAppSession(appS);
+			mainFunction();
+			$("#classIcon").html('<span class="sidebar-icon fa '+appS.user.classIcon+' cLightGrey"></span>');
 		}
 	}
-	function openInAppBrowserBlank(url)
+}
+function openInAppBrowserBlank(url)
+{
+	try {
+		ref = window.open(encodeURI(url),'_blank','location=no');
+		ref.addEventListener('loadstop', LoadStop);
+		ref.addEventListener('exit', Close);
+	}
+	catch (err)
 	{
-		try {
-			ref = window.open(encodeURI(url),'_blank','location=no');
-			ref.addEventListener('loadstop', LoadStop);
-			ref.addEventListener('exit', Close);
-		}
-		catch (err)
-		{
-			alert(err);
-		}
+		alert(err);
 	}
-	function LoadStop(event) {
-		if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
-			/*alert("fun load stop runs");*/
-			ref.close();
-		}
+}
+function LoadStop(event) {
+	if(event.url == "http://www.mypage.com/closeInAppBrowser.html"){
+		/*alert("fun load stop runs");*/
+		ref.close();
 	}
-	function Close(event) {
-		ref.removeEventListener('loadstop', LoadStop);
-		ref.removeEventListener('exit', Close);
-	}
+}
+function Close(event) {
+	ref.removeEventListener('loadstop', LoadStop);
+	ref.removeEventListener('exit', Close);
+}
 
-	$(document).on("pageshow","#ubicaciones",function(){
-		console.log("pageshow event fired - pagetwo is now shown");
-		google.maps.event.trigger(map, "resize");
-	});
-	function ajustarMapa(){
-		var center = map.getCenter();
-		var height=$('#ubicaciones').height();
-		$('#map').height((height*80)/100);
+$(document).on("pageshow","#ubicaciones",function(){
+	console.log("pageshow event fired - pagetwo is now shown");
+	google.maps.event.trigger(map, "resize");
+});
+function ajustarMapa(){
+	var center = map.getCenter();
+	var height=$('#ubicaciones').height();
+	$('#map').height((height*80)/100);
 
 
-		map.setCenter(center);
-		google.maps.event.trigger(map, "resize");
+	map.setCenter(center);
+	google.maps.event.trigger(map, "resize");
+}
+$(window).resize(function(event) {
+	/* Act on the event */
+	var newWidth = $(window).width();
+	var newHeight = $(window).height();
+	if( newWidth != width || newHeight != height ) {
+		width = newWidth;
+		height = newHeight;
+		clearTimeout(time);
+		time = setTimeout(ajustarMapa, 500);
 	}
-	$(window).resize(function(event) {
-		/* Act on the event */
-		var newWidth = $(window).width();
-		var newHeight = $(window).height();
-		if( newWidth != width || newHeight != height ) {
-			width = newWidth;
-			height = newHeight;
-			clearTimeout(time);
-			time = setTimeout(ajustarMapa, 500);
-		}
-	});
-	/* fin del ready */
+});
+/* fin del ready */
 });
 
 function initMap() {

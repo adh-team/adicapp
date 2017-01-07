@@ -1,3 +1,39 @@
+@font-face {
+  font-family: 'adic';
+  src:  url('../fonts/adic.eot?7nfv2');
+  src:  url('../fonts/adic.eot?7nfv2#iefix') format('embedded-opentype'),
+    url('../fonts/adic.ttf?7nfv2') format('truetype'),
+    url('../fonts/adic.woff?7nfv2') format('woff'),
+    url('../fonts/adic.svg?7nfv2#adic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-adic-"], [class*=" icon-adic-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'adic' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-adic-Promociones:before {
+  content: "\e900";
+}
+.icon-adic-Negocios:before {
+  content: "\e901";
+}
+
+
+
+
 body {
   background: #fff;
 }
@@ -448,6 +484,9 @@ a.searchDay {
   width: 100%;
   padding-bottom: 100%;
 }
+#filterPublicaciones li {
+  display: block;
+}
 
 /*float searh*/
 .fab {
@@ -569,7 +608,7 @@ a.searchDay {
   position: absolute;
   transition: .3s;
   text-align: center;
-  padding: 25%;
+  padding: 10%;
   color: #fff;
 }
 
@@ -590,10 +629,14 @@ a.searchDay {
   transition: .3s;
 }
 [tooltip="Negocios"] .rotate:before{
-    content:"\f0b1";
+  content:"\e901";
 }
 [tooltip="Promociones"] .rotate:before{
-    content:"\f0a1";
+  content:"\e900";
+}
+.adic-x2:before {
+    font-size: 3.7em;
+    margin-left: -.35em;
 }
 .card-negocio {
   padding: 0 0 10px 0;
@@ -603,6 +646,11 @@ a.negocio-link, a:hover.negocio-link{
   padding: 0;
   line-height: 120%;
   display: block;
+}
+a.negocio-link div, a:hover.negocio-link div {
+  font-size: 1.4em;
+  line-height: 18px;
+  text-transform: capitalize;
 }
 .descripcion-negocio{
   color: #Fff;
@@ -631,6 +679,8 @@ a.negocio-link, a:hover.negocio-link{
 }
 .categoria {
   width: 100%;
+  font-size: .9em;
+  color: #FFF;
 }
 a.product-content-image {
   width: 100%;
@@ -645,20 +695,20 @@ a.product-content-image {
 
 /* ubicaciones */
 .ui-header .ui-title, .ui-footer .ui-titleh1.ui-title {
-    padding: 15px 0;
+  padding: 15px 0;
 }
 .ui-btn-icon-notext.ui-btn-left{
   top: .9em;
 }
 
 #mapContainer {
-    position: relative;
+  position: relative;
 
 }
 #map {
-    min-height: 100px;
-    height: 80vh;
-    position: relative;
+  min-height: 100px;
+  height: 80vh;
+  position: relative;
 }
 
 .negProfImg {
@@ -666,10 +716,13 @@ a.product-content-image {
   padding-bottom: 80%;
 }
 /* perfil */
-#PromocionesPorSocio .z-panelHeader{
-  display: none;
-}
+
 #PromocionesPorSocio {
-    margin: 0 -1em;
-    padding: .5em 1em;
+  margin: 0 -1em;
+  padding: .5em 1em;
+}
+.divisionDiaPerfil {
+    padding: 1em;
+    color: #fff;
+    background-color: rgba(50, 50, 50, .5)!important;
 }
