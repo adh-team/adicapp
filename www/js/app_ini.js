@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
-var urlRemoto = urlLocal;
+//var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 var map;
