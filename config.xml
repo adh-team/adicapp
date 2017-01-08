@@ -14,6 +14,7 @@
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+    <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <icon src="images/logos/120x120.png" />
     <platform name="android">
         <icon density="ldpi" src="www/images/logos/40x40.png" />
