@@ -5,7 +5,7 @@ var appS={};
 var controller;
 var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
-//var urlRemoto = urlLocal;
+var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 var map;
@@ -60,7 +60,10 @@ $(document).ready(function() {
 			})
 			.done(function( data, textStatus, jqXHR ) {
 				if(data.continuar==="ok"){
-					$.mobile.changePage("#main");
+					var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").attr('id');
+					if (activePage==="login") {
+						$.mobile.changePage("#main");
+					}
 
 				}
 				else{
@@ -141,7 +144,7 @@ $(document).ready(function() {
 	function getAppJson(){
 		if (storage.app===undefined) {
 			var user={
-				token:"",
+				token:'',
 				email:"",
 				name:"",
 			};
@@ -154,7 +157,7 @@ $(document).ready(function() {
 			app=JSON.parse(storage.app);
 			if (app.user===undefined) {
 				app.user={
-					token:"",
+					token:'',
 					email:"",
 					name:"",
 				};
@@ -214,7 +217,7 @@ $(document).ready(function() {
 		}).done(function(data){
 			if (data.continuar==="ok") {
 				var user={
-					token:"",
+					token:'',
 					email:"",
 					name:"",
 				};
@@ -390,32 +393,6 @@ $(document).ready(function() {
 				'</form>'+
 				'<div class="elements" data-filter="true" data-input="#filterPublicacionesInput" id="filterPublicaciones">';
 				for(var i in post) {
-					var calle="",numero="",municipio="",estado="",pais="",cp="",latitud=0,longitud=0;
-
-					for(var j in addresses){
-
-						if (addresses[j].userid===post[i].userid){
-							calle=addresses[j].calle;
-							numero=addresses[j].numero;
-							municipio=addresses[j].municipio;
-							estado=addresses[j].estado;
-							pais=addresses[j].pais;
-							cp=addresses[j].cp;
-							latitud=addresses[j].latitud;
-							longitud=addresses[j].longitud;
-							break;
-
-						}
-
-					}
-					post[i].calle=calle;
-					post[i].numero=numero;
-					post[i].municipio=municipio;
-					post[i].estado=estado;
-					post[i].pais=pais;
-					post[i].cp=cp;
-					post[i].latitud=latitud;
-					post[i].longitud=longitud;
 					datahtml+='<li>'+getHtmlPost(post[i])+'</li>';
 				}
 				appS=getAppSession();
@@ -521,7 +498,8 @@ $(document).ready(function() {
 	function getHtmlPost(json){
 
 		var addresses="";
-		if (json.calle!="") {
+		var calle=""+json.calle;
+		if (calle!=="" && calle!=="null") {
 			addresses=json.calle+' #'+json.numero+', '+json.cp+' '+json.municipio+', '+json.estado;
 		}
 		return ''+
@@ -726,23 +704,7 @@ $(document).ready(function() {
 			//console.log('go profile '+id);
 
 		});
-		$(document).on('click','.lgn-with-fb',function(event) {
-			var token='swd';
-			//var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			var html='<a href="#" rel="'+urlAjax+'facebook.html?token='+token+'" target="_BLANK" class="z-btn btn-rounded h50 bgBlue cWhite s20 text-center noTransform boxShadow link">Facebook</a>';
-			//$("#iframemodal .modal-body").html(html);
-		});
-		$(document).on('click','.link', function(event) {
-			event.preventDefault();
-			url = $(this).attr("rel");
-			//navigator.app.loadUrl(url, {openExternal: true});
-			window.open(url,'_blank', 'location=yes');
-		});
-
-		function loadURL(url){
-			navigator.app.loadUrl(url, { openExternal:true });
-			return false;
-		}
+		
 		$("#diasSemana").on('click', '.searchDayClick', function(event) {
 			event.preventDefault();
 			$("html, body").animate({ scrollTop: 0 }, "slow");
@@ -810,6 +772,7 @@ $(document).ready(function() {
 						for(var i in negocios) {
 							if (negocios[i].userid===negocioId) {
 								var negocio=negocios[i];
+								perfilFunction(negocioId,negocio,"cargando...",directions);
 								var data= {'action': 'getPostSocio','iduser':negocioId};
 								$.ajax({
 									data:data,
@@ -838,26 +801,6 @@ $(document).ready(function() {
 
 										for(var i in post) {
 											var publicacion=post[i];
-											var calle="",numero="",municipio="",estado="",pais="",cp="",latitud=0,longitud=0;
-											if(hasAddress){
-												calle=address[0].calle;
-												numero=address[0].numero;
-												municipio=address[0].municipio;
-												estado=address[0].estado;
-												pais=address[0].pais;
-												cp=address[0].cp;
-												latitud=address[0].latitud;
-												longitud=address[0].longitud;
-
-											}
-											publicacion.calle=calle;
-											publicacion.numero=numero;
-											publicacion.municipio=municipio;
-											publicacion.estado=estado;
-											publicacion.pais=pais;
-											publicacion.cp=cp;
-											publicacion.latitud=latitud;
-											publicacion.longitud=longitud;
 											for(i in semana){
 												if(semana[i].fecha==publicacion.date){
 													semanaHtml[i]+=getHtmlPost(publicacion);

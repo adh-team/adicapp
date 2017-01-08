@@ -475,7 +475,7 @@ a.searchDay {
 #main .ui-content {
   padding: 0;
 }
-#postContainer button {
+#postContainer button,#PromocionesPorSocio button {
   outline: none !important;
   border: none;
   background: transparent;
