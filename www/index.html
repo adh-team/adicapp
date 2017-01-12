@@ -1,297 +1,312 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <head>
-    <meta charset="UTF-8">
-    <title>A donde ir en la ciudad</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="icon" sizes="32x32" type="image/x-icon" href="images/logos/40x40.png" />
-    <link href="jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/helpers.css">
-    <link rel="stylesheet" href="css/custom.css">
-    <!-- <link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet"> -->
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <title>A donde ir en la ciudad</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="icon" sizes="32x32" type="image/x-icon" href="images/logos/40x40.png" />
+  <link href="jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/helpers.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="plugins/owl/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="plugins/owl/assets/owl.theme.default.min.css">
 
-  <body>
-    <div data-role="page" id="main">
-      <div data-role="header" role="banner" data-position="fixed" class="ui-header ui-bar-inherit">
-        <nav class="nav z-container-fluid bgDark boxShadow">
-          <div class="z-row noMargin">
-            <div class="z-block h70 menu-app">
-              <div class="col-xs-4 noPadding">
-                <div class="z-content-fluid z-contentMiddle text-left ">
-                  <a id="openAside" role="button" class="cLightGrey s15" href="#left-panel">
-                    <span class="fa fa-bars s25"></span>
-                  </a>
-                </div>
+  
+  <!-- <link href="https://fonts.googleapis.com/css?family=Monda:400,700" rel="stylesheet"> -->
+</head>
+
+<body>
+  <div data-role="page" id="main">
+    <div data-role="header" role="banner" data-position="fixed" class="ui-header ui-bar-inherit">
+      <nav class="nav z-container-fluid bgDark boxShadow">
+        <div class="z-row noMargin">
+          <div class="z-block h70 menu-app">
+            <div class="col-xs-4 noPadding">
+              <div class="z-content-fluid z-contentMiddle text-left ">
+                <a id="openAside" role="button" class="cLightGrey s15" href="#left-panel">
+                  <span class="fa fa-bars s25"></span>
+                </a>
               </div>
-              <div class="col-xs-4 noPadding">
-                <div class="z-content-fluid z-contentMiddle text-center ">
-                  <a href="#main" role="button" class="cLightGrey s15" id="classIcon">
-                    <img class="h35" src="images/logos/48x48.png" alt="logo">
-                  </a>
-                </div>
+            </div>
+            <div class="col-xs-4 noPadding">
+              <div class="z-content-fluid z-contentMiddle text-center ">
+                <a href="#main" role="button" class="cLightGrey s15" id="classIcon">
+                  <img class="h35" src="images/logos/48x48.png" alt="logo">
+                </a>
               </div>
-              <div class="col-xs-4 noPadding">
-                <div class="z-content-fluid z-contentMiddle text-right">
-                  <div id="openPanelRight" class="cLightGrey s20 text-bold " href="#right-panel">
-                    <a href="#right-panel" class="searchDay bgDark noBorder"><span class="primerDiaSemana">Lunes</span><span class="fa fa-chevron-down s15"></span></a>
-                  </div>
+            </div>
+            <div class="col-xs-4 noPadding">
+              <div class="z-content-fluid z-contentMiddle text-right">
+                <div id="openPanelRight" class="cLightGrey s20 text-bold " href="#right-panel">
+                  <a href="#right-panel" class="searchDay bgDark noBorder"><span class="primerDiaSemana">Lunes</span><span class="fa fa-chevron-down s15"></span></a>
                 </div>
               </div>
             </div>
           </div>
-        </nav>
-      </div>
-      <div role="main" class="ui-content">
-        <main canvas="container" class="z-container noPadding  bgLightGrey p2r">
-          <br>
-          <section id="sectionPost" class="z-container mainContainer">
-            <div class="z-row">
-              <div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0 scroll">
-              </div>
-            </div>
-          </section>
-          <nav class="fab-container ">
-            <a href="#" tooltip="Negocios" class="buttons toggle-view-promociones">
-              <span><span class="icon-adic-Promociones adic-x2 rotate "></span></span>
-            </a>
-          </nav>
-        </main>
-        <svg class="hidden" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <filter id="blur">
-            <feGaussianBlur stdDeviation="30" />
-          </filter>
-        </svg>
-      </div>
-      <div data-role="panel" id="left-panel" class="bgLightBlue" data-position-fixed="true">
-        <div class="sidebar-nav">
-          <div class="list-group bgTransparent noBorder square" id="categoriasMenu">
-            <a data-id="0" data-name="A Donde Ir" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-home">
-              <span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
-            </a>
-            <a data-id="2" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-cutlery">
-              <span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
-            </a>
-            <a data-id="1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-beer">
-              <span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
-            </a>
-            <a data-id="3" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-glass">
-              <span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
-            </a>
-            <a data-id="4" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-truck">
-              <span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
-            </a>
-            <a data-id="-1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-map">
-              <span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
-            </a>
-          </div>
         </div>
-        <div class="z-row">
-          <div class="z-forceBlock h50">
-            <div class="z-block h150 hidden">
-              <div class="z-content z-contentMiddle">
-                <a href="#user" class="sidebar-image panelImg bgDark "></a>
-              </div>
-            </div>
-            <a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
-              <div class="z-content z-contentMiddle">
-                <div class="z-panelBody">
-                  <span class="fa fa-user"></span>
-                  <span class="usuario_mostrar">usuario</span>
-                  <span class="fa fa-caret-down pull-right"></span>
-                </div>
-              </div>
-            </a>
-            <div class="collapse" id="profile-dropdown">
-              <div class="list-group bgLightGrey noBorder square">
-                <a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
-								Cerrar sesión
-							</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div data-role="panel" id="right-panel" data-position="right" class="bgLightBlue" data-position-fixed="true">
-        <div class="list-group bgTransparent noBorder square " id="diasSemana">
-          <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
-            Miercoles
-          </button>
-          <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
-            Jueves
-          </button>
-          <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
-            Viernes
-          </button>
-          <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
-            Sabado
-          </button>
-          <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
-            Domingo
-          </button>
-          <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
-            Lunes
-          </button>
-        </div>
-      </div>
-      <div class="modal fade bgWhite" id="mapModal2" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content noShadow noBorder bgTransparent">
-            <div class="modal-header">
-              <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
-              <h4 class="modal-title">Ubicacion</h4>
-            </div>
-            <div class="modal-body" id="bodyMapModal">
-
-            </div>
-
-          </div>
-        </div>
-      </div>
+      </nav>
     </div>
-    <div data-role="page" id="login">
-      <main id="main_login">
-        <div class="bgCover"></div>
-        <div class="z-container">
-          <div class="hFull z-block" style="height: 638px;max-height: 638px;">
-            <div class="z-content z-contentMiddle">
-              <div class="z-row">
-                <div class="z-col-lg-6 z-col-md-8 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-2 z-col-sm-offset-1 z-col-xs-offset-0">
-                  <img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: fadeInDown;">
-                </div>
-              </div>
-              <div class="clear h100"></div>
-              <div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" style="visibility: visible; animation-duration: 1s; animation-delay: 1s; animation-name: fadeInUp;">
-                <div class="z-col-xs-12">
-                  <h1 class="cWhite text-center s25">Bienvenido</h1>
-                </div>
-                <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
-                  <a class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">Inicia sesión<br>
-								</a>
-                  <div class="clear">
-
-                  </div>
-                </div>
-                <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
-                  <a class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">Crea una cuenta</a>
-                  <div class="clear"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <div class="modal fade bgWhite" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content noShadow noBorder bgTransparent">
-            <div class="modal-header">
-              <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
-              <h4 class="modal-title">Ingresa</h4>
-            </div>
-            <div class="modal-body">
-              <form id="lognUser" class="form-section">
-                <input type="hidden" id="action" value="loginU" name="action">
-                <label for="logUser"></label>
-                <input id="logUser" type="email" placeholder="Usuario" name="logUser" value="" class="form-control">
-                <div class="clear"></div>
-                <label for="logPass"></label>
-                <input id="logPass" type="password" autocomplete="off" placeholder="Contraseña" name="logPass" value="" class="form-control">
-                <div class="clear"></div>
-                <button type="button" id="loginU" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow">
-                  Iniciar Sesión
-                </button>
-              </form>
-              <hr>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-
-      <div class="modal fade bgWhite" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" data-keyboard="false" data-backdrop="static">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content noShadow noBorder bgTransparent">
-            <div class="modal-header">
-              <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
-              <h4 class="modal-title">Registrate</h4>
-            </div>
-            <div class="modal-body">
-              <form id="registerUser" class="form-section">
-
-                <label for="ruMail"></label>
-                <input id="ruMail" type="email" placeholder="Correo" name="ruMail" value="" required class="form-control">
-
-                <div class="clear"></div>
-
-                <label for="ruPass"></label>
-                <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="ruPass" value="" required class="form-control">
-
-                <div class="clear"></div>
-                <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow">
-                  Crear cuenta
-                </button>
-              </form>
-              <hr>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div data-role="page" id="ubicaciones">
-      <div data-role="header" data-theme="b">
-        <h1>Ubicaciones</h1><a href="#one" data-rel="back" data-iconpos="notext" data-icon="back">Regresar</a></p>
-      </div>
-      <div role="main" class="ui-content">
-        <div id="mapContainer"></div>
-        <div id="map"></div>
-      </div>
-    </div>
-    <div data-role="page" id="negocio">
-      <div data-role="header" data-theme="b">
-        <h1>Perfil</h1><a href="#one" data-rel="back" data-iconpos="notext" data-icon="back">Regresar</a></p>
-      </div>
-      <div role="main" class="ui-content">
-        <div class="z-container mainContainer noPadding">
-          
+    <div role="main" class="ui-content">
+      <main canvas="container" class="z-container noPadding  bgLightGrey p2r">
+        <br>
+        <section id="sectionPost" class="z-container mainContainer">
           <div class="z-row">
-            <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
-              <div class="z-forceBlock bgTransparent noMargin boxShadow">
-                <div id="imgSocio" class="z-block panelImg bgDarkBlue negProfImg" style="background-image:url('images/profPicture/default.png')">
+            <div id="postContainer" class="z-col-lg-6 z-col-md-6 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-3 z-col-sm-offset-1 z-col-xs-offset-0 scroll">
+            </div>
+          </div>
+        </section>
+        <nav class="fab-container ">
+          <a href="#" tooltip="Negocios" class="buttons toggle-view-promociones">
+            <span><span class="icon-adic-Promociones adic-x2 rotate "></span></span>
+          </a>
+        </nav>
+      </main>
+      <svg class="hidden" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <filter id="blur">
+          <feGaussianBlur stdDeviation="30" />
+        </filter>
+      </svg>
+    </div>
+    <div data-role="panel" id="left-panel" class="bgLightBlue" data-position-fixed="true">
+      <div class="sidebar-nav">
+        <div class="list-group bgTransparent noBorder square" id="categoriasMenu">
+          <a data-id="0" data-name="A Donde Ir" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-home">
+            <span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
+          </a>
+          <a data-id="2" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-cutlery">
+            <span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
+          </a>
+          <a data-id="1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-beer">
+            <span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
+          </a>
+          <a data-id="3" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-glass">
+            <span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
+          </a>
+          <a data-id="4" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-truck">
+            <span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
+          </a>
+          <a data-id="-1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-map">
+            <span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
+          </a>
+        </div>
+      </div>
+      <div class="z-row">
+        <div class="z-forceBlock h50">
+          <div class="z-block h150 hidden">
+            <div class="z-content z-contentMiddle">
+              <a href="#user" class="sidebar-image panelImg bgDark "></a>
+            </div>
+          </div>
+          <a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
+            <div class="z-content z-contentMiddle">
+              <div class="z-panelBody">
+                <span class="fa fa-user"></span>
+                <span class="usuario_mostrar">usuario</span>
+                <span class="fa fa-caret-down pull-right"></span>
+              </div>
+            </div>
+          </a>
+          <div class="collapse" id="profile-dropdown">
+            <div class="list-group bgLightGrey noBorder square">
+              <a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+                Cerrar sesión
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div data-role="panel" id="right-panel" data-position="right" class="bgLightBlue" data-position-fixed="true">
+      <div class="list-group bgTransparent noBorder square " id="diasSemana">
+        <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
+          Miercoles
+        </button>
+        <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
+          Jueves
+        </button>
+        <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
+          Viernes
+        </button>
+        <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
+          Sabado
+        </button>
+        <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
+          Domingo
+        </button>
+        <button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay">
+          Lunes
+        </button>
+      </div>
+    </div>
+    <div class="modal fade bgWhite" id="mapModal2" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content noShadow noBorder bgTransparent">
+          <div class="modal-header">
+            <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title">Ubicacion</h4>
+          </div>
+          <div class="modal-body" id="bodyMapModal">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="page" id="login">
+    <main id="main_login">
+      <div class="bgCover"></div>
+      <div class="z-container">
+        <div class="hFull z-block" style="height: 638px;max-height: 638px;">
+          <div class="z-content z-contentMiddle">
+            <div class="z-row">
+              <div class="z-col-lg-6 z-col-md-8 z-col-sm-10 z-col-xs-12 z-col-lg-offset-3 z-col-md-offset-2 z-col-sm-offset-1 z-col-xs-offset-0">
+                <img src="images/logos/logo.png" class="centered z-forceBlock wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.5s; animation-name: fadeInDown;">
+              </div>
+            </div>
+            <div class="clear h100"></div>
+            <div class="z-row wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s" style="visibility: visible; animation-duration: 1s; animation-delay: 1s; animation-name: fadeInUp;">
+              <div class="z-col-xs-12">
+                <h1 class="cWhite text-center s25">Bienvenido</h1>
+              </div>
+              <div class="z-col-lg-4 z-col-lg-offset-2 z-col-md-4 z-col-md-offset-2 z-col-sm-4 z-col-sm-offset-2 z-col-xs-8 z-col-xs-offset-2">
+                <a class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#loginModal">Inicia sesión<br>
+                </a>
+                <div class="clear">
+
                 </div>
-                <div class="z-block h10vh bgDarkClear">
-                  <div class="z-content z-contentMiddle text-center">
-                    <h3 id="nombreSocio" class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
-                    <a id="ubicacionSocio" class="s15 text-center cDark negocio-link ubicacionLink"  data-id="0">
-                      <span class="fa fa-map-marker"></span> Ver Ubicacion
-                    </a>
+              </div>
+              <div class="z-col-lg-4 z-col-md-4 z-col-sm-4 z-col-sm-offset-0 z-col-xs-8 z-col-xs-offset-2">
+                <a class="z-btn btn-rounded h50 bgLightBlue cWhite s20 text-center noTransform boxShadow" data-toggle="modal" data-target="#regModal">Crea una cuenta</a>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div class="modal fade bgWhite" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content noShadow noBorder bgTransparent">
+          <div class="modal-header">
+            <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title">Ingresa</h4>
+          </div>
+          <div class="modal-body">
+            <form id="lognUser" class="form-section">
+              <input type="hidden" id="action" value="loginU" name="action">
+              <label for="logUser"></label>
+              <input id="logUser" type="email" placeholder="Usuario" name="logUser" value="" class="form-control">
+              <div class="clear"></div>
+              <label for="logPass"></label>
+              <input id="logPass" type="password" autocomplete="off" placeholder="Contraseña" name="logPass" value="" class="form-control">
+              <div class="clear"></div>
+              <button type="button" id="loginU" class="z-btn h50 btn-rounded bgGreen cWhite s20 text-center noTransform boxShadow">
+                Iniciar Sesión
+              </button>
+            </form>
+            <hr>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal fade bgWhite" id="regModal" tabindex="-1" role="dialog" aria-labelledby="regModalLabel" data-keyboard="false" data-backdrop="static">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content noShadow noBorder bgTransparent">
+          <div class="modal-header">
+            <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
+            <h4 class="modal-title">Registrate</h4>
+          </div>
+          <div class="modal-body">
+            <form id="registerUser" class="form-section">
+
+              <label for="ruMail"></label>
+              <input id="ruMail" type="email" placeholder="Correo" name="ruMail" value="" required class="form-control">
+
+              <div class="clear"></div>
+
+              <label for="ruPass"></label>
+              <input id="ruPass" type="password" class="form-control" placeholder="Contraseña" name="ruPass" value="" required class="form-control">
+
+              <div class="clear"></div>
+              <button type="button" id="crteAccountE" class="z-btn btn-rounded h50 bgGreen cWhite s20 text-center noTransform boxShadow">
+                Crear cuenta
+              </button>
+            </form>
+            <hr>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="page" id="ubicaciones">
+    <div data-role="header" data-theme="b">
+      <h1>Ubicaciones</h1><a href="#one" data-rel="back" data-iconpos="notext" data-icon="back">Regresar</a></p>
+    </div>
+    <div role="main" class="ui-content">
+      <div id="mapContainer"></div>
+      <div id="map"></div>
+    </div>
+  </div>
+  <div data-role="page" id="negocio">
+    <div data-role="header" data-theme="b">
+      <h1>Perfil</h1><a href="#one" data-rel="back" data-iconpos="notext" data-icon="back">Regresar</a></p>
+    </div>
+    <div role="main" class="ui-content">
+      <div class="z-container mainContainer noPadding">
+
+        <div class="z-row">
+          <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
+            <div class="z-forceBlock bgTransparent noMargin boxShadow">
+              <div id="imgSocio" class="z-block panelImg bgDarkBlue negProfImg" style="background-image:url('images/profPicture/default.png')">
+              </div>
+              <div class="z-block h10vh bgDarkClear">
+                <div class="z-content z-contentMiddle text-center">
+                  <h3 id="nombreSocio" class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
+                  <a id="ubicacionSocio" class="s15 text-center cDark negocio-link ubicacionLink"  data-id="0">
+                    <span class="fa fa-map-marker"></span> Ver Ubicacion
+                  </a>
+                </div>
+              </div>
+              <div class="z-block h20vh bgWhite">
+                <div data-role="collapsibleset" class="noMargin" data-theme="a" data-content-theme="a">
+                  <div data-role="collapsible">
+                    <h3>Direcciones</h3>
+                    <div id="direccionesSocio">direcciones</div>
                   </div>
-                </div>
-                <div class="z-block h20vh bgWhite">
-                  <div data-role="collapsibleset" class="noMargin" data-theme="a" data-content-theme="a">
-                    <div data-role="collapsible">
-                      <h3>Direcciones</h3>
-                      <div id="direccionesSocio">direcciones</div>
+                  <div data-role="collapsible">
+                    <h3>Contacto</h3>
+                    <div id="contactoSocio"></div>
+                  </div>
+                  <div data-role="collapsible">
+                    <h3>Galeria</h3>
+                    <div id="carruselPerfil" class="owl-carousel owl-theme">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=1" data-src-retina="https://placehold.it/350x250&text=1-retina" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=2" data-src-retina="https://placehold.it/350x250&text=2-retina" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=3" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=4" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=5" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=6" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=7" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=8" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=9" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=10" alt="">
+                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=11" alt="">
                     </div>
-                    <div data-role="collapsible">
-                      <h3>Contacto</h3>
-                      <div id="contactoSocio"></div>
-                    </div>
-                    <div data-role="collapsible">
-                      <h3>Galeria</h3>
-                      <p></p>
-                    </div>
-                    <div data-role="collapsible">
-                      <h3>Publicaciones Actuales</h3>
-                      <div id="PromocionesPorSocio"></div>
-                    </div>
+                  </div>
+                  <div data-role="collapsible">
+                    <h3>Publicaciones Actuales</h3>
+                    <div id="PromocionesPorSocio"></div>
                   </div>
                 </div>
               </div>
@@ -300,18 +315,19 @@
         </div>
       </div>
     </div>
-    <!-- <script type="text/javascript" src="cordova.js"></script> -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="js/jquery.validate.min.js"></script>
-    <script src="js/xpull.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBnDKUoyS0DwTs496UmycEy-GweCIW3m-U">
-
-
-    </script>
-    <!-- <script src="js/fb.js"></script> -->
-    <script type="text/javascript" src="js/app_ini.js"></script>
-  </body>
+  </div>
+  <!-- <script type="text/javascript" src="cordova.js"></script> -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/xpull.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBnDKUoyS0DwTs496UmycEy-GweCIW3m-U"></script>
+  <script src="plugins/owl/owl.carousel.min.js"></script>
+  
+  
+  <!-- <script src="js/fb.js"></script> -->
+  <script type="text/javascript" src="js/app_ini.js"></script>
+</body>
 
 </html>

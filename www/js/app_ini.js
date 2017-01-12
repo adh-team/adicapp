@@ -3,8 +3,11 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost:81/cache/adic/";
-var urlRemoto="http://adondeirenlaciudad.com/";
+var urlLocal="http://localhost:81/cache/adic/old/";
+var urlRemoto="http://adondeirenlaciudad.com/old/";
+var appRuta='rApp.php';
+/* comentar para subir a produccion*/
+
 //var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
@@ -23,6 +26,7 @@ $(document).ready(function() {
 	var width;
 	var height;
 	var time;
+	var $carousel;
 
 	loaderMain();
 
@@ -54,7 +58,7 @@ $(document).ready(function() {
 				xhrFields: {
 					withCredentials: true
 				},
-				url  : urlAjax+'classes/ajaxApp.php',
+				url  : urlAjax+'classes/'+appRuta,
 				dataType: "json",
 				data : data,
 			})
@@ -63,6 +67,7 @@ $(document).ready(function() {
 					var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").attr('id');
 					if (activePage==="login") {
 						$.mobile.changePage("#main");
+						$('.modal').modal('hide');
 					}
 
 				}
@@ -106,7 +111,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url  : urlAjax+'classes/ajaxApp.php',
+			url  : urlAjax+'classes/'+appRuta,
 			dataType: "json",
 			data : data,
 		})
@@ -120,9 +125,7 @@ $(document).ready(function() {
 				user.id=data.datos.row[0].iduser;
 				app.user=user;
 				setAppJson(app);
-				$.mobile.changePage("#main");
 				is_logged_in();
-				$('.modal').modal('hide');
 				ajaxLoader("termina");
 			}
 			else{
@@ -132,7 +135,7 @@ $(document).ready(function() {
 		})
 		.fail(function( jqXHR, textStatus, errorThrown ) {
 			ajaxLoader("termina");
-			alertMensaje('problemas al iniciar session'+errorThrown);
+			alertMensaje('revise la coneccion a internet '+errorThrown);
 		});
 
 	}
@@ -212,7 +215,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if (data.continuar==="ok") {
@@ -242,7 +245,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -254,16 +257,22 @@ $(document).ready(function() {
 				user.id=data.datos.row[0].iduser;
 				app.user=user;
 				setAppJson(app);
-				$.mobile.changePage("#main");
 				is_logged_in();
-				$('.modal').modal('hide');
 				ajaxLoader("termina");
 			}
 			else{
 				ajaxLoader("termina");
-				alertMensaje('problemas al iniciar session');
+				if (data.mensaje!==undefined){
+					alertMensaje(data.mensaje);
+				}else{
+					alertMensaje('revise la coneccion a internet');
+				}
+				
 			}
 
+		}).fail(function( jqXHR, textStatus, errorThrown ) {
+			ajaxLoader("termina");
+			alertMensaje('revise la coneccion a internet '+errorThrown);
 		});
 	});
 	$(document).on('click', '.toggle-view-promociones', function(event) {
@@ -381,7 +390,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -426,7 +435,7 @@ $(document).ready(function() {
 			xhrFields: {
 				withCredentials: true
 			},
-			url: urlAjax+'classes/ajaxApp.php',
+			url: urlAjax+'classes/'+appRuta,
 			type: 'post'
 		}).done(function(data){
 			if(data.continuar==="ok"){
@@ -721,8 +730,19 @@ $(document).ready(function() {
 		});
 		$(document).on("pagebeforeshow","#negocio",function(event){
 			is_token_in();
+			$('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/)');
+			$('#nombreSocio').html("Negocio");
+			$('#ubicacionSocio').attr('data-id',"0");
+
+
+
 			ajaxLoader("inicia");
 			appS=getAppSession();
+			
+			$('#contactoSocio').html("cargando...");
+			$('#direccionesSocio').html("cargando...");
+			$('#PromocionesPorSocio').html("cargando...");
+			
 			if (appS.negocioId!==undefined) {
 				var data= {'action': 'getNegocios','categoria':appS.user.categoria};
 				$.ajax({
@@ -732,7 +752,7 @@ $(document).ready(function() {
 					xhrFields: {
 						withCredentials: true
 					},
-					url: urlAjax+'classes/ajaxApp.php',
+					url: urlAjax+'classes/'+appRuta,
 					type: 'post'
 				}).done(function(data){
 					if(data.continuar==="ok"){
@@ -781,7 +801,7 @@ $(document).ready(function() {
 									xhrFields: {
 										withCredentials: true
 									},
-									url: urlAjax+'classes/ajaxApp.php',
+									url: urlAjax+'classes/'+appRuta,
 									type: 'post'
 								}).done(function(data){
 									var appS = getAppSession();
@@ -869,6 +889,17 @@ $(document).ready(function() {
 mainFunction();
 
 initMap();
+
+$carousel =$('.owl-carousel');
+
+$carousel.owlCarousel({
+    items:1,
+    responsiveClass:true,
+    lazyLoad:true,
+    loop:true,
+    margin:0
+});
+
 /* fin inicializar */
 }
 function cambioCategoria(id,icon,name){
