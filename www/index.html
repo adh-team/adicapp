@@ -268,46 +268,41 @@
         <div class="z-row">
           <div class="z-col-lg-4 z-col-md-4 z-col-sm-6 z-col-xs-12">
             <div class="z-forceBlock bgTransparent noMargin boxShadow">
-              <div id="imgSocio" class="z-block panelImg bgDarkBlue negProfImg" style="background-image:url('images/profPicture/default.png')">
+              <div id="carruselPerfil" class="owl-carousel owl-theme">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=1" data-src-retina="https://placehold.it/350x250&text=1-retina" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=2" data-src-retina="https://placehold.it/350x250&text=2-retina" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=3" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=4" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=5" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=6" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=7" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=8" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=9" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=10" alt="">
+                <img class="owl-lazy" data-src="https://placehold.it/350x250&text=11" alt="">
               </div>
-              <div class="z-block h10vh bgDarkClear">
-                <div class="z-content z-contentMiddle text-center">
-                  <h3 id="nombreSocio" class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
-                  <a id="ubicacionSocio" class="s15 text-center cDark negocio-link ubicacionLink"  data-id="0">
-                    <span class="fa fa-map-marker"></span> Ver Ubicacion
-                  </a>
+            </div>
+            <div class="z-block h10vh bgDarkClear">
+              <div class="z-content z-contentMiddle text-center">
+                <h3 id="nombreSocio" class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
+                <a id="ubicacionSocio" class="s15 text-center cDark negocio-link ubicacionLink"  data-id="0">
+                  <span class="fa fa-map-marker"></span> Ver Ubicacion
+                </a>
+              </div>
+            </div>
+            <div class="z-block h20vh bgWhite">
+              <div data-role="collapsibleset" class="noMargin" data-theme="a" data-content-theme="a">
+                <div data-role="collapsible">
+                  <h3>Direcciones</h3>
+                  <div id="direccionesSocio">direcciones</div>
                 </div>
-              </div>
-              <div class="z-block h20vh bgWhite">
-                <div data-role="collapsibleset" class="noMargin" data-theme="a" data-content-theme="a">
-                  <div data-role="collapsible">
-                    <h3>Direcciones</h3>
-                    <div id="direccionesSocio">direcciones</div>
-                  </div>
-                  <div data-role="collapsible">
-                    <h3>Contacto</h3>
-                    <div id="contactoSocio"></div>
-                  </div>
-                  <div data-role="collapsible">
-                    <h3>Galeria</h3>
-                    <div id="carruselPerfil" class="owl-carousel owl-theme">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=1" data-src-retina="https://placehold.it/350x250&text=1-retina" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=2" data-src-retina="https://placehold.it/350x250&text=2-retina" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=3" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=4" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=5" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=6" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=7" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=8" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=9" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=10" alt="">
-                      <img class="owl-lazy" data-src="https://placehold.it/350x250&text=11" alt="">
-                    </div>
-                  </div>
-                  <div data-role="collapsible">
-                    <h3>Publicaciones Actuales</h3>
-                    <div id="PromocionesPorSocio"></div>
-                  </div>
+                <div data-role="collapsible">
+                  <h3>Contacto</h3>
+                  <div id="contactoSocio"></div>
+                </div>
+                <div data-role="collapsible">
+                  <h3>Publicaciones Actuales</h3>
+                  <div id="PromocionesPorSocio"></div>
                 </div>
               </div>
             </div>
@@ -316,18 +311,19 @@
       </div>
     </div>
   </div>
-  <!-- <script type="text/javascript" src="cordova.js"></script> -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/xpull.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBnDKUoyS0DwTs496UmycEy-GweCIW3m-U"></script>
-  <script src="plugins/owl/owl.carousel.min.js"></script>
-  
-  
-  <!-- <script src="js/fb.js"></script> -->
-  <script type="text/javascript" src="js/app_ini.js"></script>
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<script src="js/xpull.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBnDKUoyS0DwTs496UmycEy-GweCIW3m-U"></script>
+<script src="plugins/owl/owl.carousel.min.js"></script>
+
+
+<!-- <script src="js/fb.js"></script> -->
+<script type="text/javascript" src="js/app_ini.js"></script>
 </body>
 
 </html>
