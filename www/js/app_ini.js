@@ -34,6 +34,7 @@ $(document).bind("mobileinit", function(){
     // onSuccess Geolocation
     //
     function onSuccess(position) {
+        
     	//var element = document.getElementById('geolocation');
     	alert('Latitude: '           + position.coords.latitude              + '<br />' +
     	'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -1060,7 +1061,9 @@ function Close(event) {
 
 $(document).on("pageshow","#ubicaciones",function(){
 	console.log("pageshow event fired - pagetwo is now shown");
+    navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	google.maps.event.trigger(map, "resize");
+
 });
 function ajustarMapa(){
 	var center = map.getCenter();
