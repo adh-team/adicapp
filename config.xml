@@ -39,9 +39,9 @@
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
-    	<icon height="29" platform="ios" src="www/images/logos/29x29.png" width="29" />
-    	<icon height="40" platform="ios" src="www/images/logos/40x40.png" width="40" />
-    	<icon height="48" platform="ios" src="www/images/logos/48x48.png" width="48" />
+        <icon height="29" platform="ios" src="www/images/logos/29x29.png" width="29" />
+        <icon height="40" platform="ios" src="www/images/logos/40x40.png" width="40" />
+        <icon height="48" platform="ios" src="www/images/logos/48x48.png" width="48" />
         <icon height="58" platform="ios" src="www/images/logos/58x58.png" width="58" />
         <icon height="72" platform="ios" src="www/images/logos/72x72.png" width="72" />
         <icon height="76" platform="ios" src="www/images/logos/76x76.png" width="76" />
