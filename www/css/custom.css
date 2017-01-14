@@ -726,3 +726,7 @@ a.product-content-image {
     color: #fff;
     background-color: rgba(50, 50, 50, .5)!important;
 }
+
+.owl-carousel .owl-stage-outer{
+  background-color: #375467!important;
+}
