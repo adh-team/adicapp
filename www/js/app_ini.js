@@ -346,6 +346,7 @@ $(document).bind("mobileinit", function(){
     				}
 
     				addMarker(latTmp);
+
 				//console.log(addresses[i]);
 
 			}
@@ -748,6 +749,7 @@ $(document).bind("mobileinit", function(){
 
 		});
 
+
     		$("#diasSemana").on('click', '.searchDayClick', function(event) {
     			event.preventDefault();
     			$("html, body").animate({ scrollTop: 0 }, "slow");
@@ -1000,7 +1002,6 @@ $(document).bind("mobileinit", function(){
 mainFunction();
 
 initMap();
-
 
 
 /* fin inicializar */
