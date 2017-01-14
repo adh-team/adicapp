@@ -35,7 +35,7 @@ $(document).bind("mobileinit", function(){
     //
     function onSuccess(position) {
     	//var element = document.getElementById('geolocation');
-    	console.log('Latitude: '           + position.coords.latitude              + '<br />' +
+    	alert('Latitude: '           + position.coords.latitude              + '<br />' +
     	'Longitude: '          + position.coords.longitude             + '<br />' +
     	'Altitude: '           + position.coords.altitude              + '<br />' +
     	'Accuracy: '           + position.coords.accuracy              + '<br />' +
@@ -48,7 +48,7 @@ $(document).bind("mobileinit", function(){
     // onError Callback receives a PositionError object
     //
     function onError(error) {
-    	console.log('code: '    + error.code    + '\n' +
+    	alert('code: '    + error.code    + '\n' +
     		'message: ' + error.message + '\n');
     }
     
