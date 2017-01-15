@@ -57,6 +57,12 @@
         },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.adondeir.adic"
+        },
+        "com.neton.cordova.diagnostic": {
+            "PACKAGE_NAME": "com.adondeir.adic"
+        },
+        "cordova.plugins.diagnostic": {
+            "PACKAGE_NAME": "com.adondeir.adic"
         }
     },
     "dependent_plugins": {

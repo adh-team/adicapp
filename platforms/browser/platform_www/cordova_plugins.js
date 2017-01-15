@@ -568,6 +568,14 @@ module.exports = [
         "id": "cordova-plugin-network-information.NetworkInfoProxy",
         "pluginId": "cordova-plugin-network-information",
         "runs": true
+    },
+    {
+        "file": "plugins/com.neton.cordova.diagnostic/www/diagnostic.js",
+        "id": "com.neton.cordova.diagnostic.diagnostic",
+        "pluginId": "com.neton.cordova.diagnostic",
+        "clobbers": [
+            "diagnostic"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -591,7 +599,9 @@ module.exports.metadata =
     "cordova-plugin-inappbrowser": "1.3.0",
     "cordova-plugin-media": "2.2.0",
     "cordova-plugin-network-information": "1.2.1",
-    "cordova-plugin-whitelist": "1.2.2"
+    "cordova-plugin-whitelist": "1.2.2",
+    "com.neton.cordova.diagnostic": "0.2.3",
+    "cordova.plugins.diagnostic": "3.3.3"
 }
 // BOTTOM OF METADATA
 });

@@ -14,10 +14,12 @@
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+    <plugin name="cordova.plugins.diagnostic" source="npm" />
     <!-- <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
     <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" /> -->
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <icon src="images/logos/120x120.png" />
+    
     <platform name="android">
         <icon density="ldpi" src="www/images/logos/40x40.png" />
         <icon density="mdpi" src="www/images/logos/48x48.png" />
@@ -25,18 +27,25 @@
         <icon density="xhdpi" src="www/images/logos/96x96.png" />
         <icon density="xxhdpi" src="www/images/logos/152x152.png" />
         <icon density="xxxhdpi" src="www/images/logos/180x180.png" />
-        <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
-        <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
-        <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
-        <splash density="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi-screen.png" />
-        <splash density="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
-        <splash density="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
-        <splash density="port-ldpi" src="www/res/screen/android/drawable-port-ldpi-screen.png" />
-        <splash density="port-mdpi" src="www/res/screen/android/drawable-port-mdpi-screen.png" />
-        <splash density="port-hdpi" src="www/res/screen/android/drawable-port-hdpi-screen.png" />
-        <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
-        <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
-        <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
+        <splash qualifier="ldpi" density="land-ldpi" src="res/screen/android/drawable-land-ldpi-screen.png" />
+        <splash qualifier="mdpi" density="land-mdpi" src="res/screen/android/drawable-land-mdpi-screen.png" />
+        <splash qualifier="hdpi" density="land-hdpi" src="res/screen/android/drawable-land-hdpi-screen.png" />
+        <splash qualifier="fr-xhdpi" density="land-xhdpi" src="res/screen/android/drawable-land-xhdpi-screen.png" />
+        <splash density="land-xxhdpi" src="res/screen/android/drawable-land-xxhdpi-screen.png" />
+        <splash density="land-xxxhdpi" src="res/screen/android/drawable-land-xxxhdpi-screen.png" />
+        <splash density="port-ldpi" src="res/screen/android/drawable-port-ldpi-screen.png" />
+        <splash density="port-mdpi" src="res/screen/android/drawable-port-mdpi-screen.png" />
+        <splash density="port-hdpi" src="res/screen/android/drawable-port-hdpi-screen.png" />
+        <splash density="port-xhdpi" src="res/screen/android/drawable-port-xhdpi-screen.png" />
+        <splash density="port-xxhdpi" src="res/screen/android/drawable-port-xxhdpi-screen.png" />
+        <splash density="port-xxxhdpi" src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
+        <splash src="ldpi.png" platform="android" qualifier="ldpi" />
+        <splash src="mdpi.png" platform="android" qualifier="mdpi" />
+        <splash src="hdpi.png" platform="android"  />
+        <splash src="xhdpi.png" platform="android" qualifier="xhdpi" />
+        <splash src="fr-xhdpi.png" platform="android" qualifier="fr-xhdpi" />
+        <splash src="portrait-xxhdpi.png" platform="android" qualifier="port-xxhdpi" />
+        <splash src="landscape-xxhdpi.png" platform="android" qualifier="land-xxhdpi" />
     </platform>
     <platform name="ios">
         <icon height="29" platform="ios" src="www/images/logos/29x29.png" width="29" />
@@ -52,16 +61,16 @@
         <icon height="152" platform="ios" src="www/images/logos/152x152.png" width="152" />
         <icon height="180" platform="ios" src="www/images/logos/180x180.png" width="180" />
 
-        <splash height="1136" platform="ios" src="www/res/screen/ios/Default-568h@2x~iphone.png" width="640" />
-        <splash height="1334" platform="ios" src="www/res/screen/ios/Default-667h.png" width="750" />
-        <splash height="2208" platform="ios" src="www/res/screen/ios/Default-736h.png" width="1242" />
-        <splash height="1242" platform="ios" src="www/res/screen/ios/Default-Landscape-736h.png" width="2208" />
-        <splash height="1536" platform="ios" src="www/res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />
-        <splash height="768" platform="ios" src="www/res/screen/ios/Default-Landscape~ipad.png" width="1024" />
-        <splash height="2048" platform="ios" src="www/res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
-        <splash height="1024" platform="ios" src="www/res/screen/ios/Default-Portrait~ipad.png" width="768" />
-        <splash height="960" platform="ios" src="www/res/screen/ios/Default@2x~iphone.png" width="640" />
-        <splash height="480" platform="ios" src="www/res/screen/ios/Default~iphone.png" width="320" />
+        <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
+        <splash height="1334" platform="ios" src="res/screen/ios/Default-667h.png" width="750" />
+        <splash height="2208" platform="ios" src="res/screen/ios/Default-736h.png" width="1242" />
+        <splash height="1242" platform="ios" src="res/screen/ios/Default-Landscape-736h.png" width="2208" />
+        <splash height="1536" platform="ios" src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="768" platform="ios" src="res/screen/ios/Default-Landscape~ipad.png" width="1024" />
+        <splash height="2048" platform="ios" src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
+        <splash height="1024" platform="ios" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
+        <splash height="960" platform="ios" src="res/screen/ios/Default@2x~iphone.png" width="640" />
+        <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" />
     </platform>
     <platform name="wp8">
         <icon height="99" platform="wp8" src="www/res/icon/wp8/ApplicationIcon.png" width="99" />
@@ -85,6 +94,8 @@
         <icon height="360" platform="windows" src="www/res/icon/windows/Wide310x150Logo.scale-240.png" width="744" />
         <splash height="1920" platform="windows" src="www/res/screen/windows/SplashScreenPhone.scale-240.png" width="1152" />
     </platform>
+    <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
+    <preference name="SplashScreenDelay" value="100000" />
     <access origin="*" />
     <access origin="http://pruebasapi.esy.es" subdomains="true"/>
     <access origin="https://*.facebook.com/" subdomains="true"/>
