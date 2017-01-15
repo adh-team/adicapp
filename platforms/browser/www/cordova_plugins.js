@@ -600,8 +600,7 @@ module.exports.metadata =
     "cordova-plugin-media": "2.2.0",
     "cordova-plugin-network-information": "1.2.1",
     "cordova-plugin-whitelist": "1.2.2",
-    "com.neton.cordova.diagnostic": "0.2.3",
-    "cordova.plugins.diagnostic": "3.3.3"
+    "com.neton.cordova.diagnostic": "0.2.3"
 }
 // BOTTOM OF METADATA
 });
