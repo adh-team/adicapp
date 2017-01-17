@@ -11,6 +11,8 @@ var Latitude = undefined;
 var Longitude = undefined;
 var map;
 var markers = [];
+var directionsDisplay = null;
+var directionsService = null;
 
 
 /* comentar para subir a produccion*/
@@ -674,7 +676,7 @@ var callFailure = function(data) {
     		var primer=false;
     		for(var i in addresses){
     			var latTmp={lat:+addresses[i].latitud,lng:+addresses[i].longitud};
-    			addMarker(latTmp);
+    			addMarker(latTmp,"Negocio","images/png/negocio.png",true) ;
 
     		}
 
@@ -1078,13 +1080,13 @@ $(document).on("pageshow","#ubicaciones",function(){
 });
 function ajustarMapa(){
     getMapLocation();
-	var center = map.getCenter();
-	var height=$('#ubicaciones').height();
-	$('#map').height((height*80)/100);
+    var center = map.getCenter();
+    var height=$('#ubicaciones').height();
+    $('#map').height((height*80)/100);
 
 
-	map.setCenter(center);
-	google.maps.event.trigger(map, "resize");
+    map.setCenter(center);
+    google.maps.event.trigger(map, "resize");
     console.log("mapa centrado en: ");
     console.log(center);
 }
@@ -1107,98 +1109,147 @@ $(window).resize(function(event) {
 
 
 // Get geo coordinates 
- 
+
 function getMapLocation() {
- 
+
     navigator.geolocation.getCurrentPosition
     (onMapSuccess, onMapError, { enableHighAccuracy: true });
 }
- 
+
 // Success callback for get geo coordinates 
- 
+
 var onMapSuccess = function (position) {
- 
+
     Latitude = position.coords.latitude;
     Longitude = position.coords.longitude;
- 
+
     getMap(Latitude, Longitude);
- 
+
 }
- 
+
 // Get map by using coordinates 
- 
+
 function getMap(latitude, longitude) {
 
     var latLong = new google.maps.LatLng(latitude, longitude);
     var latLng={lat:latitude,lng:longitude};
-    addMarker(latLng);
+    addMarker(latLng,"Usted","images/png/usted.png",false) ;
     centerMap(latLng,12);
     console.log("mapa cargado y centrado en: "+latitude+","+longitude);
 }
- 
+
 // Success callback for watching your changing position 
- 
+
 var onMapWatchSuccess = function (position) {
- 
+
     var updatedLatitude = position.coords.latitude;
     var updatedLongitude = position.coords.longitude;
- 
+
     if (updatedLatitude != Latitude && updatedLongitude != Longitude) {
- 
+
         Latitude = updatedLatitude;
         Longitude = updatedLongitude;
- 
+
         getMap(updatedLatitude, updatedLongitude);
     }
 }
- 
+
 // Error callback 
- 
+
 function onMapError(error) {
     console.log('code: ' + error.code + '\n' +
         'message: ' + error.message + '\n');
 }
- 
+
 // Watch your changing position 
- 
+
 function watchMapPosition() {
- 
+
     return navigator.geolocation.watchPosition
     (onMapWatchSuccess, onMapError, { enableHighAccuracy: true });
 }
 
 //funcion iniciar mapa
 function initMap() {
+    var styleArray=[{"featureType": "administrative","elementType": "labels.text.fill","stylers": [{"color": "#444444"}]},{"featureType": "administrative.country","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "administrative.province","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "administrative.locality","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "administrative.neighborhood","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "administrative.land_parcel","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "landscape","elementType": "all","stylers": [{"color": "#f2f2f2"}]},{"featureType": "landscape.natural.landcover","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "landscape.natural.terrain","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "poi","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "road","elementType": "all","stylers": [{"saturation": -100},{"lightness": 45},{"visibility": "on"}]},{"featureType": "road.highway","elementType": "all","stylers": [{"visibility": "simplified"}]},{"featureType": "road.arterial","elementType": "labels.icon","stylers": [{"visibility": "off"}]},{"featureType": "transit","elementType": "all","stylers": [{"visibility": "off"}]},{"featureType": "water","elementType": "all","stylers": [{"color": "#46bcec"},{"visibility": "on"}]}];
+
     var mapOptions = {
-        center: new google.maps.LatLng(25.5507416,-103.4577724),
-        zoom: 1,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        center: new google.maps.LatLng(25.5507416,-103.4577724)
+        ,zoom: 1,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: styleArray,
+        disableDefaultUI: true
     };
-     map = new google.maps.Map
+    map = new google.maps.Map
     (document.getElementById('map'), mapOptions);
     // funcion para centrar mapa
     getMapLocation();
     showMarkers();
+    directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay.setMap(map);
+    directionsDisplay.setOptions( { suppressMarkers: true } );
+    calculateAndDisplayRoute(directionsService, directionsDisplay);
+
+}
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+  var selectedMode = 'DRIVING';
+  directionsService.route({
+    origin: {lat: 25.6922712,lng:-103.2908482},  // Haight.
+    destination: {lat: 25.5507416, lng: -103.4577724},  // Ocean Beach.
+    // Note that Javascript allows us to access the constant
+    // using square brackets and a string value as its
+    // "property."
+    travelMode: google.maps.TravelMode[selectedMode]
+}, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+  } else {
+      window.alert('Directions request failed due to ' + status);
+  }
+});
 }
 
-
-function addMarker(location) {
+function addMarker(location,label,icon,enlazar) {
 	var marker = new google.maps.Marker({
 		position: location,
-		map: map
-	});
-	markers.push(marker);
+        icon: icon,
+        map: map,
+        animation: google.maps.Animation.DROP,
+        labelAnchor: new google.maps.Point(300, 100), // Os lo explico después del CSS.
+        label:label,
+       labelClass: 'labels' // LA CLASE CSS, AQUÍ LLEGA LA MAGIA!!
+   });
+    markers.push(marker);
+    if (enlazar) {
+        marker.addListener('click', enlazarMarcador);
+    }
 }
+function enlazarMarcador(e){
 
+    var selectedMode = 'DRIVING';
+    directionsService.route({
+        origin: {lat: 25.6922712,lng:-103.2908482},
+        destination: {lat: e.latLng.lat(), lng: e.latLng.lng()},
+        travelMode: google.maps.TravelMode[selectedMode]
+    }, function(response, status) {
+        if (status == google.maps.DirectionsStatus.OK) {
+          directionsDisplay.setDirections(response);
+      } else {
+          window.alert('Directions request failed due to ' + status);
+      }
+  });
+
+};
 
 function setMapOnAll(map) {
-	for (var i = 0; i < markers.length; i++) {
-		markers[i].setMap(map);
-	}
+ for (var i = 0; i < markers.length; i++) {
+  markers[i].setMap(map);
+}
 }
 function centerMap(latLng,z){
-	map.setCenter(latLng);
-	map.setZoom(z);
+ map.setCenter(latLng);
+ map.setZoom(z);
 }
 
 function clearMarkers() {
@@ -1213,4 +1264,17 @@ function showMarkers() {
 function deleteMarkers() {
 	clearMarkers();
 	markers = [];
+}
+function clearMarkers() {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+}
+markers = [];
+}
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+} else {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+}
 }
