@@ -143,20 +143,6 @@
         </button>
       </div>
     </div>
-    <div class="modal fade bgWhite" id="mapModal2" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" data-keyboard="false" data-backdrop="static">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content noShadow noBorder bgTransparent">
-          <div class="modal-header">
-            <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
-            <h4 class="modal-title">Ubicacion</h4>
-          </div>
-          <div class="modal-body" id="bodyMapModal">
-
-          </div>
-
-        </div>
-      </div>
-    </div>
   </div>
   <div data-role="page" id="login">
     <main id="main_login">
@@ -256,7 +242,29 @@
     <div role="main" class="ui-content">
       <div id="mapContainer"></div>
       <div id="map"></div>
-      <a href="https://www.google.com.mx/maps/dir/25.5508491,-103.4576505/25.5360662,-103.448752/@25.5506942,-103.4577578,16z?hl=es">ir a  google maps</a>
+      
+    </div>
+    <div id="modalUbicaciones" class="modal fade" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="ui-btn ui-icon-delete  ui-btn-icon-right close-modal" data-dismiss="modal" aria-label="Close"></button>
+            <h3 class="modal-title text-center">¿A donde Ir?</h3>
+          </div>
+          <div class="modal-body" id="modalUbucacionesBody">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div data-role="footer" data-position="fixed" class="footer">
+    <div data-role="controlgroup" data-type="horizontal">
+      <a href="#" class="width100P" data-toggle="modal" data-target="#modalUbicaciones" data-role="button" data-inline="true" data-theme="b">
+        ¿A Donde Ir ?
+      </a>
+      </div>
     </div>
   </div>
   <div data-role="page" id="negocio">

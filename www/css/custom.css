@@ -749,7 +749,25 @@ a.product-content-image {
   -moz-animation: pulse 1s ease 1s 3;
   animation: pulse 1s ease 1s 3;
 }
-
-
+#modalUbucacionesBody a{
+  text-decoration: none;
+}
+#modalUbucacionesBody li{
+  list-style: none;
+}
+.paddingTB5{
+  padding-top:5px;
+  padding-bottom: 5px; 
+}
+.maxWidth100P{
+  max-width: 100%;
+  overflow: hidden;
+}
+.width100P{
+  width: 100% !important ;
+}
+.footer .ui-controlgroup-horizontal .ui-controlgroup-controls{
+  width: 100% !important ;
+}
 /* fin ubicaciones */
 
