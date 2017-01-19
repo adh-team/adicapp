@@ -704,9 +704,7 @@ if(hasAddress){
     //$('#modalUbicaciones').modal('show') ;
     $modal.html(htmlModal);
 }
-showMarkers();
 ajustarMapa();
-showMarkers();
 
 
 }
@@ -1127,12 +1125,9 @@ $(document).on("pageshow","#ubicaciones",function(){
 });
 function ajustarMapa(){
     getMapLocation();
-    var center = map.getCenter();
     var height=$('#ubicaciones').height();
     $('#map').height((height*80)/100);
 
-
-    map.setCenter(center);
     google.maps.event.trigger(map, "resize");
     console.log("mapa centrado en: ");
     console.log(center);
