@@ -18,7 +18,7 @@ var directionsService = null;
 
 /* comentar para subir a produccion*/
 
-var urlRemoto = urlLocal;
+//var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 
