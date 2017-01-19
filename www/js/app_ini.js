@@ -462,12 +462,15 @@ var callFailure = function(data) {
 
                 }
                 else{
-                    $("#postContainer").html('<div class="h50">Sin publicaciones :(');
+                    appS=getAppSession();
+                    appS.addresses=addresses;
+                    setAppSession(appS);
+                    $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');
                 }
                 ajaxLoader("termina");
 
             }).fail(function( jqXHR, textStatus, errorThrown ) {
-                $("#postContainer").html('<div class="h50">Sin publicaciones :(');
+                $("#postContainer").html('<div class="" style="min-height:100vh;height:300px;">Sin publicaciones :(');
                 ajaxLoader("termina");
             });
         }
