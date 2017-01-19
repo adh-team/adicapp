@@ -3,7 +3,7 @@ var storage;
 var app={};
 var appS={};
 var controller;
-var urlLocal="http://localhost:81/cache/adic/old/";
+var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var appRuta='rApp.php';
 
@@ -18,7 +18,7 @@ var directionsService = null;
 
 /* comentar para subir a produccion*/
 
-//var urlRemoto = urlLocal;
+var urlRemoto = urlLocal;
 
 var urlAjax=urlRemoto;
 
@@ -26,8 +26,6 @@ $(document).bind("mobileinit", function(){
 
     $.mobile.defaultPageTransition = "slidedown";
     $.mobile.loadingMessage = "Cargando app.";
-
-
 
 });
 var callSuccess = function(data) {
@@ -640,7 +638,7 @@ var callFailure = function(data) {
         text: "Cargando...",
         textVisible: true,
         theme: "b",
-        html: "<span class='ui-bar ui-overlay-a ui-corner-all'><img src='images/logos/48x48.png' />Cargando...</span>"
+        html: "<span class='ui-bar ui-overlay-a ui-corner-all'><img src='images/logos/i.png' class='img-responsive' style='width: 30px;margin: 0 auto;'/>Cargando...</span>"
     });
    }
    else{
@@ -688,16 +686,24 @@ function ubicacionesFunction(){
 
   clearMarkers();
   deleteMarkers();
-
+  var $modal=$('#modalUbucacionesBody');
+  var htmlModal='';
+  var hasAddress=false;
   appS=getAppSession();
   var addresses=appS.addresses;
   var primer=false;
   for(var i in addresses){
-   var latTmp={lat:+addresses[i].latitud,lng:+addresses[i].longitud};
-   addMarker(latTmp,"Negocio","images/png/negocio.png",true) ;
+    var address=addresses[i];
+    var latTmp={lat:+address.latitud,lng:+address.longitud};
+    addMarker(latTmp,address.negocio,"images/png/negocio.png",true) ;
+    hasAddress=true;
+    htmlModal+='<li><h5><a data-id="'+address.userid+'" class="goProfile " >'+address.negocio+'</a></h5>'+getHTMLUbicaciones(address)+'</li>';
 
 }
-
+if(hasAddress){
+    //$('#modalUbicaciones').modal('show') ;
+    $modal.html(htmlModal);
+}
 showMarkers();
 ajustarMapa();
 showMarkers();
@@ -768,25 +774,25 @@ $(document).on('click', '.categoriaClick', function(event) {
 cambioCategoria(id,icon);
 });
 $(document).on('click', '.centerMap', function(event) {
-     event.preventDefault();
-     var action=$(this);
-     var lat=action.attr('data-lat');
-     var lng=action.attr('data-lng');
-     enlazarMarcadorClick(+lat,+lng);
-     $('#modalUbicaciones').modal('toggle');
+ event.preventDefault();
+ var action=$(this);
+ var lat=action.attr('data-lat');
+ var lng=action.attr('data-lng');
+ enlazarMarcadorClick(+lat,+lng);
+ $('#modalUbicaciones').modal('toggle');
 
 
 });
 $(document).on('click', '.routerMap', function(event) {
-     event.preventDefault();
-     var action=$(this);
-     var lat=action.attr('data-lat');
-     var lng=action.attr('data-lng');
-     enlazarMarcadorClick(+lat,+lng);
-     $('#modalUbicaciones').modal('toggle');
-     var origen = getOrigin();
-     var destino = lat+','+lng;
-     window.open("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
+ event.preventDefault();
+ var action=$(this);
+ var lat=action.attr('data-lat');
+ var lng=action.attr('data-lng');
+ enlazarMarcadorClick(+lat,+lng);
+ $('#modalUbicaciones').modal('toggle');
+ var origen = getOrigin();
+ var destino = lat+','+lng;
+ window.open("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
 
 
 });
@@ -799,7 +805,7 @@ $(document).on('click', '.goProfile', function(event) {
    appS.negocioId=id;
    setAppSession(appS);
    $.mobile.changePage("#negocio");
-
+   $('.modal').modal('hide');
 });
 
 
@@ -943,7 +949,7 @@ images=[
 ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
 ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
 ];
-var imagen={ubication:'http://adondeirenlaciudad.com/old/images/profPicture/',name:negocio.userpic };
+var imagen={ubication:'http://adondeirenlaciudad.com/images/profPicture/',name:negocio.userpic };
 var htmlImages=getHtmlImages(imagen);
 for(var i in images){
    htmlImages+=getHtmlImages(images[i]);
@@ -966,7 +972,7 @@ else{
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ];
-  var imagen={ubication:'http://adondeirenlaciudad.com/old/images/profPicture/',name:negocio.userpic };
+  var imagen={ubication:'http://adondeirenlaciudad.com/images/profPicture/',name:negocio.userpic };
   var htmlImages=getHtmlImages(imagen);
 
   for(var i in images){
@@ -1006,7 +1012,7 @@ ajaxLoader("termina");
  ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
  ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
  ];
- var imagen={ubication:'http://adondeirenlaciudad.com/old/images/profPicture/',name:negocio.userpic };
+ var imagen={ubication:'http://adondeirenlaciudad.com/images/profPicture/',name:negocio.userpic };
  var htmlImages=getHtmlImages(imagen);
  for(var i in images){
   htmlImages+=getHtmlImages(images[i]);
@@ -1279,18 +1285,18 @@ function addMarker(location,label,icon,enlazar) {
 function addCenter(location) {
     for (var i = 0; i < center.length; i++) {
       center[i].setMap(null);
-    }
-    center=[];
-    var marker = new google.maps.Marker({
-        position: location,
-        icon: "images/png/usted.png",
-        map: map,
-        animation: google.maps.Animation.DROP,
+  }
+  center=[];
+  var marker = new google.maps.Marker({
+    position: location,
+    icon: "images/png/usted.png",
+    map: map,
+    animation: google.maps.Animation.DROP,
         labelAnchor: new google.maps.Point(300, 100), // Os lo explico después del CSS.
         label:'Usted',
        labelClass: 'labels' // LA CLASE CSS, AQUÍ LLEGA LA MAGIA!!
    });
-    center.push(marker);
+  center.push(marker);
 
 }
 function enlazarMarcador(e){
