@@ -775,13 +775,9 @@ $(document).on('click', '.categoriaClick', function(event) {
 }
 cambioCategoria(id,icon);
 });
-$(document).on('click', '.centerMap', function(event) {
+$(document).on('click', '.centerMapGeo', function(event) {
  event.preventDefault();
- var action=$(this);
- var lat=action.attr('data-lat');
- var lng=action.attr('data-lng');
- enlazarMarcadorClick(+lat,+lng);
- $('#modalUbicaciones').modal('toggle');
+ajustarMapa();
 
 
 });
@@ -799,6 +795,28 @@ $(document).on('click', '.routerMap', function(event) {
 
 });
 $(document).on('click', '.goProfile', function(event) {
+
+   event.preventDefault();
+   /* Act on the event */
+   var id =$(this).attr('data-id');
+   var appS=appS=getAppSession();
+   appS.negocioId=id;
+   setAppSession(appS);
+   $.mobile.changePage("#negocio");
+   $('.modal').modal('hide');
+});
+$(document).on('click', '.goProfile', function(event) {
+
+   event.preventDefault();
+   /* Act on the event */
+   var id =$(this).attr('data-id');
+   var appS=appS=getAppSession();
+   appS.negocioId=id;
+   setAppSession(appS);
+   $.mobile.changePage("#negocio");
+   $('.modal').modal('hide');
+});
+$(document).on('click', '.centerMapGeo', function(event) {
 
    event.preventDefault();
    /* Act on the event */
