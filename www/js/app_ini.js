@@ -56,13 +56,13 @@ var callFailure = function(data) {
 
         //var element = document.getElementById('geolocation');
         alert('Latitude: '           + position.coords.latitude              + '<br />' +
-           'Longitude: '          + position.coords.longitude             + '<br />' +
-           'Altitude: '           + position.coords.altitude              + '<br />' +
-           'Accuracy: '           + position.coords.accuracy              + '<br />' +
-           'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-           'Heading: '            + position.coords.heading               + '<br />' +
-           'Speed: '              + position.coords.speed                 + '<br />' +
-           'Timestamp: '          +                                   position.timestamp          + '<br />');
+         'Longitude: '          + position.coords.longitude             + '<br />' +
+         'Altitude: '           + position.coords.altitude              + '<br />' +
+         'Accuracy: '           + position.coords.accuracy              + '<br />' +
+         'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+         'Heading: '            + position.coords.heading               + '<br />' +
+         'Speed: '              + position.coords.speed                 + '<br />' +
+         'Timestamp: '          +                                   position.timestamp          + '<br />');
     }
 
     // onError Callback receives a PositionError object
@@ -390,7 +390,7 @@ var callFailure = function(data) {
             var semana={};
             var buttonStart='<button type="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent searchDay searchDayClick"';
             var buttonEnd='</button>';
-            var dias = new Array('Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado');
+            var dias = new Array('Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado');
             semana.primerDia=   dias[dia];
             var stringDia=ahora.getDate();
             var stringMes=(ahora.getMonth()+ 1);
@@ -540,7 +540,7 @@ var callFailure = function(data) {
             '       <div class="flex-negocio">'+
             '           <div class="col-xs-4 div-flex-negocio">'+
             '               <a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
-            '                   <div class="image-swap img-responsive" style="background-image: url('+urlAjax+'images/profPicture/'+json.userpic+');">'+
+            '                   <div class="image-swap img-responsive" style="background-image: url('+urlAjax+'imagenes_/profPicture/'+json.userpic+');">'+
             '                   </div>'+
             '               </a>'+
             '           </div>'+
@@ -582,49 +582,49 @@ var callFailure = function(data) {
           var addresses="";
           var direccion=""+json.direccion;
           if (direccion!=="" && direccion!=="null") {
-           addresses=json.direccion+', '+json.cp+' '+json.municipio+', '+json.estado;
-       }
-       return ''+
-       '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
-       '    <div class="z-panelHeader noPadding noBorder">'+
-       '        <div class="z-row noMargin">'+
-       '            <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
-       '                <form class="z-block h80">'+
-       '                    <button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
-       '                        <div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'images/profPicture/'+json.user_pic+'\');margin-top:10px;"></div>'+
-       '                    </button>'+
-       '                </form>'+
-       '            </div>'+
-       '            <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">'+
-       '                <div class="z-block h80">'+
-       '                    <div class="z-content z-contentMiddle">'+
-       '                        <form action="" method="post" >'+
-       '                            <button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+json.userid+'">'+json.negocio+'</button>'+
-       '                        </form>'+
-       '                        <form action="" method="post" ><a data-id="'+json.userid+'" class="ubicacionLink cDark">'+addresses+'</a></form>'+
-       '                    </div>'+
-       '                </div>'+
-       '            </div>'+
-       '        </div>'+
-       '    </div>'+
-       '    <div class="z-panelBody z-block overflowHidden noPadding">'+
-       '        <div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+json.image+'\');"></div>'+
-       '    </div>'+
-       '    <div class="z-row noMargin">'+
-       '        <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
-       '            <div class="z-block h80 mh80 overflowAuto">'+
-       '                <div class="z-content z-contentMiddle">'+
-       '                    <p class="cDark s15">'+
-       '                        <span class="text-bold text-uppercase">'+json.title+'</span><br>'+
-       '                        <span class="">'+json.description+'</span>'+
-       '                    </p>'+
-       '                </div>'+
-       '            </div>'+
-       '        </div>'+
-       '    </div>'+
-       '</div>';
-   }
-   function getHtmlImages(json){
+             addresses=json.direccion+', '+json.cp+' '+json.municipio+', '+json.estado;
+         }
+         return ''+
+         '<div class="z-panel z-forceBlock bgWhite wow fadeInUp boxShadow" data-wow-duration=".5s" data-wow-delay=".2s">'+
+         '    <div class="z-panelHeader noPadding noBorder">'+
+         '        <div class="z-row noMargin">'+
+         '            <div class="z-col-lg-3 z-col-md-3 z-col-sm-2 z-col-xs-3 noPadding">'+
+         '                <form class="z-block h80">'+
+         '                    <button name="useridx"  data-id="'+json.userid+'" class="goProfile z-content z-contentMiddle botonFiltroUsuario">'+
+         '                        <div class="profileImg panelImg" style="background-image:url(\''+urlAjax+'imagenes_/profPicture/'+json.user_pic+'\');margin-top:10px;"></div>'+
+         '                    </button>'+
+         '                </form>'+
+         '            </div>'+
+         '            <div class="z-col-lg-9 z-col-md-9 z-col-sm-10 z-col-xs-7 noPadding">'+
+         '                <div class="z-block h80">'+
+         '                    <div class="z-content z-contentMiddle">'+
+         '                        <form action="" method="post" >'+
+         '                            <button name="useridx" class="goProfile noMargin text-uppercase text-uppercase s15 cDark text-bold profileU noBorder bgTransparent noPadding" data-id="'+json.userid+'">'+json.negocio+'</button>'+
+         '                        </form>'+
+         '                        <form action="" method="post" ><a data-id="'+json.userid+'" class="ubicacionLink cDark">'+addresses+'</a></form>'+
+         '                    </div>'+
+         '                </div>'+
+         '            </div>'+
+         '        </div>'+
+         '    </div>'+
+         '    <div class="z-panelBody z-block overflowHidden noPadding">'+
+         '        <div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+'imagenes_/post/'+json.image+'\');"></div>'+
+         '    </div>'+
+         '    <div class="z-row noMargin">'+
+         '        <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
+         '            <div class="z-block h80 mh80 overflowAuto">'+
+         '                <div class="z-content z-contentMiddle">'+
+         '                    <p class="cDark s15">'+
+         '                        <span class="text-bold text-uppercase">'+json.title+'</span><br>'+
+         '                        <span class="">'+json.description+'</span>'+
+         '                    </p>'+
+         '                </div>'+
+         '            </div>'+
+         '        </div>'+
+         '    </div>'+
+         '</div>';
+     }
+     function getHtmlImages(json){
       return ' <img class="owl-lazy" data-src="'+json.ubication+json.name+'" alt="'+json.description+'">'
   }
   function getContactoHtml(json){
@@ -638,18 +638,18 @@ var callFailure = function(data) {
   }
   function ajaxLoader(action){
       if (action==="inicia") {
-       $.mobile.loading( "show", {
-        text: "Cargando...",
-        textVisible: true,
-        theme: "b",
-        html: "<span class='ui-bar ui-overlay-a ui-corner-all'><img src='images/logos/i.png' class='img-responsive' style='width: 30px;margin: 0 auto;'/>Cargando...</span>"
-    });
-   }
-   else{
-       if (action==="termina") {
-        $.mobile.loading( "hide" );
+         $.mobile.loading( "show", {
+            text: "Cargando...",
+            textVisible: true,
+            theme: "b",
+            html: "<span class='ui-bar ui-overlay-a ui-corner-all'><img src='images/logos/i.png' class='img-responsive' style='width: 30px;margin: 0 auto;'/>Cargando...</span>"
+        });
+     }
+     else{
+         if (action==="termina") {
+            $.mobile.loading( "hide" );
+        }
     }
-}
 }
 function mainFunction(){
   is_token_in();
@@ -660,15 +660,15 @@ function mainFunction(){
   getMenuCategorias();
   $vista= $(".toggle-view-promociones");
   if (appS.user.vista==="promociones") {
-   $('#openPanelRight').show( "slow" );;
-   getPost();
-   $vista.attr('tooltip', 'Negocios');
-}
-else{
-   $('#openPanelRight').hide( "fast" );;
-   $vista.attr('tooltip', 'Promociones');
-   getNegocios();
-}
+     $('#openPanelRight').show( "slow" );;
+     getPost();
+     $vista.attr('tooltip', 'Negocios');
+ }
+ else{
+     $('#openPanelRight').hide( "fast" );;
+     $vista.attr('tooltip', 'Promociones');
+     getNegocios();
+ }
 }
 function perfilFunction(negocioId,negocio,postHtml,directions,imgSocio){
 
@@ -679,11 +679,11 @@ function perfilFunction(negocioId,negocio,postHtml,directions,imgSocio){
   $('#contactoSocio').html(contactoHtml);
   var direccionesHtml='';
   for(var i in directions){
-   direccionesHtml+=getDireccionesHtml(directions[i]);
+     direccionesHtml+=getDireccionesHtml(directions[i]);
 
-}
-$('#direccionesSocio').html(direccionesHtml);
-$('#PromocionesPorSocio').html(postHtml);
+ }
+ $('#direccionesSocio').html(direccionesHtml);
+ $('#PromocionesPorSocio').html(postHtml);
 }
 function ubicacionesFunction(){
   app=getAppJson();
@@ -716,27 +716,27 @@ ajustarMapa();
 function inicializar(){
   /* cambiamos nombre a local storage para un uso mas sensillo y para corregir problemas de navegadores que no lo soportan mas adelante*/
   try {
-   if (localStorage.getItem) {
-    storage = localStorage;
-    storageS = sessionStorage;
-}
+     if (localStorage.getItem) {
+        storage = localStorage;
+        storageS = sessionStorage;
+    }
 } catch(e) {
-   storage = {};
-   storageS = {};
+ storage = {};
+ storageS = {};
 }
 app=getAppJson();
 appS=getAppSession();
 
 /* validaciones */
 $("#lognUser").validate({
-   rules: {
+ rules: {
     logUser: {
-     required: true,
- },
- logPass: {
-     required: true,
-     minlength: 5
- }
+       required: true,
+   },
+   logPass: {
+       required: true,
+       minlength: 5
+   }
 },
 messages: {
     logUser: "Porfavor ingresa un usuario valido",
@@ -745,25 +745,25 @@ messages: {
 });
 
 $("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
-   event.preventDefault();
-   $.mobile.changePage("#negocio");
+ event.preventDefault();
+ $.mobile.changePage("#negocio");
 });
 $("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
-   event.preventDefault();
-   var id=$(this).attr('data-id');
-   var icon=$(this).attr('data-icon');
-   var name=$(this).attr('data-name');
-   cambioCategoria(id,icon);
+ event.preventDefault();
+ var id=$(this).attr('data-id');
+ var icon=$(this).attr('data-icon');
+ var name=$(this).attr('data-name');
+ cambioCategoria(id,icon);
 
-   $(".ui-panel").panel("close");
+ $(".ui-panel").panel("close");
 
 });
 $(document).on('click', '.categoriaClick', function(event) {
-   event.preventDefault();
-   var id=$(this).attr('data-id');
-   var name=$(this).attr('data-name');
-   var icon="";
-   switch(+id){
+ event.preventDefault();
+ var id=$(this).attr('data-id');
+ var name=$(this).attr('data-name');
+ var icon="";
+ switch(+id){
 
     case -1 :icon="";break;
     case 0 :icon="";break;
@@ -776,206 +776,206 @@ $(document).on('click', '.categoriaClick', function(event) {
 cambioCategoria(id,icon);
 });
 $(document).on('click', '.centerMapGeo', function(event) {
- event.preventDefault();
-ajustarMapa();
+   event.preventDefault();
+   ajustarMapa();
 
 
 });
 $(document).on('click', '.routerMap', function(event) {
+   event.preventDefault();
+   var action=$(this);
+   var lat=action.attr('data-lat');
+   var lng=action.attr('data-lng');
+   enlazarMarcadorClick(+lat,+lng);
+   $('#modalUbicaciones').modal('toggle');
+   var origen = getOrigin();
+   var destino = lat+','+lng;
+   window.open("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
+
+
+});
+$(document).on('click', '.goProfile', function(event) {
+
  event.preventDefault();
- var action=$(this);
- var lat=action.attr('data-lat');
- var lng=action.attr('data-lng');
- enlazarMarcadorClick(+lat,+lng);
- $('#modalUbicaciones').modal('toggle');
- var origen = getOrigin();
- var destino = lat+','+lng;
- window.open("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
-
-
+ /* Act on the event */
+ var id =$(this).attr('data-id');
+ var appS=appS=getAppSession();
+ appS.negocioId=id;
+ setAppSession(appS);
+ $.mobile.changePage("#negocio");
+ $('.modal').modal('hide');
 });
 $(document).on('click', '.goProfile', function(event) {
 
-   event.preventDefault();
-   /* Act on the event */
-   var id =$(this).attr('data-id');
-   var appS=appS=getAppSession();
-   appS.negocioId=id;
-   setAppSession(appS);
-   $.mobile.changePage("#negocio");
-   $('.modal').modal('hide');
-});
-$(document).on('click', '.goProfile', function(event) {
-
-   event.preventDefault();
-   /* Act on the event */
-   var id =$(this).attr('data-id');
-   var appS=appS=getAppSession();
-   appS.negocioId=id;
-   setAppSession(appS);
-   $.mobile.changePage("#negocio");
-   $('.modal').modal('hide');
+ event.preventDefault();
+ /* Act on the event */
+ var id =$(this).attr('data-id');
+ var appS=appS=getAppSession();
+ appS.negocioId=id;
+ setAppSession(appS);
+ $.mobile.changePage("#negocio");
+ $('.modal').modal('hide');
 });
 $(document).on('click', '.centerMapGeo', function(event) {
 
-   event.preventDefault();
-   /* Act on the event */
-   var id =$(this).attr('data-id');
-   var appS=appS=getAppSession();
-   appS.negocioId=id;
-   setAppSession(appS);
-   $.mobile.changePage("#negocio");
-   $('.modal').modal('hide');
+ event.preventDefault();
+ /* Act on the event */
+ var id =$(this).attr('data-id');
+ var appS=appS=getAppSession();
+ appS.negocioId=id;
+ setAppSession(appS);
+ $.mobile.changePage("#negocio");
+ $('.modal').modal('hide');
 });
 
 
 $("#diasSemana").on('click', '.searchDayClick', function(event) {
-   event.preventDefault();
-   $("html, body").animate({ scrollTop: 0 }, "slow");
-   appS=getAppSession();
-   appS.user.fecha=$(this).val();
-   appS.user.fechaNombre=$(this).html();
-   setAppSession(appS);
-   mainFunction();
-   $(".ui-panel").panel("close");
+ event.preventDefault();
+ $("html, body").animate({ scrollTop: 0 }, "slow");
+ appS=getAppSession();
+ appS.user.fecha=$(this).val();
+ appS.user.fechaNombre=$(this).html();
+ setAppSession(appS);
+ mainFunction();
+ $(".ui-panel").panel("close");
 
 });
 $(document).on("pagebeforeshow","#main",function(event){
-   mainFunction();
+ mainFunction();
 });
 $(document).on("pagebeforeshow","#negocio",function(event){
-   is_token_in();
-   $('#imgSocio').css('background-image', 'url('+urlAjax+'images/profPicture/)');
-   $('#nombreSocio').html("Negocio");
-   $('#ubicacionSocio').attr('data-id',"0");
+ is_token_in();
+ $('#imgSocio').css('background-image', 'url('+urlAjax+'imagenes_/profPicture/)');
+ $('#nombreSocio').html("Negocio");
+ $('#ubicacionSocio').attr('data-id',"0");
 
 
 
-   ajaxLoader("inicia");
-   appS=getAppSession();
+ ajaxLoader("inicia");
+ appS=getAppSession();
 
-   $('#contactoSocio').html("cargando...");
-   $('#direccionesSocio').html("cargando...");
-   $('#PromocionesPorSocio').html("cargando...");
+ $('#contactoSocio').html("cargando...");
+ $('#direccionesSocio').html("cargando...");
+ $('#PromocionesPorSocio').html("cargando...");
 
-   if (appS.negocioId!==undefined) {
+ if (appS.negocioId!==undefined) {
     var data= {'action': 'getNegocios','categoria':appS.user.categoria};
     $.ajax({
-     data:data,
-     crossDomain: true,
-     cache: false,
-     xhrFields: {
-      withCredentials: true
-  },
-  url: urlAjax+'classes/'+appRuta,
-  type: 'post'
-}).done(function(data){
- if(data.continuar==="ok"){
-  appS=getAppSession();
-  var negocioId=appS.negocioId;
-  var negocios=data.datos.negocios;
-  var addresses= data.datos.addresses;
-  var address=[];
-  var directions=[];
-  var hasAddress=false;
-  for(var i in addresses){
+       data:data,
+       crossDomain: true,
+       cache: false,
+       xhrFields: {
+          withCredentials: true
+      },
+      url: urlAjax+'classes/'+appRuta,
+      type: 'post'
+  }).done(function(data){
+   if(data.continuar==="ok"){
+      appS=getAppSession();
+      var negocioId=appS.negocioId;
+      var negocios=data.datos.negocios;
+      var addresses= data.datos.addresses;
+      var address=[];
+      var directions=[];
+      var hasAddress=false;
+      for(var i in addresses){
 
-   if (addresses[i].userid===negocioId){
-    directions.push(addresses[i]);
-    if(!hasAddress){
-     address.push(addresses[i]);
-     hasAddress=true;
+         if (addresses[i].userid===negocioId){
+            directions.push(addresses[i]);
+            if(!hasAddress){
+               address.push(addresses[i]);
+               hasAddress=true;
+           }
+
+       }
+
+   }
+
+
+
+
+   appS.negocios=negocios;
+   appS.addresses=addresses;
+   appS.negocio={
+     hasAddress:hasAddress
+     ,directions:directions
+     ,address:address
+
+ };
+ setAppSession(appS);
+
+ for(var i in negocios) {
+     if (negocios[i].userid===negocioId) {
+        var negocio=negocios[i];
+        $carousel =$('.owl-carousel.owl-loaded');
+        if ($carousel[0]) {
+           $carousel.data('owl.carousel').destroy(); 
+       }
+
+       perfilFunction(negocioId,negocio,"cargando...",directions,'cargando...');
+       var data= {'action': 'getPostSocio','iduser':negocioId};
+       $.ajax({
+           data:data,
+           crossDomain: true,
+           cache: false,
+           xhrFields: {
+              withCredentials: true
+          },
+          url: urlAjax+'classes/'+appRuta,
+          type: 'post'
+      }).done(function(data){
+       var appS = getAppSession();
+       var semana=appS.user.semanas.semana;
+       var addresses= appS.addresses;
+       var directions=appS.negocio.directions;
+       var address=appS.negocio.address;
+
+       var hasAddress=appS.negocio.hasAddress;
+       if(data.continuar==="ok"){
+
+          var post= data.datos.post;
+          var images=data.datos.images;
+          var semanaHtml=[];
+          var datahtml='';
+
+          for(i in semana){
+             semanaHtml[i]='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>';
+         }
+
+         for(var i in post) {
+             var publicacion=post[i];
+             for(i in semana){
+                if(semana[i].fecha==publicacion.date){
+                   semanaHtml[i]+=getHtmlPost(publicacion);
+                   break;
+               }
+
+           }
+           /*datahtml+=getHtmlPost(publicacion);*/
+       }
+       for(i in semana){
+         if (semanaHtml[i]!='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>') {
+            datahtml+=semanaHtml[i];
+        }
+
+    }
+    images=[
+    {ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+    ];
+    var imagen={ubication:'http://adondeirenlaciudad.com/imagenes_/profPicture/',name:negocio.userpic };
+    var htmlImages=getHtmlImages(imagen);
+    for(var i in images){
+     htmlImages+=getHtmlImages(images[i]);
  }
 
-}
-
-}
-
-
-
-
-appS.negocios=negocios;
-appS.addresses=addresses;
-appS.negocio={
-   hasAddress:hasAddress
-   ,directions:directions
-   ,address:address
-
-};
-setAppSession(appS);
-
-for(var i in negocios) {
-   if (negocios[i].userid===negocioId) {
-    var negocio=negocios[i];
-    $carousel =$('.owl-carousel.owl-loaded');
-    if ($carousel[0]) {
-     $carousel.data('owl.carousel').destroy(); 
- }
-
- perfilFunction(negocioId,negocio,"cargando...",directions,'cargando...');
- var data= {'action': 'getPostSocio','iduser':negocioId};
- $.ajax({
-     data:data,
-     crossDomain: true,
-     cache: false,
-     xhrFields: {
-      withCredentials: true
-  },
-  url: urlAjax+'classes/'+appRuta,
-  type: 'post'
-}).done(function(data){
- var appS = getAppSession();
- var semana=appS.user.semanas.semana;
- var addresses= appS.addresses;
- var directions=appS.negocio.directions;
- var address=appS.negocio.address;
-
- var hasAddress=appS.negocio.hasAddress;
- if(data.continuar==="ok"){
-
-  var post= data.datos.post;
-  var images=data.datos.images;
-  var semanaHtml=[];
-  var datahtml='';
-
-  for(i in semana){
-   semanaHtml[i]='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>';
-}
-
-for(var i in post) {
-   var publicacion=post[i];
-   for(i in semana){
-    if(semana[i].fecha==publicacion.date){
-     semanaHtml[i]+=getHtmlPost(publicacion);
-     break;
- }
-
-}
-/*datahtml+=getHtmlPost(publicacion);*/
-}
-for(i in semana){
-   if (semanaHtml[i]!='<div class="divisionDiaPerfil">Publicaciones del dia '+semana[i].dia+'</div>') {
-    datahtml+=semanaHtml[i];
-}
-
-}
-images=[
-{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-];
-var imagen={ubication:'http://adondeirenlaciudad.com/images/profPicture/',name:negocio.userpic };
-var htmlImages=getHtmlImages(imagen);
-for(var i in images){
-   htmlImages+=getHtmlImages(images[i]);
-}
-
-perfilFunction(negocioId,negocio,datahtml,directions,htmlImages);
+ perfilFunction(negocioId,negocio,datahtml,directions,htmlImages);
 
 
 
@@ -992,14 +992,14 @@ else{
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ];
-  var imagen={ubication:'http://adondeirenlaciudad.com/images/profPicture/',name:negocio.userpic };
+  var imagen={ubication:'http://adondeirenlaciudad.com/imagenes_/profPicture/',name:negocio.userpic };
   var htmlImages=getHtmlImages(imagen);
 
   for(var i in images){
-   htmlImages+=getHtmlImages(images[i]);
-}
-var datahtml='<div class="h50">Sin publicaciones :(';
-perfilFunction(negocioId,negocio,datahtml,directions,htmlImages);
+     htmlImages+=getHtmlImages(images[i]);
+ }
+ var datahtml='<div class="h50">Sin publicaciones :(';
+ perfilFunction(negocioId,negocio,datahtml,directions,htmlImages);
 
 
 }   
@@ -1016,38 +1016,38 @@ $carousel.owlCarousel({
 ajaxLoader("termina");
 
 }).fail(function( jqXHR, textStatus, errorThrown ) {
- var appS = getAppSession();
- var addresses= appS.addresses;
- var directions=appS.negocio.directions;
- var address=appS.negocio.address;
- var hasAddress=appS.negocio.hasAddress;
- var datahtml='<div class="h50">Sin publicaciones :(';
- images=[
- {ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
- ];
- var imagen={ubication:'http://adondeirenlaciudad.com/images/profPicture/',name:negocio.userpic };
- var htmlImages=getHtmlImages(imagen);
- for(var i in images){
-  htmlImages+=getHtmlImages(images[i]);
-}
-perfilFunction(negocioId,negocio,datahtml,appS.addresses,getHtmlImages);
-$carousel =$('.owl-carousel');
-$carousel.owlCarousel({
-  items:1,
-  autoHeight:true,
-  responsiveClass:true,
-  lazyLoad:true,
-  loop:true,
-  margin:0
-}).removeClass('owl-hidden');
-ajaxLoader("termina");
+   var appS = getAppSession();
+   var addresses= appS.addresses;
+   var directions=appS.negocio.directions;
+   var address=appS.negocio.address;
+   var hasAddress=appS.negocio.hasAddress;
+   var datahtml='<div class="h50">Sin publicaciones :(';
+   images=[
+   {ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
+   ];
+   var imagen={ubication:'http://adondeirenlaciudad.com/imagenes_/profPicture/',name:negocio.userpic };
+   var htmlImages=getHtmlImages(imagen);
+   for(var i in images){
+      htmlImages+=getHtmlImages(images[i]);
+  }
+  perfilFunction(negocioId,negocio,datahtml,appS.addresses,getHtmlImages);
+  $carousel =$('.owl-carousel');
+  $carousel.owlCarousel({
+      items:1,
+      autoHeight:true,
+      responsiveClass:true,
+      lazyLoad:true,
+      loop:true,
+      margin:0
+  }).removeClass('owl-hidden');
+  ajaxLoader("termina");
 });
 
 
@@ -1094,7 +1094,7 @@ function cambioCategoria(id,icon,name){
         appS.user.classIcon=icon;
         setAppSession(appS);
         mainFunction();
-        $("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+        $("#classIcon").html('<img class="h35" src="images/logos/i.png" alt="logo">');
     }
     else{
         if (id==="-1") {
@@ -1102,7 +1102,7 @@ function cambioCategoria(id,icon,name){
             appS.user.categoriaNombre="Inicio";
             appS.user.classIcon=icon;
             setAppSession(appS);
-            $("#classIcon").html('<img class="h35" src="images/logos/48x48.png" alt="logo">');
+            $("#classIcon").html('<img class="h35" src="images/logos/i.png" alt="logo">');
             $.mobile.changePage("#ubicaciones");
             ubicacionesFunction();
         }
@@ -1364,8 +1364,8 @@ function setMapOnAll(map) {
   }
 }
 function centerMap(latLng,z){
- map.setCenter(latLng);
- map.setZoom(z);
+   map.setCenter(latLng);
+   map.setZoom(z);
 }
 
 function clearMarkers() {
