@@ -42,14 +42,14 @@ var callFailure = function(data) {
 // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
-     document.addEventListener("resume", onResume, false);
+    document.addEventListener("resume", onResume, false);
 
     // Cordova is ready
     //
     function onDeviceReady() {
         initMap();
         /*gaPlugin = window.plugins.gaPlugin;*/
-        onResume();
+        alert("on resume "+device.platform);
         if (device.platform == "Android"){
         sistemaOperativo = "Android";
 
