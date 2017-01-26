@@ -14,7 +14,7 @@ var markers = [];
 var center = [];
 var directionsDisplay = null;
 var directionsService = null;
-
+var gaPlugin;
 
 /* comentar para subir a produccion*/
 
@@ -46,6 +46,8 @@ var callFailure = function(data) {
     //
     function onDeviceReady() {
         initMap();
+        gaPlugin = window.plugins.gaPlugin;
+        gaPlugin.init(successHandler, errorHandler, "UA-90947818-1", 10);
         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
         //cordova.plugins.diagnostic.isWifiAvailable(callSuccess, callFailure);
     }
