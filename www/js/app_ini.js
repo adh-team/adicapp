@@ -44,90 +44,24 @@ var callFailure = function(data) {
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("resume", onResume, false);
 
-    // Cordova is ready
-    //
     function onDeviceReady() {
         initMap();
         /*gaPlugin = window.plugins.gaPlugin;*/
-        alert("on resume "+device.platform);
+        alert("on init "+device.platform );
         if (device.platform == "Android"){
-        sistemaOperativo = "Android";
+            sistemaOperativo = "Android";
 
         } else if (device.platform == "iPhone" ||
             device.platform == "iPhone Simulator"){
             sistemaOperativo = "iOS";
         }
-        gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-90947818-1", 10);
-        /*navigator.notification.confirm('A Dónde Ir en la Ciudad desea su permiso para recolectar datos de uso. No se recopilarán datos personales o de identificación del usuario.', permissionCallback, 'Attention', 'Allow,Deny');*/
-        
-        //navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        //cordova.plugins.diagnostic.isWifiAvailable(callSuccess, callFailure);
-    }
-   
 
-        function onResume() {
-           alert("on resume "+device.platform);
-           
-        
-        }
-    function permissionCallback (button) {
-                if (button === 1)
-                    gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-90947818-1", 10);
-            }
-            function nativePluginResultHandler (result) {
-                //alert('nativePluginResultHandler - '+result);
-                console.log('nativePluginResultHandler: '+result);
-            }
-        
-            function nativePluginErrorHandler (error) {
-                //alert('nativePluginErrorHandler - '+error);
-                console.log('nativePluginErrorHandler: '+error);
-            }
-            
-            function TrackButtonClicked() {
-                gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "Button", "Click", "event only", 1);
-            }
-        
-            function VariableButtonClicked() {
-                // Set a dimension based on index and value. Make sure you have added a dimension in the GA dashboard to the
-                // default property for the passed in index, and your desired scope. GA allows up to 20 dimensions for a free account
-                gaPlugin.setVariable( nativePluginResultHandler, nativePluginErrorHandler, 1, "Purple");
-                // dimensions are are passed to the next event sent to GA. go ahead and fire off an event with the label (key) of your choice
-                // In this example, the label for custom dimension 1 will show up in the dashboard as "favoriteColor". This is much more efficent
-                // than the old custom variable method introduced in V1, (plus you get 20 free dimensions vs 5 free custom variables)
-                gaPlugin.trackEvent( nativePluginResultHandler, nativePluginErrorHandler, "event with variable", "set variable", "favoriteColor", 1);
-            }
-        
-            function PageButtonClicked() {
-                gaPlugin.trackPage( nativePluginResultHandler, nativePluginErrorHandler, "some.url.com");
-            }
-            
-            function goingAway() {
-                gaPlugin.exit(nativePluginResultHandler, nativePluginErrorHandler);
-            }
-
-    // onSuccess Geolocation
-    //
-    function onSuccess(position) {
-
-        //var element = document.getElementById('geolocation');
-        alert('Latitude: '           + position.coords.latitude              + '<br />' +
-         'Longitude: '          + position.coords.longitude             + '<br />' +
-         'Altitude: '           + position.coords.altitude              + '<br />' +
-         'Accuracy: '           + position.coords.accuracy              + '<br />' +
-         'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
-         'Heading: '            + position.coords.heading               + '<br />' +
-         'Speed: '              + position.coords.speed                 + '<br />' +
-         'Timestamp: '          +                                   position.timestamp          + '<br />');
     }
 
-    // onError Callback receives a PositionError object
-    //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-            'message: ' + error.message + '\n');
-    }
-    
+function onResume() {
+     alert("on resume "+device.platform);
+ }
+
     $(document).ready(function() {
         var width;
         var height;
