@@ -15,6 +15,7 @@ var center = [];
 var directionsDisplay = null;
 var directionsService = null;
 var gaPlugin;
+var sistemaOperativo;
 
 /* comentar para subir a produccion*/
 
@@ -41,17 +42,34 @@ var callFailure = function(data) {
 // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
+     document.addEventListener("resume", onResume, false);
 
     // Cordova is ready
     //
     function onDeviceReady() {
         initMap();
-        gaPlugin = window.plugins.gaPlugin;
-        navigator.notification.confirm('A Dónde Ir en la Ciudad desea su permiso para recolectar datos de uso. No se recopilarán datos personales o de identificación del usuario.', permissionCallback, 'Attention', 'Allow,Deny');
+        /*gaPlugin = window.plugins.gaPlugin;*/
+        onResume();
+        if (device.platform == "Android"){
+        sistemaOperativo = "Android";
+
+        } else if (device.platform == "iPhone" ||
+            device.platform == "iPhone Simulator"){
+            sistemaOperativo = "iOS";
+        }
+        gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-90947818-1", 10);
+        /*navigator.notification.confirm('A Dónde Ir en la Ciudad desea su permiso para recolectar datos de uso. No se recopilarán datos personales o de identificación del usuario.', permissionCallback, 'Attention', 'Allow,Deny');*/
         
         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
         //cordova.plugins.diagnostic.isWifiAvailable(callSuccess, callFailure);
     }
+   
+
+        function onResume() {
+           alert("on resume "+device.platform);
+           
+        
+        }
     function permissionCallback (button) {
                 if (button === 1)
                     gaPlugin.init(nativePluginResultHandler, nativePluginErrorHandler, "UA-90947818-1", 10);
@@ -127,7 +145,8 @@ var callFailure = function(data) {
             app=getAppJson();
             token=app.user.token;
             if (token==='') {
-                is_logged_in();
+                /*is_logged_in();*/
+                $.mobile.changePage("#login");
             }
         }
 
