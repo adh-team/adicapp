@@ -835,10 +835,22 @@ $(document).on('click', '.hook-filter', function(event) {
  /* Act on the event */
  var letra =$(this).attr('data-hook');
  var topCoord =$('#datafilterList'+letra).offset().top;
- alert(topCoord);
+ //alert(topCoord);
  $.mobile.silentScroll(topCoord-150);
 
 });
+
+$(document).on('focus', '.hook-filter', function(event) {
+
+ event.preventDefault();
+ /* Act on the event */
+ var letra =$(this).attr('data-hook');
+ var topCoord =$('#datafilterList'+letra).offset().top;
+ //alert(topCoord);
+ $.mobile.silentScroll(topCoord-150);
+
+});
+
 
 $('#main .hook-filter').bind('touchstart touchend', function(event) {
 
@@ -846,7 +858,7 @@ $('#main .hook-filter').bind('touchstart touchend', function(event) {
  /* Act on the event */
  var letra =$(this).attr('data-hook');
  var topCoord =$('#datafilterList'+letra).offset().top;
- alert(topCoord);
+ //alert(topCoord);
  $.mobile.silentScroll(topCoord-150);
 
 });
