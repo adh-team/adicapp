@@ -819,6 +819,9 @@ a.menu-footer{
 }
 /* fin ubicaciones */
 
+#postContainer{
+  position: relative;
+}
 
 .alphabeth {
     position: absolute;
@@ -847,5 +850,10 @@ a.menu-footer{
 #alphabetPanel {
     max-width: 0;
     width: 0;
+}
+#aphabethContainer {
+    position: fixed;
+    bottom: 30%;
+    right: 0;
 }
 

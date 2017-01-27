@@ -533,22 +533,18 @@ function onResume() {
 
                         
                     }
-                    
-                    
+                   
                     appS=getAppSession();
                     appS.negocios=negocios=datos;
                     appS.addresses=data.datos.addresses;
                     setAppSession(appS);
                     datahtml+='</div>';
-                    var datahtmlE='<div class="alphabeth" data-position="fixed"><ul>';
+                    var datahtmlA='<div class="alphabeth"><ul>';
                     for(var i in abc){
-                        datahtmlE+='<li><a href="#">'+abc[i]+'</a></li>';
+                        datahtmlA+='<li><a class="hook-filter" data-hoock="'+abc[i]+'">'+abc[i]+'</a></li>';
                     }
-                    datahtmlE+='</ul></div>';
-                    $( "#alphabetPanel" ).trigger( "updatelayout" );
-                    $( "#alphabetPanel" ).panel('open');
-
-                    $("#containerFixed").html(datahtmlE);
+                    datahtmlA+='</ul></div>';
+                    $("#aphabethContainer").html(datahtmlA);
                     $("#postContainer").html(datahtml);
                     $('#filterNegociosInput').textinput();
                     $('#filterNegocios').filterable();
