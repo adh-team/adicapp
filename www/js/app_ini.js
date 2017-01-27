@@ -521,7 +521,7 @@ function onResume() {
                         var char= datos[i].negocio.substr(0,1).toUpperCase();
                         if (char!==letra) {
 
-                            datahtml+='<li data-role="list-divider" data-groupoptions="aaaa">'+char+'</li>';
+                            datahtml+='<li data-role="list-divider" data-groupoptions="aaaa" id="datafilterList'+char+'">'+char+'</li>';
                             datahtml+='<li>'+getHTMLNegocios(datos[i])+'</li>';
                             letra=char;
                             abc.push(letra);
@@ -541,7 +541,7 @@ function onResume() {
                     datahtml+='</div>';
                     var datahtmlA='<div class="alphabeth"><ul>';
                     for(var i in abc){
-                        datahtmlA+='<li><a class="hook-filter" data-hoock="'+abc[i]+'">'+abc[i]+'</a></li>';
+                        datahtmlA+='<li><a class="hook-filter" data-hook="'+abc[i]+'" >'+abc[i]+'</a></li>';
                     }
                     datahtmlA+='</ul></div>';
                     $("#aphabethContainer").html(datahtmlA);
@@ -829,17 +829,28 @@ $(document).on('click', '.routerMap', function(event) {
 
 
 });
-$(document).on('click', '.goProfile', function(event) {
+$(document).on('click', '.hook-filter', function(event) {
 
  event.preventDefault();
  /* Act on the event */
- var id =$(this).attr('data-id');
- var appS=appS=getAppSession();
- appS.negocioId=id;
- setAppSession(appS);
- $.mobile.changePage("#negocio");
- $('.modal').modal('hide');
+ var letra =$(this).attr('data-hook');
+ var topCoord =$('#datafilterList'+letra).offset().top;
+ alert(topCoord);
+ $.mobile.silentScroll(topCoord-150);
+
 });
+
+$('#main .hook-filter').bind('touchstart touchend', function(event) {
+
+ event.preventDefault();
+ /* Act on the event */
+ var letra =$(this).attr('data-hook');
+ var topCoord =$('#datafilterList'+letra).offset().top;
+ alert(topCoord);
+ $.mobile.silentScroll(topCoord-150);
+
+});
+
 $(document).on('click', '.goProfile', function(event) {
 
  event.preventDefault();
