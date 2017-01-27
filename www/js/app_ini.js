@@ -60,7 +60,7 @@ var callFailure = function(data) {
     }
 
 function onResume() {
-    alert('iduser '+iduser+' sistema: '+sistemaOperativo);
+    //alert('iduser '+iduser+' sistema: '+sistemaOperativo);
      $.ajax({
          url: urlAjax+'classes/'+appRuta,
          type: 'POST',
@@ -513,16 +513,42 @@ function onResume() {
                     '<form class="ui-filterable">'+
                     '<input id="filterNegociosInput" data-type="search">'+
                     '</form>'+
-                    '<div class="elements" data-filter="true" data-input="#filterNegociosInput" id="filterNegocios">';
+                    '<div class="elements" data-filter="true" data-input="#filterNegociosInput" id="filterNegocios" data-divider-theme="d"> ';
+                    var letra="";
+                    var abc=[];
 
                     for(var i in datos) {
-                        datahtml+=getHTMLNegocios(datos[i]);
+                        var char= datos[i].negocio.substr(0,1).toUpperCase();
+                        if (char!==letra) {
+
+                            datahtml+='<li data-role="list-divider" data-groupoptions="aaaa">'+char+'</li>';
+                            datahtml+='<li>'+getHTMLNegocios(datos[i])+'</li>';
+                            letra=char;
+                            abc.push(letra);
+                        }
+                        else{
+                            datahtml+='<li>'+getHTMLNegocios(datos[i])+'</li>';
+                        }
+
+
+                        
                     }
+                    
+                    
                     appS=getAppSession();
                     appS.negocios=negocios=datos;
                     appS.addresses=data.datos.addresses;
                     setAppSession(appS);
                     datahtml+='</div>';
+                    var datahtmlE='<div class="alphabeth" data-position="fixed"><ul>';
+                    for(var i in abc){
+                        datahtmlE+='<li><a href="#">'+abc[i]+'</a></li>';
+                    }
+                    datahtmlE+='</ul></div>';
+                    $( "#alphabetPanel" ).trigger( "updatelayout" );
+                    $( "#alphabetPanel" ).panel('open');
+
+                    $("#containerFixed").html(datahtmlE);
                     $("#postContainer").html(datahtml);
                     $('#filterNegociosInput').textinput();
                     $('#filterNegocios').filterable();
@@ -550,7 +576,6 @@ function onResume() {
         function getHTMLNegocios(json){
 
             return ''+
-            '<li>'+
             '   <div class="card-negocio">'+
             '       <div class="flex-negocio">'+
             '           <div class="col-xs-4 div-flex-negocio">'+
@@ -569,8 +594,7 @@ function onResume() {
             '               </div>'+
             '           </div>'+
             '       </div>'+
-            '   </div>'+
-            '</li>';
+            '   </div>';
         }
         function getHTMLUbicaciones(json){
             var addresses="";

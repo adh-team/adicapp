@@ -819,3 +819,33 @@ a.menu-footer{
 }
 /* fin ubicaciones */
 
+
+.alphabeth {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #666;
+    border-radius: 5px;
+    min-height: 50px;
+}
+
+.alphabeth li a {padding: 3px 5px;
+    line-height: 13px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase;
+    cursor: pointer;
+    }
+
+.alphabeth ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#alphabetPanel {
+    max-width: 0;
+    width: 0;
+}
+
