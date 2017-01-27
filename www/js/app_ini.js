@@ -64,7 +64,7 @@ function onResume() {
          url: urlAjax+'classes/'+appRuta,
          type: 'POST',
          dataType: 'json',
-         data: {sistema: sistemaOperativo},
+         data: {sistema: sistemaOperativo,action:'logUser'},
      })
      .done(function() {
          console.log("success");
