@@ -16,6 +16,7 @@ var directionsDisplay = null;
 var directionsService = null;
 var gaPlugin;
 var sistemaOperativo;
+var iduser;
 
 /* comentar para subir a produccion*/
 
@@ -47,7 +48,7 @@ var callFailure = function(data) {
     function onDeviceReady() {
         initMap();
         /*gaPlugin = window.plugins.gaPlugin;*/
-        alert("on init "+device.platform );
+        /*alert("on init "+device.platform );*/
         if (device.platform == "Android"){
             sistemaOperativo = "Android";
 
@@ -59,7 +60,25 @@ var callFailure = function(data) {
     }
 
 function onResume() {
-     alert("on resume "+device.platform);
+     $.ajax({
+         url: urlAjax+'classes/'+appRuta,
+         type: 'POST',
+         dataType: 'json',
+         data: {sistema: sistemaOperativo},
+     })
+     .done(function() {
+         console.log("success");
+     })
+     .fail(function() {
+         console.log("error");
+     })
+     .always(function() {
+         console.log("complete");
+     });
+     
+ }
+ function set_id(id_user){
+    iduser=id_user;
  }
 
     $(document).ready(function() {
@@ -81,6 +100,9 @@ function onResume() {
             if (token==='') {
                 /*is_logged_in();*/
                 $.mobile.changePage("#login");
+            }
+            else{
+                set_id(app.user.id);
             }
         }
 
@@ -166,6 +188,7 @@ function onResume() {
                     user.id=data.datos.row[0].iduser;
                     app.user=user;
                     setAppJson(app);
+                    set_id(user.id);
                     is_logged_in();
                     ajaxLoader("termina");
                 }
