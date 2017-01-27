@@ -60,11 +60,12 @@ var callFailure = function(data) {
     }
 
 function onResume() {
+    alert('iduser '+iduser+' sistema: '+sistemaOperativo);
      $.ajax({
          url: urlAjax+'classes/'+appRuta,
          type: 'POST',
          dataType: 'json',
-         data: {sistema: sistemaOperativo,action:'logUser'},
+         data: {sistema: sistemaOperativo,action:'logUser',iduser:iduser},
      })
      .done(function() {
          console.log("success");
