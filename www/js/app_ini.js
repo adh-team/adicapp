@@ -603,7 +603,7 @@ function onResume() {
             '   <div class="card-negocio">'+
             '       <div class="flex-negocio">'+
             '           <div class="col-xs-8 div-flex-negocio paddingTB5 maxWidth100P">'+
-            '               <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="centerMap negocio-link"><div>'+addresses+' </div></a>'+
+            '               <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="centerMapGeo negocio-link"><div>'+addresses+' </div></a>'+
             '           </div>'+
             '           <div class="col-xs-4 div-flex-negocio paddingTB5">'+
             '               <div class="categoria">'+
@@ -814,7 +814,11 @@ cambioCategoria(id,icon);
 });
 $(document).on('click', '.centerMapGeo', function(event) {
    event.preventDefault();
-   ajustarMapa();
+   var action=$(this);
+   var lat=action.attr('data-lat');
+   var lng=action.attr('data-lng');
+   enlazarMarcadorClick(+lat,+lng);
+   $('#modalUbicaciones').modal('toggle');
 
 
 });
@@ -822,6 +826,7 @@ $(document).on('click', '.routerMap', function(event) {
    event.preventDefault();
    var action=$(this);
    var lat=action.attr('data-lat');
+
    var lng=action.attr('data-lng');
    enlazarMarcadorClick(+lat,+lng);
    $('#modalUbicaciones').modal('toggle');
@@ -831,6 +836,19 @@ $(document).on('click', '.routerMap', function(event) {
 
 
 });
+/* no recuerdo como se usaba
+$(document).on('click', '.centerMapGeo', function(event) {
+
+ event.preventDefault();
+ var id =$(this).attr('data-id');
+ var appS=appS=getAppSession();
+ appS.negocioId=id;
+ setAppSession(appS);
+// $.mobile.changePage("#negocio");
+ $('.modal').modal('hide');
+});
+
+*/
 $(document).on('click', '.hook-filter', function(event) {
 event.preventDefault();
   var letra =$(this).attr('data-hook');
@@ -895,17 +913,7 @@ $(document).on('click', '.goProfile', function(event) {
  $.mobile.changePage("#negocio");
  $('.modal').modal('hide');
 });
-$(document).on('click', '.centerMapGeo', function(event) {
 
- event.preventDefault();
- /* Act on the event */
- var id =$(this).attr('data-id');
- var appS=appS=getAppSession();
- appS.negocioId=id;
- setAppSession(appS);
- $.mobile.changePage("#negocio");
- $('.modal').modal('hide');
-});
 
 
 $("#diasSemana").on('click', '.searchDayClick', function(event) {
@@ -1398,8 +1406,12 @@ function addCenter(location) {
 function enlazarMarcador(e){
     var lat=Latitude;
     var lng=Longitude;
+    if (Latitude==="undefined" ||Latitude===undefined) {
+     lat=25.535769;
+     lng=-103.448636;
+    }
     var selectedMode = 'DRIVING';
-    directionsService.route({
+     directionsService.route({
         origin: {lat: lat,lng:lng},
         destination: {lat: e.latLng.lat(), lng: e.latLng.lng()},
         travelMode: google.maps.TravelMode[selectedMode]
@@ -1409,7 +1421,7 @@ function enlazarMarcador(e){
       } else {
           window.alert('Directions request failed due to ' + status);
       }
-  });
+});
     directionsDisplay.setMap(map);
     directionsDisplay.setOptions( { suppressMarkers: true } );
 
@@ -1417,6 +1429,10 @@ function enlazarMarcador(e){
 function enlazarMarcadorClick(elat,elng){
     var lat=Latitude;
     var lng=Longitude;
+    if (Latitude==="undefined" ||Latitude===undefined) {
+     lat=25.535769;
+     lng=-103.448636;
+    }
     var selectedMode = 'DRIVING';
     directionsService.route({
         origin: {lat: lat,lng:lng},
@@ -1480,5 +1496,9 @@ function toggleBounce() {
 }
 }
 function getOrigin(){
+    if (Latitude==="undefined" ||Latitude===undefined) {
+      return  '25.535769,-103.448636';
+   }
+
     return Latitude+','+Longitude;
 }
