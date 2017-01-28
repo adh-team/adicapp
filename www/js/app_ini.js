@@ -544,6 +544,7 @@ function onResume() {
                         datahtmlA+='<li><a class="hook-filter" data-hook="'+abc[i]+'" >'+abc[i]+'</a></li>';
                     }
                     datahtmlA+='</ul></div>';
+                    datahtmlA='<div class="alphabeth"><ul id="touchScroller"><li><a class="hook-filter" data-hook="A">A</a></li><li><a class="hook-filter" data-hook="B">B</a></li><li><a class="hook-filter" data-hook="C">C</a></li><li><a class="hook-filter" data-hook="D">D</a></li><li><a class="hook-filter" data-hook="E">E</a></li><li><a class="hook-filter" data-hook="F">F</a></li><li><a class="hook-filter" data-hook="G">G</a></li><li><a class="hook-filter" data-hook="H">H</a></li><li><a class="hook-filter" data-hook="I">I</a></li><li><a class="hook-filter" data-hook="J">J</a></li><li><a class="hook-filter" data-hook="K">K</a></li><li><a class="hook-filter" data-hook="L">L</a></li><li><a class="hook-filter" data-hook="M">M</a></li><li><a class="hook-filter" data-hook="N">N</a></li><li><a class="hook-filter" data-hook="O">O</a></li><li><a class="hook-filter" data-hook="P">P</a></li><li><a class="hook-filter" data-hook="Q">Q</a></li><li><a class="hook-filter" data-hook="R">R</a></li><li><a class="hook-filter" data-hook="S">S</a></li><li><a class="hook-filter" data-hook="T">T</a></li><li><a class="hook-filter" data-hook="U">U</a></li><li><a class="hook-filter" data-hook="V">V</a></li><li><a class="hook-filter" data-hook="X">X</a></li><li><a class="hook-filter" data-hook="Y">Y</a></li><li><a class="hook-filter" data-hook="Z">Z</a></li></ul></div>';
                     $("#aphabethContainer").html(datahtmlA);
                     $("#postContainer").html(datahtml);
                     $('#filterNegociosInput').textinput();
@@ -690,6 +691,7 @@ function mainFunction(){
   is_token_in();
   app=getAppJson();
   appS=getAppSession();
+  $('#aphabethContainer').html('');
   if (app.user.name!=="") {$(".usuario_mostrar").html(app.user.name);}
   getDiaSemana();
   getMenuCategorias();
@@ -830,38 +832,57 @@ $(document).on('click', '.routerMap', function(event) {
 
 });
 $(document).on('click', '.hook-filter', function(event) {
-
- event.preventDefault();
- /* Act on the event */
- var letra =$(this).attr('data-hook');
- var topCoord =$('#datafilterList'+letra).offset().top;
- //alert(topCoord);
- $.mobile.silentScroll(topCoord-150);
-
-});
-
-$(document).on('focus', '.hook-filter', function(event) {
-
- event.preventDefault();
- /* Act on the event */
- var letra =$(this).attr('data-hook');
- var topCoord =$('#datafilterList'+letra).offset().top;
- //alert(topCoord);
- $.mobile.silentScroll(topCoord-150);
+event.preventDefault();
+  var letra =$(this).attr('data-hook');
+  var topCoord =$('#datafilterList'+letra);
+  if(topCoord[0]){
+    topCoord=topCoord.offset().top;
+    $.mobile.silentScroll(topCoord-150);
+}
 
 });
 
+/*$(document).on('touchstart', '.hook-filter', function(event) {
 
-$('#main .hook-filter').bind('touchstart touchend', function(event) {
+    var letra =$(this).attr('data-hook');
+    var topCoord =$('#datafilterList'+letra);
+    if(topCoord[0]){
+        topCoord=topCoord.offset().top;
+        $.mobile.silentScroll(topCoord-150);
+    }
+});*/
+$(document).on('touchmove', '#touchScroller', function(event) {
 
- event.preventDefault();
- /* Act on the event */
- var letra =$(this).attr('data-hook');
- var topCoord =$('#datafilterList'+letra).offset().top;
- //alert(topCoord);
- $.mobile.silentScroll(topCoord-150);
+    event.preventDefault();
+    var myLocation = event.originalEvent.changedTouches[0];
+    //console.log(myLocation);
+    var realTarget = document.elementFromPoint(myLocation.clientX, myLocation.clientY);
 
+    
+
+    //console.log(realTarget);
+    if (realTarget!==null && (realTarget.className==='hook-filter'|| realTarget.className==='hook-filter hover')) {
+        $('.hook-filter').removeClass('hover');
+        realTarget.className='hook-filter hover';
+        var topCoord =$('#datafilterList'+realTarget.getAttribute('data-hook'));
+        if(topCoord[0]){
+            topCoord=topCoord.offset().top;
+            $.mobile.silentScroll(topCoord-150);
+        }
+        //console.log("move "+ ' my location '+myLocation+' real target '+realTarget);
+    }
 });
+/*$(document).on('touchend', '.hook-filter', function(event) {
+
+    var letra =$(this).attr('data-hook');
+    var topCoord =$('#datafilterList'+letra);
+    if(topCoord[0]){
+        topCoord=topCoord.offset().top;
+        $.mobile.silentScroll(topCoord-150);
+    }
+});*/
+
+
 
 $(document).on('click', '.goProfile', function(event) {
 
