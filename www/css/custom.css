@@ -848,8 +848,9 @@ a.menu-footer{
   box-sizing: border-box;
   width: 12px;
 }
-.alphabeth li a:active,.alphabeth li a:focus{
-  color: #fff;
+.alphabeth li a:active,.alphabeth li a:focus,.alphabeth li a:hover{
+  color: #fff !important;
+  text-decoration: none !important;
 }
 
 .alphabeth ul {
