@@ -1046,7 +1046,7 @@ $(document).on("pagebeforeshow","#negocio",function(event){
         }
 
     }
-    images=[
+    /*images=[
     {ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
     ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
     ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
@@ -1055,12 +1055,12 @@ $(document).on("pagebeforeshow","#negocio",function(event){
     ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
     ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
     ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-    ];
+    ];*/
     var imagen={ubication:'http://adondeirenlaciudad.com/imagenes_/profPicture/',name:negocio.userpic };
     var htmlImages=getHtmlImages(imagen);
     for(var i in images){
      htmlImages+=getHtmlImages(images[i]);
- }
+    }
 
  perfilFunction(negocioId,negocio,datahtml,directions,htmlImages);
 
@@ -1069,7 +1069,7 @@ $(document).on("pagebeforeshow","#negocio",function(event){
 }
 else{
   var images=data.datos.images;
-  images=[
+  /*images=[
   {ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
@@ -1078,7 +1078,7 @@ else{
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
   ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-  ];
+  ];*/
   var imagen={ubication:'http://adondeirenlaciudad.com/imagenes_/profPicture/',name:negocio.userpic };
   var htmlImages=getHtmlImages(imagen);
 
@@ -1109,7 +1109,7 @@ ajaxLoader("termina");
    var address=appS.negocio.address;
    var hasAddress=appS.negocio.hasAddress;
    var datahtml='<div class="h50">Sin publicaciones :(';
-   images=[
+   /*images=[
    {ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
@@ -1118,7 +1118,7 @@ ajaxLoader("termina");
    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
    ,{ubication:'https://placehold.it/',name:'350x250&text=1-retina' }
-   ];
+   ];*/
    var imagen={ubication:'http://adondeirenlaciudad.com/imagenes_/profPicture/',name:negocio.userpic };
    var htmlImages=getHtmlImages(imagen);
    for(var i in images){
