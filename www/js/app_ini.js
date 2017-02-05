@@ -38,8 +38,6 @@ var callFailure = function(data) {
     console.error("The following error occurred: "+error);
 };
 
-
-
 // Wait for Cordova to load
     //
     document.addEventListener("deviceready", onDeviceReady, false);
@@ -52,8 +50,7 @@ var callFailure = function(data) {
         if (device.platform == "Android"){
             sistemaOperativo = "Android";
 
-        } else if (device.platform == "iPhone" ||
-            device.platform == "iPhone Simulator"){
+        } else if (device.platform == "iPhone" || device.platform == "iOS" || device.platform == "iPhone Simulator" ){
             sistemaOperativo = "iOS";
         }
 
@@ -832,7 +829,14 @@ $(document).on('click', '.routerMap', function(event) {
    $('#modalUbicaciones').modal('toggle');
    var origen = getOrigin();
    var destino = lat+','+lng;
-   window.open("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
+    if (device.platform == "iPhone" || device.platform == "iOS" || device.platform == "iPhone Simulator" ){
+    window.open("http://maps.apple.com/maps?saddr="+origen+"&daddr="+destino);
+
+    }else{
+        window.open("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
+    }
+
+   
 
 
 });
