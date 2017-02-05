@@ -830,10 +830,10 @@ $(document).on('click', '.routerMap', function(event) {
    var origen = getOrigin();
    var destino = lat+','+lng;
     if (device.platform == "iPhone" || device.platform == "iOS" || device.platform == "iPhone Simulator" ){
-    window.open("http://maps.apple.com/maps?saddr="+origen+"&daddr="+destino);
+    window.location.href=("http://maps.apple.com/maps?saddr="+origen+"&daddr="+destino);
 
     }else{
-        window.open("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
+        window.location.href=("https://www.google.com.mx/maps/dir/"+origen+"/"+destino+"/@"+origen+",16z?hl=es");
     }
 
    
