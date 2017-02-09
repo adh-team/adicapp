@@ -12,7 +12,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="orientation" value="portrait"/>
-    <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
+    <plugin name="cordova-plugin-splashscreen" source="npm"/>
     <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-device"  source="npm" />
@@ -22,12 +22,12 @@
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <icon src="images/logos/120x120.png" />
     <splash src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
-    <splash src="ldpi.png" platform="android" qualifier="ldpi" />
-    <splash src="mdpi.png" platform="android" qualifier="mdpi" />
-    <splash src="hdpi.png" platform="android" qualifier="hdpi" />
-    <splash src="xhdpi.png" platform="android" qualifier="xhdpi" />
-    <splash src="xxhdpi.png" platform="android" qualifier="xxhdpi" />
-    <splash src="xxxhdpi.png" platform="android" qualifier="xxxhdpi" />
+    <splash src="www/res/screen/android/ldpi.png" platform="android" qualifier="ldpi" />
+    <splash src="www/res/screen/android/mdpi.png" platform="android" qualifier="mdpi" />
+    <splash src="www/res/screen/android/hdpi.png" platform="android" qualifier="hdpi" />
+    <splash src="www/res/screen/android/xhdpi.png" platform="android" qualifier="xhdpi" />
+    <splash src="www/res/screen/android/xxhdpi.png" platform="android" qualifier="xxhdpi" />
+    <splash src="www/res/screen/android/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />>
     <platform name="android">
         <icon density="ldpi" src="www/images/logos/40x40.png" />
         <icon density="mdpi" src="www/images/logos/48x48.png" />
