@@ -15,7 +15,6 @@
     </author>
     <content src="index.html" />
     <icon src="images/logos/120x120.png" />
-    <splash src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <access origin="*" />
     <access origin="maps.apple.com/*" subdomains="true" />
     <access origin="https://*.facebook.com/" subdomains="true" />
