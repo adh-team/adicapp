@@ -27,7 +27,7 @@
     <splash src="www/res/screen/android/hdpi.png" platform="android" qualifier="hdpi" />
     <splash src="www/res/screen/android/xhdpi.png" platform="android" qualifier="xhdpi" />
     <splash src="www/res/screen/android/xxhdpi.png" platform="android" qualifier="xxhdpi" />
-    <splash src="www/res/screen/android/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />>
+    <splash src="www/res/screen/android/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />
     <platform name="android">
         <icon density="ldpi" src="www/images/logos/40x40.png" />
         <icon density="mdpi" src="www/images/logos/48x48.png" />
