@@ -21,6 +21,10 @@
     <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" /> -->
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <icon src="images/logos/120x120.png" />
+
+
+
+    <splash src="www/res/screen/android/xhdpi.png"/>
     <splash src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <splash src="www/res/screen/android/ldpi.png" platform="android" qualifier="ldpi" />
     <splash src="www/res/screen/android/mdpi.png" platform="android" qualifier="mdpi" />
