@@ -30,12 +30,12 @@ var urlAjax=urlRemoto;
     $.mobile.loadingMessage = "Cargando app.";
 
 });*/
-var callSuccess = function(data) {
-    console.log("WiFi is " + (available ? "available" : "not available"));
+var callSuccess = function(data) {/*
+    console.log("WiFi is " + (available ? "available" : "not available"));*/
 };
 
-var callFailure = function(data) {
-    console.error("The following error occurred: "+error);
+var callFailure = function(data) {/*
+    console.error("The following error occurred: "+error);*/
 };
 
 // Wait for Cordova to load
@@ -64,14 +64,14 @@ function onResume() {
          dataType: 'json',
          data: {sistema: sistemaOperativo,action:'logUser',iduser:iduser},
      })
-     .done(function() {
-         console.log("success");
+     .done(function() {/*
+         console.log("success");*/
      })
-     .fail(function() {
-         console.log("error");
+     .fail(function() {/*
+         console.log("error");*/
      })
-     .always(function() {
-         console.log("complete");
+     .always(function() {/*
+         console.log("complete");*/
      });
      
  }
@@ -357,8 +357,8 @@ function onResume() {
             event.preventDefault();
             $.mobile.changePage("#ubicaciones");
             
-            var id=$(this).attr('data-id');
-            console.log('id:'+id);
+            var id=$(this).attr('data-id');/*
+            console.log('id:'+id);*/
             clearMarkers();
             deleteMarkers();
             var $modal=$('#modalUbucacionesBody');
@@ -675,7 +675,7 @@ function onResume() {
             text: "Cargando...",
             textVisible: true,
             theme: "b",
-            html: "<span class='ui-bar ui-overlay-a ui-corner-all'><img src='images/logos/i.png' class='img-responsive' style='width: 30px;margin: 0 auto;'/>Cargando...</span>"
+            html: "<span class='ui-bar ui-overlay-a ui-corner-all'>Cargando...</span>"
         });
      }
      else{
@@ -1231,7 +1231,7 @@ function Close(event) {
 }
 
 $(document).on("pageshow","#ubicaciones",function(){
-    console.log("show de ubicaciones");
+    /*console.log("show de ubicaciones");*/
     //navigator.geolocation.getCurrentPosition(onSuccess, onError);
     google.maps.event.trigger(map, "resize");
 
@@ -1241,9 +1241,9 @@ function ajustarMapa(){
     var height=$('#ubicaciones').height();
     $('#map').height((height*80)/100);
 
-    google.maps.event.trigger(map, "resize");
-    console.log("mapa centrado en: ");
-    console.log(center);
+    google.maps.event.trigger(map, "resize");/*
+    console.log("mapa centrado en: ");*/
+   /*´*/
 }
 $(window).resize(function(event) {
     /* Act on the event */
@@ -1290,8 +1290,8 @@ function getMap(latitude, longitude) {
     var latLng={lat:latitude,lng:longitude};
 
     addCenter(latLng) ;
-    centerMap(latLng,12);
-    console.log("mapa cargado y centrado en: "+latitude+","+longitude);
+    centerMap(latLng,12);/*
+    console.log("mapa cargado y centrado en: "+latitude+","+longitude);*/
 }
 
 // Success callback for watching your changing position 
@@ -1312,9 +1312,9 @@ var onMapWatchSuccess = function (position) {
 
 // Error callback 
 
-function onMapError(error) {
+function onMapError(error) {/*
     console.log('code: ' + error.code + '\n' +
-        'message: ' + error.message + '\n');
+        'message: ' + error.message + '\n');*/
 }
 
 // Watch your changing position 

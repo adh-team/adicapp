@@ -873,6 +873,10 @@ a.menu-footer{
   .alphabeth li a{
     line-height: 15px;
   }
+  .TesserSoft{
+    bottom: inherit;
+    top: 0;
+  }
 }
 @media screen and (min-height: 481px){
   #aphabethContainer{
@@ -942,6 +946,12 @@ a.menu-footer{
   .alphabeth li a.hover {
     padding: 9px 8px 9px 0px;
   }  
+}
+.TesserSoft {
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+    font-family: Monda;
 }
 
 
