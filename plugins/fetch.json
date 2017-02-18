@@ -150,5 +150,14 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "com.neton.cordova.diagnostic": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/oaugustus/phonegap-diagnostic-plugin.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
