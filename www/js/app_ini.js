@@ -662,8 +662,7 @@ function onResume() {
   }
   function getContactoHtml(json){
       return ''+
-      '<div>Tel: '+json.number+'</div>'+
-      '<div>Correo: '+json.mail+'</div>';
+      '<div><a class="s15 text-center cWhite btn " href="tel:'+json.number+'"> <span class="fa fa-phone-square fa-2x"></span> Llamar '+json.number+'</a></div>';
   }
   function getDireccionesHtml(json){
       return ''+

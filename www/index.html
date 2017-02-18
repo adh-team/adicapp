@@ -264,15 +264,15 @@
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <div data-role="footer" data-position="fixed" data-theme="b">
-    <div data-role="controlgroup" >
-      <a href="#one" class="menu-footer" data-rel="back" data-icon="back" data-iconpos="notext" data-role="button" data-inline="true">Regresar</a>
+      <div data-role="controlgroup" >
+        <a href="#one" class="menu-footer" data-rel="back" data-icon="back" data-iconpos="notext" data-role="button" data-inline="true">Regresar</a>
 
-      <a href="#" class="menu-footer" data-toggle="modal" data-target="#modalUbicaciones" data-role="button" data-inline="true" data-theme="b">
-        ¿A Dónde Ir ?
-      </a>
-      <!-- <a href="#" class="centerMapGeo menu-footer" data-icon="pin"  data-role="button" data-inline="true">centrar Mapa</a> -->
-      
-  </div>
+        <a href="#" class="menu-footer" data-toggle="modal" data-target="#modalUbicaciones" data-role="button" data-inline="true" data-theme="b">
+          ¿A Dónde Ir ?
+        </a>
+        <!-- <a href="#" class="centerMapGeo menu-footer" data-icon="pin"  data-role="button" data-inline="true">centrar Mapa</a> -->
+        
+      </div>
     </div>
   </div>
   <div data-role="page" id="negocio">
@@ -301,10 +301,13 @@
             </div>
             <div class="z-block h10vh bgDarkClear">
               <div class="z-content z-contentMiddle text-center">
+                <br>
                 <h3 id="nombreSocio" class="noMargin text-uppercase text-bold text-center cWhite">Negocio</h3>
-                <a id="ubicacionSocio" class="s15 text-center cDark negocio-link ubicacionLink"  data-id="0">
-                  <span class="fa fa-map-marker"></span> Ver Ubicacion
+                <div id="contactoSocio"></div>
+                <a id="ubicacionSocio" class="s15 text-center cWhite btn negocio-link ubicacionLink"  data-id="0">
+                  <span class="fa fa-map-marker fa-2x"></span> Ver Ubicacion
                 </a>
+                <br>
               </div>
             </div>
             <div class="z-block h20vh bgWhite">
@@ -312,10 +315,6 @@
                 <div data-role="collapsible">
                   <h3>Direcciones</h3>
                   <div id="direccionesSocio">direcciones</div>
-                </div>
-                <div data-role="collapsible">
-                  <h3>Contacto</h3>
-                  <div id="contactoSocio"></div>
                 </div>
                 <div data-role="collapsible">
                   <h3>Publicaciones Actuales</h3>
