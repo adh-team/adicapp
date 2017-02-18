@@ -24,7 +24,7 @@
 
 
 
-    <splash src="www/res/screen/android/xhdpi.png"/>
+    <splash src="www/res/screen/android/xxxhdpi.png"/>
     <splash src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <splash src="www/res/screen/android/ldpi.png" platform="android" qualifier="ldpi" />
     <splash src="www/res/screen/android/mdpi.png" platform="android" qualifier="mdpi" />
