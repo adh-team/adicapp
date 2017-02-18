@@ -24,12 +24,12 @@ var iduser;
 
 var urlAjax=urlRemoto;
 
-$(document).bind("mobileinit", function(){
+/*$(document).bind("mobileinit", function(){
 
     $.mobile.defaultPageTransition = "slidedown";
     $.mobile.loadingMessage = "Cargando app.";
 
-});
+});*/
 var callSuccess = function(data) {
     console.log("WiFi is " + (available ? "available" : "not available"));
 };
