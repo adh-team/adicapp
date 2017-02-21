@@ -724,7 +724,11 @@ function ubicacionesFunction(){
   clearMarkers();
   deleteMarkers();
   var $modal=$('#modalUbucacionesBody');
-  var htmlModal='';
+  var htmlModal='<form class="ui-filterable">'+
+                '<input id="filterModalInput" data-type="search">'+
+                '</form>'+
+                '<div class="elements" data-filter="true" data-input="#filterModalInput" id="filterModal">';
+    
   var hasAddress=false;
   appS=getAppSession();
   var addresses=appS.addresses;
@@ -738,8 +742,10 @@ function ubicacionesFunction(){
 
 }
 if(hasAddress){
-    //$('#modalUbicaciones').modal('show') ;
+    htmlModal+='</div>';
     $modal.html(htmlModal);
+    $('#filterModalInput').textinput();
+    $('#filterModal').filterable();
 }
 ajustarMapa();
 
