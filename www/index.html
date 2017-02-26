@@ -240,8 +240,27 @@
     </div>
   </div>
   <div data-role="page" id="ubicaciones">
-    <div data-role="header" data-position="fixed" data-theme="b">
-      <h1>Ubicaciones</h1>
+    <div data-role="header" role="banner" data-position="fixed" class="ui-header ui-bar-inherit">
+      <nav class="nav z-container-fluid bgDark boxShadow">
+        <div class="z-row noMargin">
+          <div class="z-block  menu-app">
+            <div class="col-xs-4 noPadding">
+              <div class="z-content-fluid z-contentMiddle text-left ">
+                <a id="openAside" role="button" class="cLightGrey s15" href="#left-panel2">
+                  <span class="fa fa-bars s25 h70" style="padding-top: 23px;width: 100%;"></span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 noPadding">
+              <div class="z-content-fluid z-contentMiddle text-center ">
+                <a href="#main" role="button" class="cLightGrey s15" id="classIcon">
+                  <img class="h35 img-responsive center-block" src="images/logos/i.png" alt="logo">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
     <div role="main" class="ui-content">
       <div id="mapContainer"></div>
@@ -263,6 +282,7 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
     <div data-role="footer" data-position="fixed" data-theme="b">
       <div data-role="controlgroup" >
         <a href="#one" class="menu-footer" data-rel="back" data-icon="back" data-iconpos="notext" data-role="button" data-inline="true">Regresar</a>
@@ -274,10 +294,79 @@
         
       </div>
     </div>
+    <div data-role="panel" id="left-panel2" class="bgLightBlue" data-position-fixed="true">
+      <div class="sidebar-nav">
+        <div class="list-group bgTransparent noBorder square" id="categoriasMenu">
+          <a href="#main" data-id="0" data-name="A Dónde Ir" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-home">
+            <span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
+          </a>
+          <a href="#main" data-id="2" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-cutlery">
+            <span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
+          </a>
+          <a href="#main" data-id="1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-beer">
+            <span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
+          </a>
+          <a href="#main" data-id="3" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-glass">
+            <span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
+          </a>
+          <a href="#main" data-id="4" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-truck">
+            <span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
+          </a>
+          <a data-id="-1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-map">
+            <span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
+          </a>
+        </div>
+      </div>
+      <div class="z-row">
+        <div class="z-forceBlock h50">
+          <div class="z-block h150 hidden">
+            <div class="z-content z-contentMiddle">
+              <a href="#user" class="sidebar-image panelImg bgDark "></a>
+            </div>
+          </div>
+          <a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
+            <div class="z-content z-contentMiddle">
+              <div class="z-panelBody">
+                <span class="fa fa-user"></span>
+                <span class="usuario_mostrar">usuario</span>
+                <span class="fa fa-caret-down pull-right"></span>
+              </div>
+            </div>
+          </a>
+          <div class="collapse" id="profile-dropdown">
+            <div class="list-group bgLightGrey noBorder square">
+              <a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+                Cerrar sesión
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
   <div data-role="page" id="negocio">
-    <div data-role="header"  data-position="fixed" data-theme="b">
-      <h1>Perfil</h1>
+    <div data-role="header" role="banner" data-position="fixed" class="ui-header ui-bar-inherit">
+      <nav class="nav z-container-fluid bgDark boxShadow">
+        <div class="z-row noMargin">
+          <div class="z-block  menu-app">
+            <div class="col-xs-4 noPadding">
+              <div class="z-content-fluid z-contentMiddle text-left ">
+                <a id="openAside" role="button" class="cLightGrey s15" href="#left-panel3">
+                  <span class="fa fa-bars s25 h70" style="padding-top: 23px;width: 100%;"></span>
+                </a>
+              </div>
+            </div>
+            <div class="col-xs-4 noPadding">
+              <div class="z-content-fluid z-contentMiddle text-center ">
+                <a href="#main" role="button" class="cLightGrey s15" id="classIcon">
+                  <img class="h35 img-responsive center-block" src="images/logos/i.png" alt="logo">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
     <div role="main" class="ui-content">
       <div class="z-container mainContainer noPadding">
@@ -329,6 +418,56 @@
     <div data-role="footer"  data-position="fixed" data-theme="b">
       <a href="#one" data-rel="back" data-icon="back" class="back-menu">Regresar</a>
     </div>
+    <div data-role="panel" id="left-panel3" class="bgLightBlue" data-position-fixed="true">
+      <div class="sidebar-nav">
+        <div class="list-group bgTransparent noBorder square" id="categoriasMenu">
+          <a href="#main" data-id="0" data-name="A Dónde Ir" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-home">
+            <span class="sidebar-icon fa fa-home cLightGrey"></span> Inicio
+          </a>
+          <a href="#main" data-id="2" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-cutlery">
+            <span class="sidebar-icon fa fa-cutlery cLightGrey"></span> Restaurantes
+          </a>
+          <a href="#main" data-id="1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-beer">
+            <span class="sidebar-icon fa fa-beer cLightGrey"></span> Bares
+          </a>
+          <a href="#main" data-id="3" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-glass">
+            <span class="sidebar-icon fa fa-glass cLightGrey"></span> Antros
+          </a>
+          <a href="#main" data-id="4" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-truck">
+            <span class="sidebar-icon fa fa-truck cLightGrey"></span> FoodTrucks
+          </a>
+          <a data-id="-1" data-name="" role="button" class="list-group-item cLightGrey s20 square noBorder noMargin bgTransparent menuCategoriaClick" data-icon="fa-map">
+            <span class="sidebar-icon fa fa-map cLightGrey"></span> Ubicaciones
+          </a>
+        </div>
+      </div>
+      <div class="z-row">
+        <div class="z-forceBlock h50">
+          <div class="z-block h150 hidden">
+            <div class="z-content z-contentMiddle">
+              <a href="#user" class="sidebar-image panelImg bgDark "></a>
+            </div>
+          </div>
+          <a data-toggle="collapse" href="#profile-dropdown" role="button" class="z-block h50 cWhite bgDarkClear">
+            <div class="z-content z-contentMiddle">
+              <div class="z-panelBody">
+                <span class="fa fa-user"></span>
+                <span class="usuario_mostrar">usuario</span>
+                <span class="fa fa-caret-down pull-right"></span>
+              </div>
+            </div>
+          </a>
+          <div class="collapse" id="profile-dropdown">
+            <div class="list-group bgLightGrey noBorder square">
+              <a role="button" id="logOutbtn" class="list-group-item cWhite s15 square noBorder noMargin bgDark">
+                Cerrar sesión
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
   </div>
 </div>
 <script type="text/javascript" src="cordova.js"></script>

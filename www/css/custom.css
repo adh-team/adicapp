@@ -953,7 +953,9 @@ a.menu-footer{
     color: #fff;
     font-family: Monda;
 }
-
+#ubicaciones .ui-content {
+    padding: 0;
+}
 
 
 

@@ -787,8 +787,9 @@ $("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
  event.preventDefault();
  $.mobile.changePage("#negocio");
 });
-$("#categoriasMenu").on('click', '.menuCategoriaClick', function(event) {
- event.preventDefault();
+$(document).on('click', '.menuCategoriaClick', function(event) {
+ /*event.preventDefault();*/
+ 
  var id=$(this).attr('data-id');
  var icon=$(this).attr('data-icon');
  var name=$(this).attr('data-name');
@@ -938,6 +939,7 @@ $("#diasSemana").on('click', '.searchDayClick', function(event) {
 });
 $(document).on("pagebeforeshow","#main",function(event){
  mainFunction();
+ $('#modalUbicaciones').modal('hide');
 });
 $(document).on("pagebeforeshow","#negocio",function(event){
  is_token_in();
@@ -1244,7 +1246,7 @@ $(document).on("pageshow","#ubicaciones",function(){
 function ajustarMapa(){
     getMapLocation();
     var height=$('#ubicaciones').height();
-    $('#map').height((height*80)/100);
+    $('#map').height((height*120)/100);
 
     google.maps.event.trigger(map, "resize");/*
     console.log("mapa centrado en: ");*/
