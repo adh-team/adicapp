@@ -789,7 +789,7 @@ $("#postContainer").on('click', '.botonFiltroUsuario', function(event) {
 });
 $(document).on('click', '.menuCategoriaClick', function(event) {
  /*event.preventDefault();*/
- 
+
  var id=$(this).attr('data-id');
  var icon=$(this).attr('data-icon');
  var name=$(this).attr('data-name');
@@ -846,19 +846,7 @@ $(document).on('click', '.routerMap', function(event) {
 
 
 });
-/* no recuerdo como se usaba
-$(document).on('click', '.centerMapGeo', function(event) {
 
- event.preventDefault();
- var id =$(this).attr('data-id');
- var appS=appS=getAppSession();
- appS.negocioId=id;
- setAppSession(appS);
-// $.mobile.changePage("#negocio");
- $('.modal').modal('hide');
-});
-
-*/
 $(document).on('click', '.hook-filter', function(event) {
 event.preventDefault();
   var letra =$(this).attr('data-hook');
@@ -870,15 +858,7 @@ event.preventDefault();
 
 });
 
-/*$(document).on('touchstart', '.hook-filter', function(event) {
 
-    var letra =$(this).attr('data-hook');
-    var topCoord =$('#datafilterList'+letra);
-    if(topCoord[0]){
-        topCoord=topCoord.offset().top;
-        $.mobile.silentScroll(topCoord-150);
-    }
-});*/
 $(document).on('touchmove', '#touchScroller', function(event) {
 
     event.preventDefault();
@@ -900,16 +880,6 @@ $(document).on('touchmove', '#touchScroller', function(event) {
         //console.log("move "+ ' my location '+myLocation+' real target '+realTarget);
     }
 });
-/*$(document).on('touchend', '.hook-filter', function(event) {
-
-    var letra =$(this).attr('data-hook');
-    var topCoord =$('#datafilterList'+letra);
-    if(topCoord[0]){
-        topCoord=topCoord.offset().top;
-        $.mobile.silentScroll(topCoord-150);
-    }
-});*/
-
 
 
 $(document).on('click', '.goProfile', function(event) {
@@ -946,7 +916,7 @@ $(document).on("pagebeforeshow","#negocio",function(event){
  $('#imgSocio').css('background-image', 'url('+urlAjax+'imagenes_/profPicture/)');
  $('#nombreSocio').html("Negocio");
  $('#ubicacionSocio').attr('data-id',"0");
-
+$('#modalUbicaciones').modal('hide');
 
 
  ajaxLoader("inicia");
