@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.adondeir.adic" version="1.1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <name>A dónde ir</name>
+    <description>
+        Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
+    </description>
+    <author email="tessersoft@gmail.com" href="https://www.tessersoft.com">
+        Adónde ir en la ciudad
+    </author>
+    <content src="index.html" />
+    <icon src="www/images/logos/120x120.png" />
+    <splash src="res/screen/android/xxxhdpi.png" />
+    <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
+    <splash platform="android" qualifier="ldpi" src="res/screen/android/ldpi.png" />
+    <splash platform="android" qualifier="mdpi" src="res/screen/android/mdpi.png" />
+    <splash platform="android" qualifier="hdpi" src="res/screen/android/hdpi.png" />
+    <splash platform="android" qualifier="xhdpi" src="res/screen/android/xhdpi.png" />
+    <splash platform="android" qualifier="xxhdpi" src="res/screen/android/xxhdpi.png" />
+    <splash platform="android" qualifier="xxxhdpi" src="res/screen/android/xxxhdpi.png" />
+    <access origin="*" />
+    <access origin="maps.apple.com/*" subdomains="true" />
+    <access origin="https://*.facebook.com/" subdomains="true" />
+    <access origin="https://*.googleapis.com" subdomains="true" />
+    <access origin="https://www.google.com.mx/*" subdomains="true" />
+    <access origin="https://www.facebook.com/" />
+    <access origin="http://*.facebook.net/" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <icon density="ldpi" src="www/images/logos/40x40.png" />
+    <icon density="mdpi" src="www/images/logos/48x48.png" />
+    <icon density="hdpi" src="www/images/logos/72x72.png" />
+    <icon density="xhdpi" src="www/images/logos/96x96.png" />
+    <icon density="xxhdpi" src="www/images/logos/152x152.png" />
+    <icon density="xxxhdpi" src="www/images/logos/180x180.png" />
+    <allow-intent href="market:*" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="orientation" value="portrait" />
+</widget>

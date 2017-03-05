@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.adondeir.adic" version="1.1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="LocalStorage">
+        <param name="ios-package" value="CDVLocalStorage" />
+    </feature>
+    <feature name="HandleOpenUrl">
+        <param name="ios-package" value="CDVHandleOpenURL" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IntentAndNavigationFilter">
+        <param name="ios-package" value="CDVIntentAndNavigationFilter" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="GestureHandler">
+        <param name="ios-package" value="CDVGestureHandler" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
+    <name>A dónde ir</name>
+    <description>
+        Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
+    </description>
+    <author email="tessersoft@gmail.com" href="https://www.tessersoft.com">
+        Adónde ir en la ciudad
+    </author>
+    <content src="index.html" />
+    <icon src="www/images/logos/120x120.png" />
+    <splash src="res/screen/android/xxxhdpi.png" />
+    <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
+    <splash platform="android" qualifier="ldpi" src="res/screen/android/ldpi.png" />
+    <splash platform="android" qualifier="mdpi" src="res/screen/android/mdpi.png" />
+    <splash platform="android" qualifier="hdpi" src="res/screen/android/hdpi.png" />
+    <splash platform="android" qualifier="xhdpi" src="res/screen/android/xhdpi.png" />
+    <splash platform="android" qualifier="xxhdpi" src="res/screen/android/xxhdpi.png" />
+    <splash platform="android" qualifier="xxxhdpi" src="res/screen/android/xxxhdpi.png" />
+    <access origin="*" />
+    <access origin="maps.apple.com/*" subdomains="true" />
+    <access origin="https://*.facebook.com/" subdomains="true" />
+    <access origin="https://*.googleapis.com" subdomains="true" />
+    <access origin="https://www.google.com.mx/*" subdomains="true" />
+    <access origin="https://www.facebook.com/" />
+    <access origin="http://*.facebook.net/" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
+    <icon height="29" platform="ios" src="www/images/logos/29x29.png" width="29" />
+    <icon height="40" platform="ios" src="www/images/logos/40x40.png" width="40" />
+    <icon height="48" platform="ios" src="www/images/logos/48x48.png" width="48" />
+    <icon height="58" platform="ios" src="www/images/logos/58x58.png" width="58" />
+    <icon height="72" platform="ios" src="www/images/logos/72x72.png" width="72" />
+    <icon height="76" platform="ios" src="www/images/logos/76x76.png" width="76" />
+    <icon height="80" platform="ios" src="www/images/logos/80x80.png" width="80" />
+    <icon height="87" platform="ios" src="www/images/logos/87x87.png" width="87" />
+    <icon height="96" platform="ios" src="www/images/logos/96x96.png" width="96" />
+    <icon height="120" platform="ios" src="www/images/logos/120x120.png" width="120" />
+    <icon height="152" platform="ios" src="www/images/logos/152x152.png" width="152" />
+    <icon height="180" platform="ios" src="www/images/logos/180x180.png" width="180" />
+    <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
+    <splash height="1334" platform="ios" src="res/screen/ios/Default-667h.png" width="750" />
+    <splash height="2208" platform="ios" src="res/screen/ios/Default-736h.png" width="1242" />
+    <splash height="1242" platform="ios" src="res/screen/ios/Default-Landscape-736h.png" width="2208" />
+    <splash height="1536" platform="ios" src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />
+    <splash height="768" platform="ios" src="res/screen/ios/Default-Landscape~ipad.png" width="1024" />
+    <splash height="2048" platform="ios" src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
+    <splash height="1024" platform="ios" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
+    <splash height="960" platform="ios" src="res/screen/ios/Default@2x~iphone.png" width="640" />
+    <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" />
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="false" />
+    <preference name="Suppresses3DTouchGesture" value="false" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <preference name="android-minSdkVersion" value="14" />
+    <preference name="orientation" value="portrait" />
+</widget>

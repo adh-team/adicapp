@@ -1,0 +1,32 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.adondeir.adic"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.adondeir.adic"
+        },
+        "cordova-plugin-geolocation": {
+            "GEOLOCATION_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.adondeir.adic"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.adondeir.adic"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.adondeir.adic"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.adondeir.adic"
+        }
+    }
+}
