@@ -661,8 +661,24 @@ function onResume() {
       return ' <img class="owl-lazy" data-src="'+json.ubication+json.name+'" alt="'+json.description+'">'
   }
   function getContactoHtml(json){
-      return ''+
-      '<div><a class="s15 text-center cWhite btn " href="tel:'+json.number+'"> <span class="fa fa-phone-square fa-2x"></span> Llamar '+json.number+'</a></div>';
+    var number="";
+    var horario="";
+    if (json.number===null || json.number ===undefined || json.number==="null") {
+    }
+    else{
+
+
+        number='<div><a class="s15 text-center cWhite btn " href="tel:'+json.number+'"> <span class="fa fa-phone-square fa-2x"></span> Llamar '+json.number+'</a></div>';
+    }
+    if (json.horary===null || json.horary ===undefined || json.horary==="null") {
+    }
+    else{
+
+
+        horario='<div><a class="s15 text-center cWhite btn ">Horario '+json.horary+'</a></div>';
+    }
+
+      return number+horario;
   }
   function getDireccionesHtml(json){
       return ''+
