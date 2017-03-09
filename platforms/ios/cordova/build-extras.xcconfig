@@ -1,4 +1,4 @@
-CODE_SIGN_IDENTITY = iPhone Distribution
-CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Distribution
-PROVISIONING_PROFILE = 2d4dc87f-540a-4a08-bf86-8a8b44dd141b
+CODE_SIGN_IDENTITY = iPhone Development
+CODE_SIGN_IDENTITY[sdk=iphoneos*] = iPhone Development
+PROVISIONING_PROFILE = 02b3eedc-5d57-45ad-840d-2d6a7ba54c19
 DEVELOPMENT_TEAM = 9VUDQ7NK54
