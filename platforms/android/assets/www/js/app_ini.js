@@ -40,8 +40,8 @@ var callFailure = function(data) {/*
 
 // Wait for Cordova to load
     //
-    document.addEventListener("deviceready", onDeviceReady, false);
-    document.addEventListener("resume", onResume, false);
+    //document.addEventListener("deviceready", onDeviceReady, false);
+    //document.addEventListener("resume", onResume, false);
 
     function onDeviceReady() {
         initMap();
@@ -93,15 +93,15 @@ function onResume() {
         }
 
         function is_token_in(){
-            app=getAppJson();
-            token=app.user.token;
-            if (token==='') {
-                /*is_logged_in();*/
-                $.mobile.changePage("#login");
-            }
-            else{
-                set_id(app.user.id);
-            }
+            // app=getAppJson();
+            // token=app.user.token;
+            // if (token==='') {
+            //     /*is_logged_in();*/
+            //     $.mobile.changePage("#login");
+            // }
+            // else{
+            //     set_id(app.user.id);
+            // }
         }
 
         function is_logged_in(){
@@ -109,52 +109,52 @@ function onResume() {
             email=app.user.email;
             name=app.user.name;
             token=app.user.token;
+            $.mobile.changePage("#main");
+            // if (token!==""||email!==""){
+            //     var data = {'action': 'sesion','token':token,'user_email':email};
+            //     $.ajax({
+            //         type : 'POST',
+            //         crossDomain: true,
+            //         cache: false,
+            //         xhrFields: {
+            //             withCredentials: true
+            //         },
+            //         url  : urlAjax+'classes/'+appRuta,
+            //         dataType: "json",
+            //         data : data,
+            //     })
+            //     .done(function( data, textStatus, jqXHR ) {
+            //         if(data.continuar==="ok"){
+            //             var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").attr('id');
+            //             if (activePage==="login") {
+            //                 $.mobile.changePage("#main");
+            //                 $('.modal').modal('hide');
+            //             }
 
-            if (token!==""||email!==""){
-                var data = {'action': 'sesion','token':token,'user_email':email};
-                $.ajax({
-                    type : 'POST',
-                    crossDomain: true,
-                    cache: false,
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    url  : urlAjax+'classes/'+appRuta,
-                    dataType: "json",
-                    data : data,
-                })
-                .done(function( data, textStatus, jqXHR ) {
-                    if(data.continuar==="ok"){
-                        var activePage = $.mobile.pageContainer.pagecontainer("getActivePage").attr('id');
-                        if (activePage==="login") {
-                            $.mobile.changePage("#main");
-                            $('.modal').modal('hide');
-                        }
+            //         }
+            //         else{
+            //             var user={
+            //                 token:"",
+            //                 email:"",
+            //                 name:"",
+            //             };
+            //             app={
+            //                 user:user
+            //             };
+            //             setAppJson(app);
+            //             $.mobile.changePage("#login");
+            //         }
 
-                    }
-                    else{
-                        var user={
-                            token:"",
-                            email:"",
-                            name:"",
-                        };
-                        app={
-                            user:user
-                        };
-                        setAppJson(app);
-                        $.mobile.changePage("#login");
-                    }
+            //     })
+            //     .fail(function( jqXHR, textStatus, errorThrown ) {
+            //         $.mobile.changePage("#login");
+            //     });
+            // }
+            // else{
+            //     /* no logueado*/
+            //     $.mobile.changePage("#login");
 
-                })
-                .fail(function( jqXHR, textStatus, errorThrown ) {
-                    $.mobile.changePage("#login");
-                });
-            }
-            else{
-                /* no logueado*/
-                $.mobile.changePage("#login");
-
-            }
+            // }
         }
         $("#loginU").on('click', function(event) {
             event.preventDefault();
@@ -661,8 +661,24 @@ function onResume() {
       return ' <img class="owl-lazy" data-src="'+json.ubication+json.name+'" alt="'+json.description+'">'
   }
   function getContactoHtml(json){
-      return ''+
-      '<div><a class="s15 text-center cWhite btn " href="tel:'+json.number+'"> <span class="fa fa-phone-square fa-2x"></span> Llamar '+json.number+'</a></div>';
+    var number="";
+    var horario="";
+    if (json.number===null || json.number ===undefined || json.number==="null") {
+    }
+    else{
+
+
+        number='<div><a class="s15 text-center cWhite btn " href="tel:'+json.number+'"> <span class="fa fa-phone-square fa-2x"></span> Llamar '+json.number+'</a></div>';
+    }
+    if (json.horary===null || json.horary ===undefined || json.horary==="null") {
+    }
+    else{
+
+
+        horario='<div><a class="s15 text-center cWhite btn ">Horario '+json.horary+'</a></div>';
+    }
+
+      return number+horario;
   }
   function getDireccionesHtml(json){
       return ''+
