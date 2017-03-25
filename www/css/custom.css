@@ -1,0 +1,156 @@
+@font-face {
+  font-family: 'adic';
+  src:  url('../fonts/adic.eot?7nfv2');
+  src:  url('../fonts/adic.eot?7nfv2#iefix') format('embedded-opentype'),
+  url('../fonts/adic.ttf?7nfv2') format('truetype'),
+  url('../fonts/adic.woff?7nfv2') format('woff'),
+  url('../fonts/adic.svg?7nfv2#adic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="adicon-"], [class*=" adicon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'adic' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.adicon-mail:before {
+  content: "\e900";
+}
+.adicon-pass:before {
+  content: "\e901";
+}
+.adicon-facebook:before {
+  content: "\e902";
+}
+.adicon-business:before {
+  content: "\e903";
+}
+.adicon-plus:before {
+  content: "\e904";
+}
+.adicon-pin:before {
+  content: "\e905";
+}
+.adicon-promo:before {
+  content: "\e906";
+}
+.adicon-user:before {
+  content: "\e907";
+}
+.adicon-cel:before {
+  content: "\e908";
+}
+
+
+
+html{
+	background: #000;
+}
+body,input,.button{
+	font-family: 'Poppins', sans-serif;
+	font-size: 15px;
+}
+#index {
+    max-height: 100vh;
+    overflow: hidden;
+}
+body *{
+	text-shadow: none !important;
+}
+.button {
+    height: 2.7em;
+}
+
+.bg_app {
+    background-image: url('../img/bg_app.jpg');
+    background-size: cover;
+}
+.full{
+	    width: 100vw;
+    height: 100vh;
+}
+
+#index_logo {
+	background-image: url(../img/index_logo.png);
+    background-size: contain;
+    width: 80%;
+    background-repeat: no-repeat;
+    padding-bottom: 30%;
+    /*margin-top: 15%;*/
+}
+.ui-input-text {
+    margin: inherit;
+    border-width: 0;
+    text-shadow: none;
+    box-shadow: none !important;
+    border-radius: 0;
+    -webkit-background-clip: 0;
+    outline: none;
+    font-size: 100%;
+}
+@-webkit-keyframes autofill {
+    to {
+        color: #fff;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
+}
+.field-group * {
+    text-shadow: none !important;
+}
+
+.field-group>.ui-input-text {
+    background: transparent;
+    color: #fff;
+}
+@-webkit-keyframes autofill {
+    to {
+        color: #FFF;
+        background: transparent;
+    }
+}
+.field-group {
+    border: 2px solid transparent;
+    padding: 5px;
+    border-bottom-color: #fff;
+    -webkit-transition: border 1s ease;
+    -moz-transition: border 1s ease;
+    -o-transition: border 1s ease;
+    -ms-transition: border 1s ease;
+    transition: border 1s ease;
+}
+.field-group:hover {
+    border-bottom-color: rgba(26, 166, 216, 0.27);
+}
+.field-group .icon{
+	color: #fff;
+	font-size: 1.5em;
+}
+a.button:hover,a.button:active{
+ text-decoration: none;
+}
+.button.btn-plus,.button.btn-plus:hover,.button.btn-plus:active{
+    background-color: #cc3333;
+}
+.button.btn-facebook,.button.btn-facebook:hover,.button.btn-facebook:active {
+    background-color: #336699;
+}
+.button i {
+    font-size: 1.2em;
+}
+
