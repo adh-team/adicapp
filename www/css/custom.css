@@ -117,6 +117,7 @@ input:-webkit-autofill {
 .field-group>.ui-input-text {
     background: transparent;
     color: #fff;
+    width: calc(100% - 24px);
 }
 @-webkit-keyframes autofill {
     to {
@@ -152,5 +153,10 @@ a.button:hover,a.button:active{
 }
 .button i {
     font-size: 1.2em;
+}
+.button.is-primary {
+    background-color: #60a4d5;
+    font-weight: normal;
+    font-size: 1.1em;
 }
 

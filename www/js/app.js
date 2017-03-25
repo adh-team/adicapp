@@ -5,8 +5,17 @@ function init(){
 	var app = new Vue({
   el: '#login_form',
   data: {
+
     user:null,
     pass:null
+  },
+  mounted:{
+  	initMethod();
+  },
+  methods:{
+  	initMethod: function(){
+  		console.log('ready');
+  	}
   }
 });
 }
