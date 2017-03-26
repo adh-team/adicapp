@@ -12,7 +12,20 @@
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
    color:    #fff;
 }
-.color-primary,a.color-primary,a:active.color-primary,a:hover.color-primary{
+/**************+backgrounds*****************/
+.notification.bg-primary,.bg-primary{
+  background-color: #fd0032;
+}
+.bg-second,.button.bg-second,
+.button:hover.bg-second,.button:active.bg-second{ 
+    background-color: #60a4d5;
+}
+.bg-transparent,html * .bg-transparent.ui-btn{
+  background-color: transparent;
+}
+/****************colors**********************/
+.color-primary,a.color-primary,
+a:active.color-primary,a:hover.color-primary{
 	color:#fff;
 }
 .item-preview {
@@ -21,7 +34,7 @@
     background: #fefefe;
     min-height: 22px;
 }
-
+/**************flexbox**********************/
 .isflex{
     display: -webkit-flex;
 	display: flex;
@@ -44,12 +57,19 @@
 .flex-align-content-around {
     align-content: space-around;
 }
+/********* negatives **************/
 .noTextShadow{
 	text-shadow: none !important;
 }
 .noRad{
 	border-radius: 0;
 	-webkit-border-radius: 0;
+}
+.noBorder{
+  border: none !important;
+}
+.noBoxShadow{
+  box-shadow: none!important;
 }
 .break {
     display: block;
@@ -68,4 +88,9 @@
 }
 .text-normal,a.text-normal{
   font-weight: normal;
+}
+.font-size-xs{
+      text-align: justify;
+    line-height: .65em;
+    font-size: .65em;
 }

@@ -9,7 +9,8 @@
   font-style: normal;
 }
 
-[class^="adicon-"], [class*=" adicon-"] {
+[class^="adicon-"], [class*=" adicon-"],
+[class^="ui-icon-adicon-"], [class*=" ui-icon-adicon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'adic' !important;
   speak: none;
@@ -24,6 +25,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+.adicon-search:before {
+  content: "\e909";
+}
+.adicon-back:before,
+.ui-icon-adicon-back:after {
+  content: "\e408";
+}
+.adicon-menu:before {
+  content: "\e3c7";
+}
 .adicon-mail:before {
   content: "\e900";
 }
@@ -80,6 +92,9 @@ body *{
 	    width: 100vw;
     height: 100vh;
 }
+.full.full-header {
+    height: calc( 100vh - 49px );
+}
 
 #index_logo {
 	background-image: url(../img/index_logo.png);
@@ -115,9 +130,10 @@ input:-webkit-autofill {
 }
 
 .field-group>.ui-input-text {
-    background: transparent;
+        background: transparent;
     color: #fff;
-    width: calc(100% - 24px);
+    width: 100%;
+    padding-bottom: 9px;
 }
 @-webkit-keyframes autofill {
     to {
@@ -126,8 +142,11 @@ input:-webkit-autofill {
     }
 }
 .field-group {
-    border: 2px solid transparent;
-    padding: 5px;
+    position: relative;
+}
+.field-group input{
+      border: 2px solid transparent;
+    padding: 0px 30px 12px;
     border-bottom-color: #fff;
     -webkit-transition: border 1s ease;
     -moz-transition: border 1s ease;
@@ -135,12 +154,14 @@ input:-webkit-autofill {
     -ms-transition: border 1s ease;
     transition: border 1s ease;
 }
-.field-group:hover {
+.field-group input:focus {
     border-bottom-color: rgba(26, 166, 216, 0.27);
 }
 .field-group .icon{
 	color: #fff;
-	font-size: 1.5em;
+    font-size: 1.5em;
+    position: absolute;
+    left: 0;
 }
 a.button:hover,a.button:active{
  text-decoration: none;
@@ -155,8 +176,38 @@ a.button:hover,a.button:active{
     font-size: 1.2em;
 }
 .button.is-primary {
-    background-color: #60a4d5;
     font-weight: normal;
     font-size: 1.1em;
+}
+.notification .title {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+.modal .btn-modal {
+    margin: 0 auto;
+    margin-top: 1em;
+    display: block;
+    font-size: 1.1em;
+    line-height: 170%;
+}
+.menu-header-title.menu-header-title-back .ui-link.ui-btn-left {
+    color: #fff;
+    font-size: 2em;
+    background: transparent;
+    top: -.1em;
+    left: -.1em;
+    font-weight: lighter;
+}
+.menu-header-title.menu-header-title-back .ui-link.ui-btn-left:after {
+    background: none;
+}
+.ui-header .ui-title, .ui-footer .ui-title {
+    font-size: 1.1em;
+    margin: 0 15%;
+    text-align: left;
+    text-transform: uppercase;
+}
+.underline-link{
+  border-bottom: 1px solid #fff;
 }
 
