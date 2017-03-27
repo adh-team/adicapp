@@ -107,7 +107,7 @@
                                 </span>
                                 <span>Google Plus</span>
                             </a>
-                            <a class="button is-info w50 noRad btn-facebook">
+                            <a class="button is-info w50 noRad btn-facebook" onclick="login()">
                                 <span class="icon">
                                     <i class="adicon-facebook"></i>
                                 </span>
@@ -598,6 +598,82 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/openfb.js"></script>
+    <script>
+
+     // Defaults to sessionStorage for storing the Facebook token
+     openFB.init({appId: '1749228825402429'});
+
+    //  Uncomment the line below to store the Facebook token in localStorage instead of sessionStorage
+    //  openFB.init({appId: 'YOUR_FB_APP_ID', tokenStore: window.localStorage});
+
+    function login() {
+        openFB.login(
+                function(response) {
+                    if(response.status === 'connected') {
+                        alert('Facebook login succeeded, got access token: ' + response.authResponse.accessToken);
+                    } else {
+                        alert('Facebook login failed: ' + response.error);
+                    }
+                }, {scope: 'email'});
+    }
+
+    function getInfo() {
+        openFB.api({
+            path: '/me',
+            success: function(data) {
+                console.log(JSON.stringify(data));
+                document.getElementById("userName").innerHTML = data.name;
+                document.getElementById("userPic").src = 'http://graph.facebook.com/' + data.id + '/picture?type=small';
+            },
+            error: errorHandler});
+    }
+
+    function share() {
+        openFB.api({
+            method: 'POST',
+            path: '/me/feed',
+            params: {
+                message: document.getElementById('Message').value || 'Testing Facebook APIs'
+            },
+            success: function() {
+                alert('the item was posted on Facebook');
+            },
+            error: errorHandler});
+    }
+
+    function readPermissions() {
+        openFB.api({
+            method: 'GET',
+            path: '/me/permissions',
+            success: function(result) {
+                alert(JSON.stringify(result.data));
+            },
+            error: errorHandler
+        });
+    }
+
+    function revoke() {
+        openFB.revokePermissions(
+                function() {
+                    alert('Permissions revoked');
+                },
+                errorHandler);
+    }
+
+    function logout() {
+        openFB.logout(
+                function() {
+                    alert('Logout successful');
+                },
+                errorHandler);
+    }
+
+    function errorHandler(error) {
+        alert(error.message);
+    }
+
+</script>
     <script src="js/app.js"></script>
     <!-- <script src="js/jquery.validate.min.js"></script>
     <script src="js/xpull.js"></script>
