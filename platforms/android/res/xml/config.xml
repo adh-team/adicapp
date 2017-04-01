@@ -17,6 +17,9 @@
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
     <name>A dónde ir</name>
     <description>
         Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
@@ -36,11 +39,11 @@
     <splash platform="android" qualifier="xxxhdpi" src="res/screen/android/xxxhdpi.png" />
     <access origin="*" />
     <access origin="maps.apple.com/*" subdomains="true" />
-    <access origin="https://*.facebook.com/" subdomains="true" />
+    <access origin="https://*.facebook.com/*" subdomains="true" />
     <access origin="https://*.googleapis.com" subdomains="true" />
     <access origin="https://www.google.com.mx/*" subdomains="true" />
-    <access origin="https://www.facebook.com/" />
-    <access origin="http://*.facebook.net/" />
+    <access origin="https://www.facebook.com/*" />
+    <access origin="https://www.facebook.com/connect/login_success.html" subdomains="true" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />

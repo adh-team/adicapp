@@ -71,7 +71,7 @@ html{
 }
 body,input,.button{
 	font-family: 'Poppins', sans-serif;
-	font-size: 15px;
+	font-size: 12px;
 }
 #index {
     max-height: 100vh;
@@ -211,3 +211,17 @@ a.button:hover,a.button:active{
   border-bottom: 1px solid #fff;
 }
 
+@media screen and (max-width: 320px){
+  body, input, .button{
+    font-size: 10px;
+  }
+  .modal-content{
+    max-height: 100vh;
+  }
+
+}
+@media screen and (max-height: 400px){
+  .modal-content{
+    max-height: 100vh;
+  }
+}

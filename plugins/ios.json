@@ -22,6 +22,9 @@
         },
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.adondeir.adic"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.adondeir.adic"
         }
     },
     "dependent_plugins": {

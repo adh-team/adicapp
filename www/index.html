@@ -7,17 +7,95 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <link rel="icon" sizes="32x32" type="image/x-icon" href="images/logos/40x40.png" />
         <link href="jquery.mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="css/animate.css">
-        <link rel="stylesheet" href="css/bulma.css">
+        <link rel="stylesheet" href="css/magic.css">
+        <link rel="stylesheet" href="css/bulma-docs.css">
         <link rel="stylesheet" href="css/helpers.css">
         <link rel="stylesheet" href="css/custom.css">
         <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     </head>
 
     <body>
+        <div data-role="page" id="index">
+            <div role="main" class="content">
+                <form action="" autocomplete="off" id="login_form">
+                    <div id="" class="bg_app full isflex flex-wrap flex-justify-content-center flex-align-items-center flex-align-content-around">
+                        <div id="index_logo"></div>
+                        <div class="w80">
+                            <div class="field-group isflex flex-wrap flex-direction-reverse flex-justify-content-around  ">
+                                <input v-model="user" placeholder="Usuario">
+                                <span class="icon">
+                                    <i class="adicon-user"></i>
+                                </span>
+                            </div>
+                            <div class="break hs10"></div>
+                            <div class="field-group isflex flex-wrap flex-direction-reverse flex-justify-content-around  ">
+                                <input type="password" autocomplete="off" v-model="pass" placeholder="Constraseña">
+                                <span class="icon">
+                                    <i class="adicon-pass"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="w80 isflex">
+                            <a class="button is-info w50 noRad btn-plus">
+                                <span class="icon">
+                                    <i class="adicon-plus"></i>
+                                </span>
+                                <span>Google Plus</span>
+                            </a>
+                            <a class="button is-info w50 noRad btn-facebook" @click="fbLogin()">
+                                <span class="icon">
+                                    <i class="adicon-facebook"></i>
+                                </span>
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                        <div class="w80 has-text-centered color-primary">
+                            <a class="has-text-centered color-primary text-normal" @click="openLostPass">Olvidaste tu contraseña?</a>
+                        </div>
+                        <div class="w80 isflex flex-justify-content-center">
+                            <a class="button w80 noRad is-primary bg-second">
+                                <span>INICIAR SESIÓN</span>
+                            </a>
+                        </div>
+                        <div class="w80 has-text-centered color-primary">
+                        <!-- <a class="has-text-centered color-primary" >jhghjgj</a> -->
+                            <a class="has-text-centered color-primary" @click="changePage('registration')">Registrate</a>
+                        </div>
+
+                    </div>
+                    <component is="uiModal"
+                        :first-time="firstTime"
+                        >
+                       <div class="tile is-parent magictime spaceInDown">
+                          <article class="tile is-child notification is-danger noRad bg-primary">
+                            <p class="title has-text-centered">¡BIENVENIDO!</p>
+                            <div class="content has-text-centered">
+                              <p>A donde ir te ayuda a encontrar excelentes lugares cerca. Para hacerlo, utilizamos la ubicación en segundo plano de tu dispositivo.</p>
+                            </div>
+                          </article>
+                        </div>
+                    </component>
+                    <component is="uiModalBox"
+                       :modalbox="lostPasswordForm"
+                        >
+                       <div class="tile is-parent magictime spaceInDown">
+                          <article class="tile is-child notification ">
+                          <div class="tile">Recuperar tu contraseña</div>
+                            <div class="field-group isflex flex-wrap flex-direction-reverse flex-justify-content-around  ">
+                                <input v-model="user" placeholder="Usuario">
+                                <span class="icon">
+                                    <i class="adicon-user"></i>
+                                </span>
+                            </div>
+                          </article>
+                        </div>
+                    </component>
+                </form>            
+            </div>
+        </div>
         <div data-role="page" id="registration">
             <div data-role="header" data-theme="b" class="menu-header-title menu-header-title-back bg-second">
-                <a data-rel="back" data-icon="adicon-back" class="noBoxShadow noBorder bg-transparent "></a>
+                <a href="#index" data-icon="adicon-back" class="noBoxShadow noBorder bg-transparent "></a>
                 <h1>Registrarse</h1>
             </div>
             <div role="main" class="content">
@@ -77,72 +155,11 @@
                                 </a>
                             </div>
                         </div>
+                        
                     </form>            
                 </div>
         </div>
-        <div data-role="page" id="index">
-            <div role="main" class="content">
-                <form action="" autocomplete="off" id="login_form">
-                    <div id="" class="bg_app full isflex flex-wrap flex-justify-content-center flex-align-items-center flex-align-content-around">
-                        <div id="index_logo"></div>
-                        <div class="w80">
-                            <div class="field-group isflex flex-wrap flex-direction-reverse flex-justify-content-around  ">
-                                <input v-model="user" placeholder="Usuario">
-                                <span class="icon">
-                                    <i class="adicon-user"></i>
-                                </span>
-                            </div>
-                            <div class="break hs10"></div>
-                            <div class="field-group isflex flex-wrap flex-direction-reverse flex-justify-content-around  ">
-                                <input type="password" autocomplete="off" v-model="pass" placeholder="Constraseña">
-                                <span class="icon">
-                                    <i class="adicon-pass"></i>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="w80 isflex">
-                            <a class="button is-info w50 noRad btn-plus">
-                                <span class="icon">
-                                    <i class="adicon-plus"></i>
-                                </span>
-                                <span>Google Plus</span>
-                            </a>
-                            <a class="button is-info w50 noRad btn-facebook" onclick="login()">
-                                <span class="icon">
-                                    <i class="adicon-facebook"></i>
-                                </span>
-                                <span>Facebook</span>
-                            </a>
-                        </div>
-                        <div class="w80 has-text-centered color-primary">
-                            <a class="has-text-centered color-primary text-normal">Olvidaste tu contraseña?</a>
-                        </div>
-                        <div class="w80 isflex flex-justify-content-center">
-                            <a class="button w80 noRad is-primary bg-second">
-                                <span>INICIAR SESIÓN</span>
-                            </a>
-                        </div>
-                        <div class="w80 has-text-centered color-primary">
-                        <!-- <a class="has-text-centered color-primary" >jhghjgj</a> -->
-                            <a class="has-text-centered color-primary" @click="changePage('registration')">Registrate</a>
-                        </div>
-
-                    </div>
-                    <component is="uiModal"
-                        :first-time="firstTime"
-                        >
-                       <div class="tile is-parent animated fadeInUp">
-                          <article class="tile is-child notification is-danger noRad bg-primary">
-                            <p class="title has-text-centered">¡BIENVENIDO!</p>
-                            <div class="content has-text-centered">
-                              <p>A donde ir te ayuda a encontrar excelentes lugares cerca. Para hacerlo, utilizamos la ubicación en segundo plano de tu dispositivo.</p>
-                            </div>
-                          </article>
-                        </div>
-                    </component>
-                </form>            
-            </div>
-        </div>
+        
 
 
       <div data-role="page" id="main">
@@ -597,12 +614,16 @@
     <!-- <script type="text/javascript" src="cordova.js"></script> -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.mobile/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/openfb.js"></script>
     <script>
+    var context = window.location.pathname.substring(0, window.location.pathname.lastIndexOf("/")),
 
+        baseURL = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + context;
+        baseURL='http://localhost '
      // Defaults to sessionStorage for storing the Facebook token
-     openFB.init({appId: '1749228825402429'});
+     openFB.init({appId: '1749228825402429',cordovaOAuthRedirectURL:baseURL+'/oauthcallback.html'});
 
     //  Uncomment the line below to store the Facebook token in localStorage instead of sessionStorage
     //  openFB.init({appId: 'YOUR_FB_APP_ID', tokenStore: window.localStorage});
@@ -613,6 +634,7 @@
                     if(response.status === 'connected') {
                         alert('Facebook login succeeded, got access token: ' + response.authResponse.accessToken);
                     } else {
+                        alert(baseURL);
                         alert('Facebook login failed: ' + response.error);
                     }
                 }, {scope: 'email'});

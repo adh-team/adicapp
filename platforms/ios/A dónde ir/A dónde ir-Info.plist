@@ -34,7 +34,7 @@
       <true/>
       <key>NSExceptionDomains</key>
       <dict>
-        <key>facebook.com/</key>
+        <key>facebook.com/*</key>
         <dict>
           <key>NSIncludesSubdomains</key>
           <true/>
@@ -48,13 +48,6 @@
         <dict/>
         <key>www.facebook.com</key>
         <dict/>
-        <key>facebook.net/</key>
-        <dict>
-          <key>NSIncludesSubdomains</key>
-          <true/>
-          <key>NSExceptionAllowsInsecureHTTPLoads</key>
-          <true/>
-        </dict>
       </dict>
     </dict>
     <key>NSLocationWhenInUseUsageDescription</key>

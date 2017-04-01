@@ -15,6 +15,7 @@
     <plugin name="cordova-plugin-geolocation" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-device"  source="npm" />
+    <plugin name="cordova-plugin-inappbrowser" source="npm" />
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <icon src="www/images/logos/120x120.png" />
 
@@ -29,11 +30,11 @@
     
     <access origin="*" />
     <access origin="maps.apple.com/*" subdomains="true"/>
-    <access origin="https://*.facebook.com/" subdomains="true"/>
+    <access origin="https://*.facebook.com/*" subdomains="true"/>
     <access origin="https://*.googleapis.com" subdomains="true"/>
     <access origin="https://www.google.com.mx/*" subdomains="true"/>
-    <access origin="https://www.facebook.com/"/>
-    <access origin="http://*.facebook.net/"/>
+    <access origin="https://www.facebook.com/*"/>
+    <access origin="https://www.facebook.com/connect/login_success.html" subdomains="true"/>
     
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
