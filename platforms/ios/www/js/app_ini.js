@@ -1283,7 +1283,7 @@ function getMap(latitude, longitude) {
     var latLng={lat:latitude,lng:longitude};
 
     addCenter(latLng) ;
-    centerMap(latLng,12);/*
+    centerMap(latLng,16);/*
     console.log("mapa cargado y centrado en: "+latitude+","+longitude);*/
 }
 

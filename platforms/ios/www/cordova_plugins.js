@@ -1,11 +1,11 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "pluginId": "cordova-plugin-splashscreen",
+        "id": "cordova-plugin-device.device",
+        "file": "plugins/cordova-plugin-device/www/device.js",
+        "pluginId": "cordova-plugin-device",
         "clobbers": [
-            "navigator.splashscreen"
+            "device"
         ]
     },
     {
@@ -41,14 +41,6 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-device.device",
-        "file": "plugins/cordova-plugin-device/www/device.js",
-        "pluginId": "cordova-plugin-device",
-        "clobbers": [
-            "device"
-        ]
-    },
-    {
         "id": "cordova-plugin-network-information.network",
         "file": "plugins/cordova-plugin-network-information/www/network.js",
         "pluginId": "cordova-plugin-network-information",
@@ -64,17 +56,25 @@ module.exports = [
         "clobbers": [
             "Connection"
         ]
+    },
+    {
+        "id": "cordova-plugin-splashscreen.SplashScreen",
+        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+        "pluginId": "cordova-plugin-splashscreen",
+        "clobbers": [
+            "navigator.splashscreen"
+        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-whitelist": "1.3.1",
-    "cordova-plugin-splashscreen": "4.0.1",
     "cordova-plugin-compat": "1.1.0",
-    "cordova-plugin-geolocation": "2.4.1",
     "cordova-plugin-device": "1.1.4",
-    "cordova-plugin-network-information": "1.3.1"
+    "cordova-plugin-geolocation": "2.4.1",
+    "cordova-plugin-network-information": "1.3.1",
+    "cordova-plugin-splashscreen": "4.0.1",
+    "cordova-plugin-whitelist": "1.3.1"
 };
 // BOTTOM OF METADATA
 });
