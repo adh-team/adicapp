@@ -91,11 +91,14 @@ body *{
 .full{
 	    width: 100vw;
     height: 100vh;
+    min-height: 320px;
 }
 .full.full-header {
-    height: calc( 100vh - 49px );
+    height: calc( 100vh - 40px );
 }
-
+.menu-header-title.menu-header-title-back.bg-second.ui-header.ui-bar-b {
+    height: 40px;
+}
 #index_logo {
 	background-image: url(../img/index_logo.png);
     background-size: contain;
@@ -153,6 +156,7 @@ input:-webkit-autofill {
     -o-transition: border 1s ease;
     -ms-transition: border 1s ease;
     transition: border 1s ease;
+    color: #03A9F4;
 }
 .field-group input:focus {
     border-bottom-color: rgba(26, 166, 216, 0.27);
@@ -194,7 +198,7 @@ a.button:hover,a.button:active{
     color: #fff;
     font-size: 2em;
     background: transparent;
-    top: -.1em;
+    top: .1em;
     left: -.1em;
     font-weight: lighter;
 }

@@ -1,3 +1,8 @@
+$( document ).on( "mobileinit", function() {
+    $.extend( $.mobile , {
+        defaultPageTransition: 'vanishIn'
+    });
+});
     $(document).ready(function() {
         init();
     });
@@ -33,7 +38,7 @@
 
             },
             changePage:function(route,transition){
-                if(transition===undefined){transition='flipInY'}
+                if(transition===undefined){transition='vanishIn'}
                     $.mobile.changePage( '#'+route, { transition:transition, changeHash: false });
             },
             fbLogin:function(){
