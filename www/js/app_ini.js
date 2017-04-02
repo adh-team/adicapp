@@ -647,10 +647,10 @@ function onResume() {
          '        <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
          '            <div class="z-block h80 mh80 overflowAuto">'+
          '                <div class="z-content z-contentMiddle">'+
-         '                    <p class="cDark s15">'+
+         '                    <div class="cDark s15">'+
          '                        <span class="text-bold text-uppercase">'+json.title+'</span><br>'+
          '                        <span class="">'+json.description+'</span>'+
-         '                    </p>'+
+         '                    </div>'+
          '                </div>'+
          '            </div>'+
          '        </div>'+
