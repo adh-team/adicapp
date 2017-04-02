@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.adondeir.adic" version="1.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.adondeir.adic" version="1.1.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>A dónde ir</name>
     <description>
         Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
@@ -42,29 +42,29 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
-        <icon density="ldpi" src="www/images/logos/40x40.png" />
-        <icon density="mdpi" src="www/images/logos/48x48.png" />
-        <icon density="hdpi" src="www/images/logos/72x72.png" />
-        <icon density="xhdpi" src="www/images/logos/96x96.png" />
-        <icon density="xxhdpi" src="www/images/logos/152x152.png" />
-        <icon density="xxxhdpi" src="www/images/logos/180x180.png" />
+        <icon density="ldpi" src="www/images/logos/40.png" />
+        <icon density="mdpi" src="www/images/logos/48.png" />
+        <icon density="hdpi" src="www/images/logos/72.png" />
+        <icon density="xhdpi" src="www/images/logos/96.png" />
+        <icon density="xxhdpi" src="www/images/logos/152.png" />
+        <icon density="xxxhdpi" src="www/images/logos/180.png" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <icon height="29" platform="ios" src="www/images/logos/29x29.png" width="29" />
-        <icon height="40" platform="ios" src="www/images/logos/40x40.png" width="40" />
-        <icon height="48" platform="ios" src="www/images/logos/48x48.png" width="48" />
-        <icon height="58" platform="ios" src="www/images/logos/58x58.png" width="58" />
-        <icon height="72" platform="ios" src="www/images/logos/72x72.png" width="72" />
-        <icon height="76" platform="ios" src="www/images/logos/76x76.png" width="76" />
-        <icon height="80" platform="ios" src="www/images/logos/80x80.png" width="80" />
-        <icon height="87" platform="ios" src="www/images/logos/87x87.png" width="87" />
-        <icon height="96" platform="ios" src="www/images/logos/96x96.png" width="96" />
-        <icon height="120" platform="ios" src="www/images/logos/120x120.png" width="120" />
-        <icon height="152" platform="ios" src="www/images/logos/152x152.png" width="152" />
-        <icon height="180" platform="ios" src="www/images/logos/180x180.png" width="180" />
+        <icon height="29" platform="ios" src="www/images/logos/29.png" width="29" />
+        <icon height="40" platform="ios" src="www/images/logos/40.png" width="40" />
+        <icon height="48" platform="ios" src="www/images/logos/48.png" width="48" />
+        <icon height="58" platform="ios" src="www/images/logos/58.png" width="58" />
+        <icon height="72" platform="ios" src="www/images/logos/72.png" width="72" />
+        <icon height="76" platform="ios" src="www/images/logos/76.png" width="76" />
+        <icon height="80" platform="ios" src="www/images/logos/80.png" width="80" />
+        <icon height="87" platform="ios" src="www/images/logos/87.png" width="87" />
+        <icon height="96" platform="ios" src="www/images/logos/96.png" width="96" />
+        <icon height="120" platform="ios" src="www/images/logos/120.png" width="120" />
+        <icon height="152" platform="ios" src="www/images/logos/152.png" width="152" />
+        <icon height="180" platform="ios" src="www/images/logos/180.png" width="180" />
 
         <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
         <splash height="1334" platform="ios" src="res/screen/ios/Default-667h.png" width="750" />
