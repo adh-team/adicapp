@@ -214,6 +214,14 @@ a.button:hover,a.button:active{
 .underline-link{
   border-bottom: 1px solid #fff;
 }
+.notification.modalBox {
+    background-color: rgba(253, 0, 50, 0.27);
+    color: #fff;
+}
+
+.notification.modalBox input {
+    color: #fff;
+}
 
 @media screen and (max-width: 320px){
   body, input, .button{

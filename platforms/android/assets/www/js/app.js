@@ -1,36 +1,141 @@
+
+this.addEventListener("DOMContentLoaded", setupEvents, true);
+
+function setupEvents(){
+    document.addEventListener("deviceready",onDeviceReady,false);
+}
+
+function onDeviceReady(){
+
+    init();
+    
+ }
+// Callback to fire when login status check ends
+function endLoginCheck(status){
+  if(status === -1){
+    //alert('You are not logged in yet');
+    
+    // Clear profile name
+    //document.getElementById("profile-name").innerHTML = ' ... ';
+
+    // Update anchor behavior to logout
+    //var logoutButton = document.getElementById("logout-button");
+    //logoutButton.style.display = 'none';
+    //var loginButton = document.getElementById("login-button");
+    //loginButton.style.display = 'inline';
+}else{
+    me(status);
+}
+}
+
+// Start login function
+function startLogin(e){
+  gl.startSignin(endLogin);
+}
+
+// Callback that fires when login process ends
+function endLogin(result){
+  if(result === -1){
+    // Login was not successful :(
+        alert('Login error');
+    }else{
+        // If successful login, use access_token to get profile name
+        me(result);
+    }
+}
+
+// Function to logout
+function logout(e){
+  gl.logOut();
+  
+  // Clear profile name
+  document.getElementById("profile-name").innerHTML = ' ... ';
+            
+  // Update anchor behavior to logout
+  var logoutButton = document.getElementById("logout-button");
+  logoutButton.style.display = 'none';
+  var loginButton = document.getElementById("login-button");
+  loginButton.style.display = 'inline';
+}
+
+function me(accessToken){
+        if(accessToken!==null && typeof(accessToken)!=='undefined'){
+            var urlAPI = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + accessToken;
+    
+            var xmlreq = new XMLHttpRequest();
+            xmlreq.onreadystatechange=function(){
+                if (xmlreq.readyState==4 && xmlreq.status==200){
+                    var response = eval('(' + xmlreq.responseText + ')');
+                    if(response.name){                  
+                        // Update profile name
+            document.getElementById("profile-name").innerHTML = response.name 
+                                  + '<br>Id: ' + response.id;
+            
+            // Update anchor behavior to logout
+            var loginButton = document.getElementById("login-button");
+            loginButton.style.display = 'none';
+            var logoutButton = document.getElementById("logout-button");
+            logoutButton.style.display = 'inline';
+                    }
+                }
+            }   ;
+            xmlreq.open("GET",urlAPI,true);
+            xmlreq.send();
+        }
+}
+
+
 $( document ).on( "mobileinit", function() {
     $.extend( $.mobile , {
         defaultPageTransition: 'vanishIn'
     });
 });
-    $(document).ready(function() {
-        init();
-    });
+
     function init(){
+        openFB.init({appId: 'a4fb9c07d5b3c21d112da7a6e28f7b72'});
+
         initStorage();
         var firstTime=appL.config.firstTime;
         if (firstTime===false) {
             firstTime=undefined;
         }
         var app = new Vue({
-          el: '#login_form',
+          el: '#index',
           data: {
             firstTime: firstTime,
             user:null,
             pass:null,
-            fbToken:null,
+            token:undefined,
+            fbToken:undefined,
+            glToken:undefined,
             user:null,
             lostPasswordForm:undefined,
+            gl:null,
 
         },
         created:function(){
             this.initMethod();
         },
+        computed:{
+            login: function(){
+                var login={
+                    user:this.user,
+                    pass:this.pass
+                }
+                return login;
+            }
+        },
         methods:{
             initMethod: function(){
                 console.log('ready');
-                if(this.firstTime){
-                    console.log('mostrar modal');
+                /* verificar si esta logueado */
+                if (this.token!==undefined || this.fbToken!==undefined || this.glToken !== undefined ){
+                    console.log('logged');
+                } else {
+                    console.log('no is logged');
+                    if(this.firstTime){
+                        console.log('mostrar modal');
+                    }
                 }
             },
             disableFirstModal: function (){
@@ -111,12 +216,36 @@ $( document ).on( "mobileinit", function() {
                 };
                 setAppL(json);
             },
+            googleLogin: function(){
+                startLogin();
+            },
             openLostPass: function(){
                 this.lostPasswordForm=true;
             },
             disableModalBox: function(e){
                 this.lostPasswordForm=false;
-            }
+            },
+            onSubmitLogin: function(){
+                console.log(this.login);
+                /* peticion ajax */
+                /* loguear o arrojar error */
+                if(this.login.user==='admin' && this.login.pass==='admin'){
+                    console.log('login');
+                } else {
+                    this.errorHandler('Intente de nuevo');
+                }
+            },
+            onSubmitRegister: function(){
+                console.log('submit');
+            },
+            onSubmitLostPass: function(){
+                if(this.user==='admin@correo.com'){
+                    console.log('Se le enviara un correo a la cuenta favor de seguir las instrucciones que vienen en el');
+                    this.disableModalBox();
+                } else {
+                    this.errorHandler('No tenemos ningun usuario registrado con ese correo');
+                }
+            },
         },
         watch:{
             firstTime:function(){
@@ -134,7 +263,7 @@ $( document ).on( "mobileinit", function() {
                         app.disableFirstModal();                
                     },
                 },
-                template:`<div class="modal" :class="{ 'is-active': firstTime, 'is-active magictime vanishOut': firstTime === false }">
+                template:`<div class="modal" :class="{ 'is-active': firstTime, 'isFlex magictime vanishOut': firstTime === false }">
                 <div class="modal-background" @click="disable"></div>
                 <div class="modal-content">
                 <slot></slot>
@@ -152,7 +281,7 @@ $( document ).on( "mobileinit", function() {
                         app.disableModalBox();
                     },
                 },
-                template:`<div class="modal" :class="{ 'is-active': modalbox, 'is-active magictime vanishOut': modalbox === false }">
+                template:`<div class="modal" :class="{ 'is-active': modalbox, 'isFlex magictime vanishOut': modalbox === false }">
                 <div class="modal-background" @click="disableModal"></div>
                 <div class="modal-content">
                 <slot></slot>
