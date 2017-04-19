@@ -456,6 +456,12 @@ function onResume() {
             }).done(function(data){
                 if(data.continuar==="ok"){
                     var post = data.datos.post;
+                    /*console.log(post);*/
+                    post = $.map(post, function(value, index) {
+                        return [value];
+                    });
+                    post = post.sort(function() {return Math.random() - 0.5});
+                    /*console.log(post);*/
                     var addresses= data.datos.addresses;
                     var datahtml=''+
                     '<form class="ui-filterable">'+
