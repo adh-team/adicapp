@@ -647,7 +647,7 @@ function onResume() {
          '        </div>'+
          '    </div>'+
          '    <div class="z-panelBody z-block overflowHidden noPadding">'+
-         '        <div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+'imagenes_/post/'+json.image+'\');"></div>'+
+         '        <div id="" class="bgLightGrey ofertaImg panelImg" style="background-image:url(\''+urlAjax+'imagenes_/post/'+json.image+'\');"></div>'+
          '    </div>'+
          '    <div class="z-row noMargin">'+
          '        <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
