@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.adondeir.adic" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>A dónde ir</name>
+<widget id="com.adondeir.adic2" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>A dónde ir2</name>
     <description>
         Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
     </description>
