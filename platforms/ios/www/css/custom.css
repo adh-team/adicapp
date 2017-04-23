@@ -117,6 +117,9 @@ body *{
     outline: none;
     font-size: 100%;
 }
+.ui-page-theme-a .ui-input-text.ui-body-inherit{
+  background-color: transparent !important;
+}
 @-webkit-keyframes autofill {
     to {
         color: #fff;

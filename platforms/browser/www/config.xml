@@ -12,14 +12,6 @@
     </author>
     <content src="index.html" />
     <icon src="www/images/logos/120x120.png" />
-    <splash src="res/screen/android/xxxhdpi.png" />
-    <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
-    <splash platform="android" qualifier="ldpi" src="res/screen/android/ldpi.png" />
-    <splash platform="android" qualifier="mdpi" src="res/screen/android/mdpi.png" />
-    <splash platform="android" qualifier="hdpi" src="res/screen/android/hdpi.png" />
-    <splash platform="android" qualifier="xhdpi" src="res/screen/android/xhdpi.png" />
-    <splash platform="android" qualifier="xxhdpi" src="res/screen/android/xxhdpi.png" />
-    <splash platform="android" qualifier="xxxhdpi" src="res/screen/android/xxxhdpi.png" />
     <access origin="*" />
     <access origin="maps.apple.com/*" subdomains="true" />
     <access origin="https://*.facebook.com/*" subdomains="true" />
@@ -33,6 +25,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <splash height="1136" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="orientation" value="portrait" />

@@ -1,15 +1,30 @@
+var onMobile=false;
+$( document ).ready(function() {
+    console.log( "ready!" );
+    init();
+});
+
+
+
+
+
+
+
+
+
+
+
 
 this.addEventListener("DOMContentLoaded", setupEvents, true);
+function onDeviceReady(){
+    onMobile=true;
+    console.log('ready');  
+}
 
 function setupEvents(){
     document.addEventListener("deviceready",onDeviceReady,false);
 }
 
-function onDeviceReady(){
-
-    init();
-    
- }
 // Callback to fire when login status check ends
 function endLoginCheck(status){
   if(status === -1){
@@ -89,6 +104,7 @@ $( document ).on( "mobileinit", function() {
     $.extend( $.mobile , {
         defaultPageTransition: 'vanishIn'
     });
+    console.log('ready');
 });
 
     function init(){
@@ -229,8 +245,9 @@ $( document ).on( "mobileinit", function() {
                 console.log(this.login);
                 /* peticion ajax */
                 /* loguear o arrojar error */
-                if(this.login.user==='admin' && this.login.pass==='admin'){
+                if(this.login.user==='demo' && this.login.pass==='1234'){
                     console.log('login');
+                    this.changePage('main');
                 } else {
                     this.errorHandler('Intente de nuevo');
                 }
@@ -292,3 +309,45 @@ $( document ).on( "mobileinit", function() {
         }
     });
 }
+ var panel = '<div data-theme="a" data-role="panel" data-display="overlay" id="leftpanel"><ul data-role="listview"><li data-icon="false"><a data-ajax="false" href="index.html">Home</a></li><li data-icon="false"><a data-ajax="false" href="html/examples.html">Examples</a></li><li data-icon="false"><a data-ajax="false" href="html/custom/version.html">Version 1.0.1</a></li></ul></div>';
+
+$(function () {
+    $("body").prepend(panel);
+    $("[data-role=panel]").panel().enhanceWithin();
+});
+
+function changeNavTab(left) {
+    var $tabs = $("div[data-role=navbar] li a", $("div[data-role=page].ui-page-active"));
+    var curidx = $tabs.closest("a.ui-btn-active").parent().index();
+    var nextidx = 0;
+    if (left) {
+        nextidx = (curidx == $tabs.length - 1) ? 0 : curidx + 1;
+    } else {
+        nextidx = (curidx == 0) ? $tabs.length - 1 : curidx - 1;
+    }
+    $tabs.eq(nextidx).click();
+}
+
+$("div[data-role=content]").on("swipeleft", function (event) {
+    changeNavTab(true);
+});
+$("div[data-role=content]").on("swiperight", function (event) {
+    changeNavTab(false);
+});
+
+
+// Navigation  Drawer Swipe Listener
+$("div[data-role=header]").on("swipeleft swiperight", function (e) {
+    // save swipe direction right/left
+    var dir = 'prev';
+    if (e.type == 'swiperight') {
+        dir = 'next';
+    }
+    if (dir == 'prev') {
+        $('#leftpanel').panel('close');
+
+    } else {
+        $('#leftpanel').panel('open');
+
+    }
+});
