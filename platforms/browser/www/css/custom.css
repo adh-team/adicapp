@@ -659,9 +659,10 @@ a.negocio-link, a:hover.negocio-link{
   text-decoration: none;
 }
 a.negocio-link div, a:hover.negocio-link div {
-  font-size: 1.4em;
+  font-size: 1.2em;
   line-height: 18px;
   text-transform: capitalize;
+  text-decoration: none;
 }
 .descripcion-negocio{
   color: #Fff;
@@ -690,7 +691,7 @@ a.negocio-link div, a:hover.negocio-link div {
 }
 .categoria {
   width: 100%;
-  font-size: .9em;
+  font-size: .9em !important;
   color: #FFF;
 }
 a.product-content-image {
