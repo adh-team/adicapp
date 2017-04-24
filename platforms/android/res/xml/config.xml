@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.adondeir.adic" version="1.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.adondeir.adic" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Whitelist">
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
@@ -19,13 +19,12 @@
     </feature>
     <name>A dónde ir</name>
     <description>
-        Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
+        A dónde ir es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
     </description>
     <author email="tessersoft@gmail.com" href="https://www.tessersoft.com">
         Adónde ir en la ciudad
     </author>
     <content src="index.html" />
-    <icon src="www/images/logos/120x120.png" />
     <splash src="res/screen/android/xxxhdpi.png" />
     <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <splash platform="android" qualifier="ldpi" src="res/screen/android/ldpi.png" />
@@ -47,12 +46,12 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <icon density="ldpi" src="www/images/logos/40x40.png" />
-    <icon density="mdpi" src="www/images/logos/48x48.png" />
-    <icon density="hdpi" src="www/images/logos/72x72.png" />
-    <icon density="xhdpi" src="www/images/logos/96x96.png" />
-    <icon density="xxhdpi" src="www/images/logos/152x152.png" />
-    <icon density="xxxhdpi" src="www/images/logos/180x180.png" />
+    <icon density="ldpi" src="www/images/logos/40.png" />
+    <icon density="mdpi" src="www/images/logos/48.png" />
+    <icon density="hdpi" src="www/images/logos/72.png" />
+    <icon density="xhdpi" src="www/images/logos/96.png" />
+    <icon density="xxhdpi" src="www/images/logos/152.png" />
+    <icon density="xxxhdpi" src="www/images/logos/180.png" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />

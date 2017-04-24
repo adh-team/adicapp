@@ -221,7 +221,7 @@ body {
 .panelImg {
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: contain;
 }
 
 #img_00 {
@@ -957,7 +957,9 @@ a.menu-footer{
     padding: 0;
 }
 
-
+.flex-negocio>.image-swap{
+  background-color: #fff;
+}
 
 
 

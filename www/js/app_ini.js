@@ -579,20 +579,20 @@ function onResume() {
             '   <div class="card-negocio">'+
             '       <div class="flex-negocio">'+
             '           <div class="col-xs-4 div-flex-negocio">'+
-            '               <a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
+            '               <a class="profile product-content-image flex-negocio .div-flex-negocio goProfile negocio-link" data-userid="'+json.userid+'">'+
             '                   <div class="image-swap img-responsive" style="background-image: url('+urlAjax+'imagenes_/profPicture/'+json.userpic+');">'+
             '                   </div>'+
             '               </a>'+
             '           </div>'+
-            '           <div class="col-xs-4 div-flex-negocio">'+
-            '               <a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
+            '           <a data-id="'+json.userid+'"class="col-xs-4 div-flex-negocio goProfile negocio-link">'+
+            '               <div  class="">'+json.negocio+'</div>'+
             '               <div class="categoria negocios-categoria">'+json.categoria+'</div>'+
-            '           </div>'+
-            '           <div class="col-xs-4 div-flex-negocio">'+
+            '           </a>'+
+            '           <a data-id="'+json.userid+'" class="col-xs-4 div-flex-negocio ubicacionLink ">'+
             '               <div class="categoria">'+
-            '                   <a data-id="'+json.userid+'" class="negocio-link ubicacionLink text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></a>'+
+            '                   <div  class="negocio-link  text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></div>'+
             '               </div>'+
-            '           </div>'+
+            '           </a>'+
             '       </div>'+
             '   </div>';
         }
@@ -604,13 +604,13 @@ function onResume() {
             }
             return ''+
             '   <div class="card-negocio">'+
-            '       <div class="flex-negocio">'+
+            '       <div data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="flex-negocio routerMap negocio-link">'+
             '           <div class="col-xs-8 div-flex-negocio paddingTB5 maxWidth100P">'+
-            '               <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="centerMapGeo negocio-link"><div>'+addresses+' </div></a>'+
+            '               <a  class=" negocio-link"><div>'+addresses+' </div></a>'+
             '           </div>'+
             '           <div class="col-xs-4 div-flex-negocio paddingTB5">'+
             '               <div class="categoria">'+
-            '                   <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="routerMap negocio-link text-center"><div><i class="fa fa-2x fa-location-arrow" aria-hidden="true"></i></div></a>'+
+            '                   <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class=" negocio-link text-center"><div><i class="fa fa-2x fa-location-arrow" aria-hidden="true"></i></div></a>'+
             '               </div>'+
             '           </div>'+
             '       </div>'+

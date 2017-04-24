@@ -456,6 +456,12 @@ function onResume() {
             }).done(function(data){
                 if(data.continuar==="ok"){
                     var post = data.datos.post;
+                    /*console.log(post);*/
+                    post = $.map(post, function(value, index) {
+                        return [value];
+                    });
+                    post = post.sort(function() {return Math.random() - 0.5});
+                    /*console.log(post);*/
                     var addresses= data.datos.addresses;
                     var datahtml=''+
                     '<form class="ui-filterable">'+
@@ -573,20 +579,20 @@ function onResume() {
             '   <div class="card-negocio">'+
             '       <div class="flex-negocio">'+
             '           <div class="col-xs-4 div-flex-negocio">'+
-            '               <a class="profile product-content-image flex-negocio .div-flex-negocio" data-userid="'+json.userid+'">'+
+            '               <a class="profile product-content-image flex-negocio .div-flex-negocio goProfile negocio-link" data-userid="'+json.userid+'">'+
             '                   <div class="image-swap img-responsive" style="background-image: url('+urlAjax+'imagenes_/profPicture/'+json.userpic+');">'+
             '                   </div>'+
             '               </a>'+
             '           </div>'+
-            '           <div class="col-xs-4 div-flex-negocio">'+
-            '               <a data-id="'+json.userid+'" class="goProfile negocio-link"><div>'+json.negocio+'</div></a>'+
+            '           <a data-id="'+json.userid+'"class="col-xs-4 div-flex-negocio goProfile negocio-link">'+
+            '               <div  class="">'+json.negocio+'</div>'+
             '               <div class="categoria negocios-categoria">'+json.categoria+'</div>'+
-            '           </div>'+
-            '           <div class="col-xs-4 div-flex-negocio">'+
+            '           </a>'+
+            '           <a data-id="'+json.userid+'" class="col-xs-4 div-flex-negocio ubicacionLink ">'+
             '               <div class="categoria">'+
-            '                   <a data-id="'+json.userid+'" class="negocio-link ubicacionLink text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></a>'+
+            '                   <div  class="negocio-link  text-center" ><i class="fa fa-map-marker" aria-hidden="true"></i></div>'+
             '               </div>'+
-            '           </div>'+
+            '           </a>'+
             '       </div>'+
             '   </div>';
         }
@@ -598,13 +604,13 @@ function onResume() {
             }
             return ''+
             '   <div class="card-negocio">'+
-            '       <div class="flex-negocio">'+
+            '       <div data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="flex-negocio routerMap negocio-link">'+
             '           <div class="col-xs-8 div-flex-negocio paddingTB5 maxWidth100P">'+
-            '               <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="centerMapGeo negocio-link"><div>'+addresses+' </div></a>'+
+            '               <a  class=" negocio-link"><div>'+addresses+' </div></a>'+
             '           </div>'+
             '           <div class="col-xs-4 div-flex-negocio paddingTB5">'+
             '               <div class="categoria">'+
-            '                   <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class="routerMap negocio-link text-center"><div><i class="fa fa-2x fa-location-arrow" aria-hidden="true"></i></div></a>'+
+            '                   <a data-lat="'+json.latitud+'" data-lng="'+json.longitud+'" class=" negocio-link text-center"><div><i class="fa fa-2x fa-location-arrow" aria-hidden="true"></i></div></a>'+
             '               </div>'+
             '           </div>'+
             '       </div>'+
@@ -641,16 +647,16 @@ function onResume() {
          '        </div>'+
          '    </div>'+
          '    <div class="z-panelBody z-block overflowHidden noPadding">'+
-         '        <div id="" class="bgDarkBlueClear ofertaImg panelImg" style="background-image:url(\''+urlAjax+'imagenes_/post/'+json.image+'\');"></div>'+
+         '        <div id="" class="bgLightGrey ofertaImg panelImg" style="background-image:url(\''+urlAjax+'imagenes_/post/'+json.image+'\');"></div>'+
          '    </div>'+
          '    <div class="z-row noMargin">'+
          '        <div class="z-col-lg-12 z-col-md-12 z-col-sm-12 z-col-xs-12 bgTransparent">'+
          '            <div class="z-block h80 mh80 overflowAuto">'+
          '                <div class="z-content z-contentMiddle">'+
-         '                    <p class="cDark s15">'+
+         '                    <div class="cDark s15">'+
          '                        <span class="text-bold text-uppercase">'+json.title+'</span><br>'+
          '                        <span class="">'+json.description+'</span>'+
-         '                    </p>'+
+         '                    </div>'+
          '                </div>'+
          '            </div>'+
          '        </div>'+
@@ -1283,7 +1289,7 @@ function getMap(latitude, longitude) {
     var latLng={lat:latitude,lng:longitude};
 
     addCenter(latLng) ;
-    centerMap(latLng,12);/*
+    centerMap(latLng,16);/*
     console.log("mapa cargado y centrado en: "+latitude+","+longitude);*/
 }
 
@@ -1320,7 +1326,7 @@ function watchMapPosition() {
 
 //funcion iniciar mapa
 function initMap() {
-    var styleArray=[{"featureType":"administrative","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":"50"},{"visibility":"simplified"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"all","stylers":[{"lightness":"40"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"labels","stylers":[{"lightness":-25},{"saturation":-100}]}];
+    var styleArray=[{"featureType":"all","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"administrative","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"administrative.province","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"all","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","elementType":"all","stylers":[{"saturation":-100},{"lightness":"50"},{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":"-100"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"all","stylers":[{"lightness":"30"}]},{"featureType":"road.local","elementType":"all","stylers":[{"lightness":"40"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]},{"featureType":"water","elementType":"labels","stylers":[{"lightness":-25},{"saturation":-100}]}];
 
     var mapOptions = {
         center: new google.maps.LatLng(25.5507416,-103.4577724)

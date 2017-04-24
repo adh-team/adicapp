@@ -1,17 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.adondeir.adic" version="1.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.adondeir.adic" version="1.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
     <name>A dónde ir</name>
     <description>
-        Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
+        A dónde ir es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
     </description>
     <author email="tessersoft@gmail.com" href="https://www.tessersoft.com">
         Adónde ir en la ciudad
     </author>
     <content src="index.html" />
-    <icon src="www/images/logos/120x120.png" />
     <splash src="res/screen/android/xxxhdpi.png" />
     <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <splash platform="android" qualifier="ldpi" src="res/screen/android/ldpi.png" />
