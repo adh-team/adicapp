@@ -318,14 +318,25 @@ $(function () {
 
 function changeNavTab(left) {
     var $tabs = $("div[data-role=navbar] li a", $("div[data-role=page].ui-page-active"));
+    var $extra = $("div[data-role=header] a.extra-swipe",$("div[data-role=page].ui-page-active"));
     var curidx = $tabs.closest("a.ui-btn-active").parent().index();
+    /*$tabs.push($extra[0]);*/
     var nextidx = 0;
     if (left) {
         nextidx = (curidx == $tabs.length - 1) ? 0 : curidx + 1;
+        $tabs.eq(nextidx).click();
     } else {
-        nextidx = (curidx == 0) ? $tabs.length - 1 : curidx - 1;
-    }
-    $tabs.eq(nextidx).click();
+        if (curidx == 0) {
+            $extra.eq(0).click();
+        } else {
+            nextidx = curidx - 1;
+            $tabs.eq(nextidx).click();
+
+        }
+    }/*
+    console.log($extra);
+    console.log($tabs);
+    console.log(nextidx);*/
 }
 
 $("div[data-role=content]").on("swipeleft", function (event) {
