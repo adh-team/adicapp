@@ -656,6 +656,7 @@ a.negocio-link, a:hover.negocio-link{
   padding: 0;
   line-height: 120%;
   display: block;
+  text-decoration: none;
 }
 a.negocio-link div, a:hover.negocio-link div {
   font-size: 1.4em;
@@ -675,7 +676,7 @@ a.negocio-link div, a:hover.negocio-link div {
 }
 
 .flex-negocio .div-flex-negocio {
-  display: flex;
+  display: flex !important;
   align-items: center;
   flex-direction: row;
   flex-wrap: wrap;
