@@ -16,6 +16,81 @@
 
 <body>
 	<div id="app">
+		<div data-role="page" id="main">
+			<div data-role="header" data-theme="d" data-tap-toggle="false"> <a href="#leftpanel" class="ui-btn-right ui-btn ui-icon-md-menu ui-btn-icon-notext extra-swipe"></a>
+
+				
+
+			</div>
+			<div data-role="header" data-theme="b" class="menu-header-title menu-header-title-back bg-second" data-tap-toggle="false">
+				<a href="#leftpanel" class="ui-btn-right ui-btn ui-icon-md-menu ui-btn-icon-notext extra-swipe"></a>
+				<h1 class="header-title">Examples</h1>
+			</div>
+			<div data-role="content" id="tabscontent">
+				<!--horizontal navigation tab start-->
+				<div data-role="tabs" id="tabs">
+					<div data-role="navbar" id="nav">
+						<ul>
+							<li><a class="ui-btn-active" href="#study" data-ajax="false">Study</a>
+							</li>
+							<li><a href="#quicktips" data-ajax="false">Quick Tips</a>
+							</li>
+							<li><a href="#testresults" data-ajax="false">Test Results</a>
+							</li>
+						</ul>
+					</div>
+					<div id="study">
+						<ul data-role="listview" data-inset="true">
+							<li><a href="#">Apples</a>
+							</li>
+							<li><a href="#">Blueberries</a>
+							</li>
+							<li><a href="#">Cherries</a>
+							</li>
+							<li><a href="#">Dates</a>
+							</li>
+							<li><a href="#">Eggplant</a>
+							</li>
+						</ul>
+					</div>
+					<div id="quicktips">
+						<ul data-role="listview" data-inset="true">
+							<li><a href="#">Figs</a>
+							</li>
+							<li><a href="#">Grapes</a>
+							</li>
+							<li><a href="#">Honey Dew melons</a>
+							</li>
+							<li><a href="#">Jujubes</a>
+							</li>
+							<li><a href="#">Kiwis</a>
+							</li>
+						</ul>
+					</div>
+					<div id="testresults">
+						<ul data-role="listview" data-inset="true">
+							<li><a href="#">Lemons</a>
+							</li>
+							<li><a href="#">Mangos</a>
+							</li>
+							<li><a href="#">Nectarines</a>
+							</li>
+							<li><a href="#">Ogden melons</a>
+							</li>
+							<li><a href="#">Peaches</a>
+							</li>
+						</ul>
+					</div>
+					<!--horizontal navigation tab end-->
+					<br/>
+				</div>
+			</div>
+			<!--Footer start-->
+			<div data-role="footer" data-tap-toggle="false" data-position="fixed" class="ui-btn ui-btn-c ui-shadow ui-corner-all">
+				<!-- <p class="ui-mini">Copyright <a href="http://ququplay.com">Ququplay LLC</a> All rights reserved.</p>-->
+				<button class="button-footer " data-mini="true">NEW PRACTICE TEST</button>
+			</div>
+		</div>
 		<div data-role="page" id="index">
 			<div role="main" class="content" id="login_form">
 				<form action="" autocomplete="off" v-on:submit.prevent="onSubmitLogin">
@@ -159,79 +234,7 @@
 				</form>            
 			</div>
 		</div>
-		<div data-role="page" id="main">
-			<div data-role="header" data-theme="d" data-tap-toggle="false"> <a href="#leftpanel" class="ui-btn-right ui-btn ui-icon-md-menu ui-btn-icon-notext extra-swipe"></a>
 
-         <h1 class="header-title">Examples</h1>
-
-    </div>
-    <!--header end-->
-    <!--content start-->
-    <div data-role="content" id="tabscontent">
-        <!--horizontal navigation tab start-->
-        <div data-role="tabs" id="tabs">
-            <div data-role="navbar" id="nav">
-                <ul>
-                    <li><a class="ui-btn-active" href="#study" data-ajax="false">Study</a>
-                    </li>
-                    <li><a href="#quicktips" data-ajax="false">Quick Tips</a>
-                    </li>
-                    <li><a href="#testresults" data-ajax="false">Test Results</a>
-                    </li>
-                </ul>
-            </div>
-            <div id="study">
-                <ul data-role="listview" data-inset="true">
-                    <li><a href="#">Apples</a>
-                    </li>
-                    <li><a href="#">Blueberries</a>
-                    </li>
-                    <li><a href="#">Cherries</a>
-                    </li>
-                    <li><a href="#">Dates</a>
-                    </li>
-                    <li><a href="#">Eggplant</a>
-                    </li>
-                </ul>
-            </div>
-            <div id="quicktips">
-                <ul data-role="listview" data-inset="true">
-                    <li><a href="#">Figs</a>
-                    </li>
-                    <li><a href="#">Grapes</a>
-                    </li>
-                    <li><a href="#">Honey Dew melons</a>
-                    </li>
-                    <li><a href="#">Jujubes</a>
-                    </li>
-                    <li><a href="#">Kiwis</a>
-                    </li>
-                </ul>
-            </div>
-            <div id="testresults">
-                <ul data-role="listview" data-inset="true">
-                    <li><a href="#">Lemons</a>
-                    </li>
-                    <li><a href="#">Mangos</a>
-                    </li>
-                    <li><a href="#">Nectarines</a>
-                    </li>
-                    <li><a href="#">Ogden melons</a>
-                    </li>
-                    <li><a href="#">Peaches</a>
-                    </li>
-                </ul>
-            </div>
-            <!--horizontal navigation tab end-->
-            <br/>
-        </div>
-    </div>
-    <!--Footer start-->
-    <div data-role="footer" data-tap-toggle="false" data-position="fixed" class="ui-btn ui-btn-c ui-shadow ui-corner-all">
-        <!-- <p class="ui-mini">Copyright <a href="http://ququplay.com">Ququplay LLC</a> All rights reserved.</p>-->
-        <button class="button-footer " data-mini="true">NEW PRACTICE TEST</button>
-    </div>
-		</div>
 
 	</div>
 	<!-- <script type="text/javascript" src="cordova.js"></script> -->

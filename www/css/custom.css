@@ -88,15 +88,15 @@ body *{
     background-image: url('../img/bg_app.jpg');
     background-size: cover;
 }
-.full{
+.ui-page-active .full{
 	    width: 100vw;
     height: 100vh;
     min-height: 320px;
 }
-.full.full-header {
+.ui-page-active .full.full-header {
     height: calc( 100vh - 40px );
 }
-.menu-header-title.menu-header-title-back.bg-second.ui-header.ui-bar-b {
+.ui-page-active .menu-header-title.menu-header-title-back.bg-second.ui-header.ui-bar-b {
     height: 40px;
 }
 #index_logo {
