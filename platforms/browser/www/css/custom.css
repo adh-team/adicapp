@@ -462,10 +462,12 @@ button#searchBtn {
 /* main right panel */
 #right-panel button{
   box-shadow: none !important;
+  text-transform: capitalize;
 }
 a.searchDay {
   color: #f0f0f6!important;
   text-decoration: none;
+  text-transform: capitalize;
 }
 /* main header */
 .menu-app{

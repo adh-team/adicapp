@@ -1222,3 +1222,6 @@ body:after,
 .z-panelFooter a:hover, .z-panelFooter button:hover {
   background-color: rgba(0,0,0,.1);
 }
+.block{
+  display: block;
+}
