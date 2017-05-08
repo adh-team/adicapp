@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.adondeir.adic;
+package com.adondeir.adic.dev;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
