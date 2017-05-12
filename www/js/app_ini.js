@@ -1005,6 +1005,7 @@ $(document).on("pagebeforeshow","#negocio",function(event){
         }).done(function(response){
             appS=getAppSession();
             var user=response[0];
+            var version = response.version;
             var negocio=user.public_user_data;
             var posts = user.post;
             var addresses = negocio.address;
@@ -1022,25 +1023,48 @@ $(document).on("pagebeforeshow","#negocio",function(event){
             $('#ubicacionSocio').attr('data-id',user.iduser);
             // console.log(appS.user.semana.dias);
             var postdias=[];
-            for(i in dias){
-                var postInDay=false;
-                postHtml='<div class="divisionDiaPerfil">Publicaciones del dia '+dias[i]+'</div>';
-                for(j in posts) {
-                    var post = posts[j];
-                    if(dias[i] === moment(post.date).format('dddd')){
-                        postHtml+=getHtmlPost(post,user,negocio);
-                        postInDay=true;
-                        continue;
+            if (version === undefined || version <= 1.23) {
+                for(i in dias){
+                    var postInDay=false;
+                    postHtml='<div class="divisionDiaPerfil">Publicaciones del dia '+dias[i]+'</div>';
+                    for(j in posts) {
+                        var post = posts[j];
+                        if(dias[i] === moment(post.date).format('dddd')){
+                            postHtml+=getHtmlPost(post,user,negocio);
+                            postInDay=true;
+                            continue;
+                        }
+                    }
+                    if (postInDay) {
+                        postdias.push(postHtml);
+                    }
+
+                }
+                postHtml=""
+                for (i in postdias){
+                    postHtml+=postdias[i];
+                }
+            } else {
+                for(i in dias){
+                    var postInDay=false;
+                    postHtml='<div class="divisionDiaPerfil">Publicaciones del dia '+dias[i]+'</div>';
+                    for(j in posts) {
+                        var post = posts[j];
+                        for(day in post.days){
+                            if(post.days[day].day === dias[i]){
+                                postHtml+=getHtmlPost(post,user,negocio);
+                                postInDay=true;
+                            }                            
+                        }
+                    }
+                    if (postInDay) {
+                        postdias.push(postHtml);
                     }
                 }
-                if (postInDay) {
-                    postdias.push(postHtml);
+                postHtml=""
+                for (i in postdias){
+                    postHtml+=postdias[i];
                 }
-
-            }
-            postHtml=""
-            for (i in postdias){
-                postHtml+=postdias[i];
             }
             for (i in addresses){
                 var address = addresses[i];
