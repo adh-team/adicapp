@@ -6,7 +6,7 @@ var controller;
 var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var newAjax="http://api.adondeirenlaciudad.com/"
-// newAjax="http://adic.dev/";
+newAjax="http://adic.dev/";
 var appRuta='rApp.php';
 
 var Latitude = undefined;
@@ -423,12 +423,14 @@ function onResume() {
         function getDiaSemana(){
             appS=getAppSession();
             var now = moment().format('YYYY-MM-DD');
+            var dias = ['domingo','lunes','martes','miercoles','jueves','viernes','sabado'];
             /*console.log(now);*/
             /*appS.user.semana.fecha="";*/
             if (appS.user.semana == undefined) {
                 appS.user.semana={
                     fecha:"",
-                    botones:""
+                    botones:"",
+                    dias:dias
                 };
             }
             if ( ((appS.user.semana.fecha == "") || (appS.user.semana.botones == "")) || (appS.user.semana.fecha != now) ) {
@@ -438,14 +440,11 @@ function onResume() {
 
                 var botones="";
                 var date = moment();
-                var dias = [];
-                dias.push(moment().format('dddd'));
                 botones += buttonStart+' data-date="'+date.format('YYYY-MM-DD')+'" value="'+date.format('dddd')+'" data-day="'+date.day()+'" >Hoy'+buttonEnd;
                 date = moment().add(1,'day');
                 for(var i = 1; i<7; date = moment().add(i,'day')){
                     botones+=buttonStart+'  data-date="'+date.format('YYYY-MM-DD')+'" value="'+date.format('dddd')+'" data-day="'+date.day()+'" >'+date.format('dddd')+buttonEnd;
                     i++;
-                    dias.push(date.format('dddd'));
                 }
                 $("#diasSemana").html(botones);
                 var semana={
@@ -1051,7 +1050,7 @@ $(document).on("pagebeforeshow","#negocio",function(event){
                     for(j in posts) {
                         var post = posts[j];
                         for(day in post.days){
-                            if(post.days[day].day === dias[i]){
+                            if(post.days[day].day.toUpperCase() === dias[i].toUpperCase()){
                                 postHtml+=getHtmlPost(post,user,negocio);
                                 postInDay=true;
                             }                            
