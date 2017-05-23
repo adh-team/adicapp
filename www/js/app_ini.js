@@ -6,7 +6,7 @@ var controller;
 var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var newAjax="http://api.adondeirenlaciudad.com/"
-newAjax="http://192.168.1.10/adic/html/public/";
+newAjax="http://192.168.0.10/adic/html/public/";
 var appRuta='rApp.php';
 
 var Latitude = undefined;
