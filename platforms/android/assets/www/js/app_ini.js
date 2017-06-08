@@ -6,7 +6,7 @@ var controller;
 var urlLocal="http://localhost:81/cache/adic/";
 var urlRemoto="http://adondeirenlaciudad.com/";
 var newAjax="http://api.adondeirenlaciudad.com/"
-newAjax="http://192.168.1.10/adic/html/public/";
+// newAjax="http://192.168.1.72/adic/html/public/";
 var appRuta='rApp.php';
 
 var Latitude = undefined;
@@ -481,10 +481,6 @@ function onResume() {
             }).done(function(data){
                     var post = data.data;
                     if(post.length>0){
-                        /*console.log(post);*/
-                        /*post = $.map(post, function(value, index) {
-                            return [value];
-                        });*/
                         post = post.sort(function() {return Math.random() - 0.5});
                         /*console.log(post);*/
                         /*var addresses= data.datos.addresses;*/
@@ -699,7 +695,7 @@ function onResume() {
     else{
 
 
-        horary='<div><a class="s15 text-center cDarkGrey block btn ">Horario: '+json.horary+'</a></div>';
+        horary='<div class="s15 text-center cDarkGrey block text-bold ">Horario: <pre>'+json.horary+'</pre></div>';
     }
 
       return public_phone+horary;

@@ -765,12 +765,12 @@ a.back-menu {
   margin: -7px -3px !important
 }
 a.menu-footer{
-     display: block !important;
-    width: 50% !important;
-    background-color: transparent !important;
-    float: left;
-    outline: none;
-    box-shadow: none !important;
+ display: block !important;
+ width: 50% !important;
+ background-color: transparent !important;
+ float: left;
+ outline: none;
+ box-shadow: none !important;
 }
 
 .labels {
@@ -825,19 +825,19 @@ a.menu-footer{
   text-align: center;
 }
 .alphabeth li a {    
-    padding: 0 1px 0 1px;
-    line-height: 150%;
-    text-align: center;
-    color: #fff;
-    font-weight: bold;
-    display: block;
-    text-transform: uppercase;
-    cursor: pointer;
-    z-index: 99;
-    font-size: 11px;
-    box-sizing: border-box;
-    width: 21px;
-    display: block;
+  padding: 0 1px 0 1px;
+  line-height: 150%;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 99;
+  font-size: 11px;
+  box-sizing: border-box;
+  width: 21px;
+  display: block;
 }
 .alphabeth li a:active,.alphabeth li a:focus,.alphabeth li a:hover{
   color: #fff !important;
@@ -860,8 +860,8 @@ a.menu-footer{
   z-index: 99;
 }
 .alphabeth li a.hover {
-    font-size: 17px;
-    line-height: 190%;
+  font-size: 17px;
+  line-height: 190%;
 }
 /* general h */
 @media screen and (min-height: 321px){
@@ -922,7 +922,7 @@ a.menu-footer{
     line-height: 220%;
   }
 }
-    
+
 /* iphone 5 h*/
 @media screen and (min-width: 568px) and (max-height: 321px){
   #aphabethContainer{
@@ -952,17 +952,24 @@ a.menu-footer{
   }  
 }
 .TesserSoft {
-    position: fixed;
-    bottom: 0;
-    color: #fff;
-    font-family: Monda;
+  position: fixed;
+  bottom: 0;
+  color: #fff;
+  font-family: Monda;
 }
 #ubicaciones .ui-content {
-    padding: 0;
+  padding: 0;
 }
 
 .flex-negocio>.image-swap{
   background-color: #fff;
+}
+pre{
+  font-family: poppins;
+  font-size: 12px;
+  padding: 10px 5px;
+  background: transparent;
+  margin: 2px -5px;
 }
 
 
