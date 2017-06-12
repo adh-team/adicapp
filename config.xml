@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.adondeir.adic" version="1.2.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.adondeir.adic" version="1.2.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>A dónde ir</name>
     <description>
         A dónde ir es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
@@ -16,15 +16,15 @@
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
     <plugin name="cordova-plugin-device"  source="npm" />
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
-
-    <splash src="res/screen/android/xxxhdpi.png"/>
-    <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
+    <splash src="res/gif.gif"/>
+    <!-- <splash src="res/screen/android/xxxhdpi.png"/> -->
+    <!-- <splash src="res/screen/android/drawable-port-xxxhdpi-screen.png" />
     <splash src="res/screen/android/ldpi.png" platform="android" qualifier="ldpi" />
     <splash src="res/screen/android/mdpi.png" platform="android" qualifier="mdpi" />
     <splash src="res/screen/android/hdpi.png" platform="android" qualifier="hdpi" />
     <splash src="res/screen/android/xhdpi.png" platform="android" qualifier="xhdpi" />
     <splash src="res/screen/android/xxhdpi.png" platform="android" qualifier="xxhdpi" />
-    <splash src="res/screen/android/xxxhdpi.png" platform="android" qualifier="xxxhdpi" />
+    <splash src="res/screen/android/xxxhdpi.png" platform="android" qualifier="xxxhdpi" /> -->
     
     <access origin="*" />
     <access origin="maps.apple.com/*" subdomains="true"/>
@@ -90,7 +90,7 @@
 
 
 
-        <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
+        <!-- <splash height="1136" platform="ios" src="res/screen/ios/Default-568h@2x~iphone.png" width="640" />
         <splash height="1334" platform="ios" src="res/screen/ios/Default-667h.png" width="750" />
         <splash height="2208" platform="ios" src="res/screen/ios/Default-736h.png" width="1242" />
         <splash height="1242" platform="ios" src="res/screen/ios/Default-Landscape-736h.png" width="2208" />
@@ -99,6 +99,6 @@
         <splash height="2048" platform="ios" src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" />
         <splash height="1024" platform="ios" src="res/screen/ios/Default-Portrait~ipad.png" width="768" />
         <splash height="960" platform="ios" src="res/screen/ios/Default@2x~iphone.png" width="640" />
-        <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" />
+        <splash height="480" platform="ios" src="res/screen/ios/Default~iphone.png" width="320" /> -->
     </platform>
 </widget>
