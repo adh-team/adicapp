@@ -46,6 +46,15 @@ module.exports = [
         "clobbers": [
             "Connection"
         ]
+    },
+    {
+        "id": "cordova-plugin-google-analytics.UniversalAnalytics",
+        "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
+        "pluginId": "cordova-plugin-google-analytics",
+        "clobbers": [
+            "analytics",
+            "ga"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -56,7 +65,8 @@ module.exports.metadata =
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-geolocation": "2.4.1",
     "cordova-plugin-device": "1.1.4",
-    "cordova-plugin-network-information": "1.3.1"
+    "cordova-plugin-network-information": "1.3.1",
+    "cordova-plugin-google-analytics": "1.8.3"
 };
 // BOTTOM OF METADATA
 });
