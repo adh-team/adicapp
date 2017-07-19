@@ -3,6 +3,9 @@
     <feature name="Device">
         <param name="browser-package" value="Device" />
     </feature>
+    <feature name="Camera">
+        <param name="browser-package" value="Camera" />
+    </feature>
     <name>A dónde ir2</name>
     <description>
         Es una amigable aplicación en la que localizas las promociones de cada día de la semana de restaurantes, cafés, bares y antros.
